@@ -59,7 +59,7 @@ const Index = () => {
                 <div className="text-center mb-5">
                   <span className="text-[11px] uppercase tracking-[0.3em] text-gold">{p.label}</span>
                 </div>
-                <HotelCard hotel={p.hotel} cta="Check Availability" />
+                <HotelCard hotel={p.hotel} />
               </div>
             ))}
           </div>
