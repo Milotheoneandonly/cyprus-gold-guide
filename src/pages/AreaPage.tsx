@@ -26,21 +26,30 @@ const AreaPage = () => {
         </div>
       </section>
 
-      {/* TOP 3 PICKS */}
+      {/* TRUST BAR */}
+      <div className="border-b border-border/50 bg-background/60">
+        <div className="container-luxe py-4 flex flex-wrap justify-center gap-x-8 gap-y-2 text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
+          <span>★ Trusted booking partner</span>
+          <span>★ Secure booking via Booking.com</span>
+          <span>★ Handpicked for Scandinavian travelers</span>
+        </div>
+      </div>
+
+      {/* TOP 5 PICKS */}
       <section className="py-24">
         <div className="container-luxe">
           <SectionHeader
-            eyebrow="Top 3 Picks"
-            title={`Our favorites in ${area.name}`}
-            subtitle="Three trusted hotels for three types of traveler — start here if you're short on time."
+            eyebrow="Top 5 Hotels"
+            title={`Our top 5 in ${area.name}`}
+            subtitle="Five trusted hotels for every type of traveler — start here if you're short on time."
           />
-          <div className="mt-16 grid gap-8 md:grid-cols-3">
+          <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {area.topPicks.map((p: any) => (
               <div key={p.label} className="flex flex-col">
                 <div className="text-center mb-5">
                   <span className="text-[11px] uppercase tracking-[0.3em] text-gold">{p.label}</span>
                 </div>
-                <HotelCard hotel={p.hotel} cta="Check Price" />
+                <HotelCard hotel={p.hotel} />
               </div>
             ))}
           </div>
@@ -55,9 +64,9 @@ const AreaPage = () => {
             title={`More handpicked stays in ${area.name}`}
             subtitle="A wider selection of trusted hotels — from boutique escapes to family-friendly resorts."
           />
-          <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {area.hotels.map((h: any) => (
-              <HotelCard key={h.name} hotel={h} cta="View Deal" />
+              <HotelCard key={h.name} hotel={h} />
             ))}
           </div>
         </div>
