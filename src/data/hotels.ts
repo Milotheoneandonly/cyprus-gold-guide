@@ -3,6 +3,12 @@ import hotel2 from "@/assets/hotel-2.jpg";
 import hotel3 from "@/assets/hotel-3.jpg";
 import hotel4 from "@/assets/hotel-4.jpg";
 import hotel5 from "@/assets/hotel-5.jpg";
+import limassolGrandResort from "@/assets/limassol-grandresort.jpg";
+import limassolAmathusResidences from "@/assets/limassol-amathus-residences.jpg";
+import limassolCityOfDreams from "@/assets/limassol-city-of-dreams.jpg";
+import limassolFourSeasons from "@/assets/limassol-four-seasons.jpg";
+import limassolAmara from "@/assets/limassol-amara.jpg";
+import limassolParklane from "@/assets/limassol-parklane.jpg";
 
 // 🔑 Replace YOUR_AFFILIATE_ID below with your real Booking.com affiliate ID (aid).
 export const BOOKING_AFFILIATE_ID = "YOUR_AFFILIATE_ID";
@@ -151,14 +157,79 @@ export const areas: Record<AreaKey, AreaData> = {
     },
     categories: {
       luxury: [
-        h("Four Seasons Hotel", "Limassol", "luxury", 5, "True top-tier luxury", "Private beach, east Limassol", "The gold standard in Limassol.", 2, "Best choice"),
-        h("Amara Hotel", "Limassol", "luxury", 5, "Modern luxury with great food", "Limassol seafront", "Excellent breakfast and spa.", 3),
-        h("Parklane, a Luxury Collection Resort & Spa", "Limassol", "luxury", 5, "Couples who want full relaxation", "Eastern beach area", "One of the largest spas in Europe.", 0),
-        h("Londa Beach Boutique Hotel", "Limassol", "luxury", 5, "Quiet, intimate stays", "Seafront", "Small and stylish. Adults only.", 0),
-        h("Mövenpick Hotel & Resort", "Limassol", "luxury", 5, "Reliable upscale stay", "Amathus area", "Polished service, great pool.", 4),
-        h("Atlantica Mare Village (Premium)", "Limassol", "luxury", 5, "Stylish all-inclusive", "Pyrgos area", "Calm, well-organized luxury.", 3),
-        h("Royal Apollonia", "Limassol", "luxury", 5, "Beachfront 5★ classic", "Amathus seafront", "Large beach, big pool.", 1),
-        h("Elias Beach Hotel", "Limassol", "luxury", 5, "Family-friendly luxury", "Amathus area", "Lots of space, beachfront.", 2),
+        {
+          name: "GrandResort Limassol",
+          description: "Elegant 5★ beachfront classic with large pools and gardens.",
+          tag: "Luxury",
+          image: limassolGrandResort,
+          bookingUrl: "https://www.booking.com/hotel/cy/grandresort.sv.html?aid=2311236",
+          bestFor: "Relaxed beachfront luxury",
+          location: "Amathus area, beachfront",
+          note: "Spacious grounds, great pools and a calm atmosphere.",
+          category: "luxury",
+          stars: 5,
+          highlight: "Best choice",
+        },
+        {
+          name: "Amathus Residences",
+          description: "Modern luxury residences overlooking the Mediterranean.",
+          tag: "Luxury",
+          image: limassolAmathusResidences,
+          bookingUrl: "https://www.booking.com/hotel/cy/residences-amathus.sv.html?aid=2311236",
+          bestFor: "Couples wanting space and privacy",
+          location: "Amathus seafront",
+          note: "Apartment-style luxury with sea views.",
+          category: "luxury",
+          stars: 5,
+        },
+        {
+          name: "City of Dreams Mediterranean",
+          description: "Brand new integrated resort with world-class amenities.",
+          tag: "Luxury",
+          image: limassolCityOfDreams,
+          bookingUrl: "https://www.booking.com/hotel/cy/city-of-dreams-mediterranean.sv.html?aid=2311236",
+          bestFor: "Premium experience with entertainment",
+          location: "Limassol, near the coast",
+          note: "Newest 5★ in Cyprus. Top dining and pools.",
+          category: "luxury",
+          stars: 5,
+        },
+        {
+          name: "Four Seasons Limassol",
+          description: "The gold standard for luxury in Limassol.",
+          tag: "Luxury",
+          image: limassolFourSeasons,
+          bookingUrl: "https://www.booking.com/hotel/cy/four-seasons-limassol.sv.html?aid=2311236",
+          bestFor: "True top-tier luxury",
+          location: "Private beach, east Limassol",
+          note: "Refined service. A reliable favourite.",
+          category: "luxury",
+          stars: 5,
+        },
+        {
+          name: "Amara Hotel",
+          description: "Modern minimalist 5★ on the seafront.",
+          tag: "Luxury",
+          image: limassolAmara,
+          bookingUrl: "https://www.booking.com/hotel/cy/amara.sv.html?aid=2311236",
+          bestFor: "Design lovers and food lovers",
+          location: "Limassol seafront",
+          note: "Excellent breakfast, spa and rooftop views.",
+          category: "luxury",
+          stars: 5,
+        },
+        {
+          name: "Parklane Resort & Spa",
+          description: "One of the largest spas in Europe, set in lush grounds.",
+          tag: "Luxury",
+          image: limassolParklane,
+          bookingUrl: "https://www.booking.com/hotel/cy/parklane-limassol-spa-resort.sv.html?aid=2311236",
+          bestFor: "Full relaxation and wellness",
+          location: "Eastern beach area",
+          note: "Huge resort. Great for couples and families.",
+          category: "luxury",
+          stars: 5,
+        },
       ],
       family: [
         h("St Raphael Resort", "Limassol", "family", 4, "Active families", "Own marina, east Limassol", "Lots to do without leaving the resort.", 2, "Best choice"),
