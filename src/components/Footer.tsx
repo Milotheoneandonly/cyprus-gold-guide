@@ -22,9 +22,6 @@ const Footer = () => {
         </div>
         <div>
           <h4 className="text-xs uppercase tracking-[0.25em] text-gold mb-4">{t.footer.about}</h4>
-          <p className="text-sm text-muted-foreground">
-            {t.footer.aboutText}
-          </p>
           <Link
             to="/about"
             className="inline-block mt-3 text-sm text-foreground/85 hover:text-gold transition-colors"
