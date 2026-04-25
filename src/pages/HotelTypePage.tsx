@@ -6,11 +6,6 @@ import { areas, AreaKey, HotelCategory } from "@/data/hotels";
 import { useLang } from "@/i18n/LanguageContext";
 
 const validTypes: HotelCategory[] = ["luxury", "family", "budget"];
-const typeIcons: Record<HotelCategory, string> = {
-  luxury: "💎",
-  family: "👨‍👩‍👧",
-  budget: "💰",
-};
 
 const HotelTypePage = () => {
   const { slug, type } = useParams();
