@@ -46,8 +46,24 @@ type Dict = {
     explore: string;
     about: string;
     aboutText: string;
+    aboutLink: string;
     rights: string;
     madeFor: string;
+  };
+  aboutPage: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    p1: string;
+    p2: string;
+    p3: string;
+    methodEyebrow: string;
+    methodTitle: string;
+    methodSubtitle: string;
+    basedOn: string;
+    criteria: { location: string; ratings: string; value: string; suitability: string };
+    avoid: string;
+    goal: string;
   };
 };
 
