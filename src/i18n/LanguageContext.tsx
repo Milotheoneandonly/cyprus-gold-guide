@@ -15,7 +15,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [lang, setLangState] = useState<Lang>(() => {
     if (typeof window === "undefined") return "sv";
     const saved = localStorage.getItem(STORAGE_KEY) as Lang | null;
-    return saved && ["sv", "no", "da"].includes(saved) ? saved : "sv";
+    return saved && ["sv", "no", "da", "en"].includes(saved) ? saved : "sv";
   });
 
   useEffect(() => {
