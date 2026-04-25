@@ -21,7 +21,7 @@ const HotelTypePage = () => {
   if (!area || !isValidType) return <Navigate to="/" replace />;
 
   const category = type as HotelCategory;
-  const hotels = area.categories[category].slice(0, 5);
+  const hotels = area.categories[category].slice(0, 8);
 
   return (
     <Layout>

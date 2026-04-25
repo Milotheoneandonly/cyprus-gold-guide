@@ -1,9 +1,10 @@
-export type Lang = "sv" | "no" | "da";
+export type Lang = "sv" | "no" | "da" | "en";
 
 export const LANGS: { code: Lang; label: string; flag: string }[] = [
   { code: "sv", label: "Svenska", flag: "🇸🇪" },
   { code: "no", label: "Norsk", flag: "🇳🇴" },
   { code: "da", label: "Dansk", flag: "🇩🇰" },
+  { code: "en", label: "English", flag: "🇬🇧" },
 ];
 
 type Dict = {
@@ -205,6 +206,58 @@ export const translations: Record<Lang, Dict> = {
         "Vi tjener en lille provision, når du booker via vores partnere — uden ekstra omkostninger for dig. Det holder vores anbefalinger ærlige og guiderne gratis.",
       rights: "Cypern Hoteller for skandinaver",
       madeFor: "Lavet med omhu · Til Sverige, Norge & Danmark",
+    },
+  },
+  en: {
+    brand: "Cyprus · Hotels",
+    brandTagline: "For Scandinavians",
+    nav: { home: "Home", whereToStay: "Where to stay" },
+    step: (n, t) => `Step ${n} of ${t}`,
+    home: {
+      title1: "Choose your destination",
+      titleAccent: "in Cyprus",
+      helper: "Start by choosing where in Cyprus you want to stay.",
+      chips: "Cyprus",
+      choose: "Choose →",
+      destinations: {
+        paphos: "Calm, romantic, premium.",
+        ayiaNapa: "Lively, beaches, social.",
+        limassol: "City + beach + luxury.",
+      },
+    },
+    area: {
+      title1: "Choose your hotel type in",
+      helper: (name) => `Now choose the type of hotel you want in ${name}.`,
+      seeHotels: "See hotels →",
+      types: { luxury: "Luxury", family: "Family", budget: "Budget" },
+      descs: {
+        luxury: "High-end hotels, calm and premium experience.",
+        family: "Easy, safe and family-friendly hotels.",
+        budget: "Good value without unnecessary luxury.",
+      },
+    },
+    hotelList: {
+      title: (type, area) => `Best ${type} hotels in ${area}`,
+      subtitle: "Click a hotel to see prices on Booking.com.",
+      back: "← Choose another type",
+      types: { luxury: "luxury", family: "family", budget: "budget" },
+    },
+    card: {
+      bestFor: "Best for",
+      location: "Location",
+      note: "Note",
+      cta: "See price on Booking",
+      redirect: "You will be redirected to Booking.com",
+      secure: "Secure booking via Booking.com",
+    },
+    footer: {
+      intro: "A handpicked guide for Scandinavians looking for the finest stays in Cyprus.",
+      explore: "Explore",
+      about: "About",
+      aboutText:
+        "We earn a small commission when you book through our partners — at no extra cost to you. It keeps our recommendations honest and the guides free.",
+      rights: "Cyprus Hotels for Scandinavians",
+      madeFor: "Made with care · For Sweden, Norway & Denmark",
     },
   },
 };
