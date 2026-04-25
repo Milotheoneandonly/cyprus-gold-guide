@@ -2,11 +2,14 @@ import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { useLang } from "@/i18n/LanguageContext";
 import heroImg from "@/assets/hero.jpg";
+import paphosImg from "@/assets/paphos.jpg";
+import ayiaNapaImg from "@/assets/ayia-napa.jpg";
+import limassolImg from "@/assets/limassol.jpg";
 
 const destinations = [
-  { slug: "paphos", name: "Paphos", key: "paphos" as const },
-  { slug: "ayia-napa", name: "Ayia Napa", key: "ayiaNapa" as const },
-  { slug: "limassol", name: "Limassol", key: "limassol" as const },
+  { slug: "paphos", name: "Paphos", key: "paphos" as const, image: paphosImg },
+  { slug: "ayia-napa", name: "Ayia Napa", key: "ayiaNapa" as const, image: ayiaNapaImg },
+  { slug: "limassol", name: "Limassol", key: "limassol" as const, image: limassolImg },
 ];
 
 const Index = () => {
@@ -43,14 +46,25 @@ const Index = () => {
               <Link
                 key={d.slug}
                 to={`/hotels/${d.slug}`}
-                className="group bg-card border border-border/60 hover:border-gold/60 rounded-lg p-10 shadow-elegant hover-lift block transition-colors text-center"
+                className="group relative overflow-hidden rounded-lg border border-border/60 hover:border-gold/60 shadow-elegant hover-lift block transition-colors min-h-[420px] flex flex-col justify-end text-center"
               >
-                <span className="text-[11px] uppercase tracking-[0.3em] text-gold">{t.home.chips}</span>
-                <h3 className="mt-4 font-serif text-4xl">{d.name}</h3>
-                <p className="mt-5 text-foreground/90">{t.home.destinations[d.key]}</p>
-                <span className="mt-8 inline-block text-xs uppercase tracking-[0.22em] text-gold border-b border-gold/40 pb-1 group-hover:border-gold transition-colors">
-                  {t.home.choose}
-                </span>
+                <img
+                  src={d.image}
+                  alt={`${d.name} Cyprus`}
+                  loading="lazy"
+                  width={1280}
+                  height={896}
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/60 to-background/30" />
+                <div className="relative p-10">
+                  <span className="text-[11px] uppercase tracking-[0.3em] text-gold">{t.home.chips}</span>
+                  <h3 className="mt-4 font-serif text-4xl text-foreground drop-shadow-lg">{d.name}</h3>
+                  <p className="mt-5 text-foreground/90">{t.home.destinations[d.key]}</p>
+                  <span className="mt-8 inline-block text-xs uppercase tracking-[0.22em] text-gold border-b border-gold/40 pb-1 group-hover:border-gold transition-colors">
+                    {t.home.choose}
+                  </span>
+                </div>
               </Link>
             ))}
           </div>
