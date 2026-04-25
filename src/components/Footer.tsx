@@ -24,9 +24,9 @@ const Footer = () => {
           <h4 className="text-xs uppercase tracking-[0.25em] text-gold mb-4">{t.footer.about}</h4>
           <Link
             to="/about"
-            className="inline-block mt-3 text-sm text-foreground/85 hover:text-gold transition-colors"
+            className="inline-block text-sm text-foreground/85 hover:text-gold transition-colors"
           >
-            About us & how we select hotels →
+            {t.footer.aboutLink}
           </Link>
         </div>
       </div>

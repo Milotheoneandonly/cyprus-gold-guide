@@ -1,47 +1,39 @@
 import Layout from "@/components/Layout";
 import SectionHeader from "@/components/SectionHeader";
+import { useLang } from "@/i18n/LanguageContext";
 
 const About = () => {
+  const { t } = useLang();
+  const a = t.aboutPage;
   return (
     <Layout>
       <section className="container-luxe py-16 md:py-24">
-        <SectionHeader
-          eyebrow="About"
-          title="About us"
-          subtitle="We help Scandinavian travelers find the right hotels in Cyprus – quickly and without stress."
-        />
+        <SectionHeader eyebrow={a.eyebrow} title={a.title} subtitle={a.subtitle} />
         <div className="max-w-2xl mx-auto mt-10 space-y-5 text-base md:text-lg text-foreground/85 leading-relaxed">
-          <p>
-            Instead of showing hundreds of options, we carefully select hotels
-            that are actually worth booking.
-          </p>
-          <p>
-            We focus on quality, location, and what fits different types of
-            trips.
-          </p>
-          <p>Everything is designed to make your decision simple and reliable.</p>
+          <p>{a.p1}</p>
+          <p>{a.p2}</p>
+          <p>{a.p3}</p>
         </div>
       </section>
 
       <section className="border-t border-border/50 bg-secondary/20">
         <div className="container-luxe py-16 md:py-24">
           <SectionHeader
-            eyebrow="Our method"
-            title="How we select hotels"
-            subtitle="We don't show all hotels – only the ones that meet our standards."
+            eyebrow={a.methodEyebrow}
+            title={a.methodTitle}
+            subtitle={a.methodSubtitle}
           />
           <div className="max-w-2xl mx-auto mt-10 space-y-6 text-base md:text-lg text-foreground/85 leading-relaxed">
-            <p>Each hotel is selected based on:</p>
+            <p>{a.basedOn}</p>
             <ul className="space-y-3 pl-5 list-disc marker:text-gold">
-              <li>Location</li>
-              <li>Guest ratings</li>
-              <li>Value for money</li>
-              <li>Suitability (luxury, family, or budget)</li>
+              <li>{a.criteria.location}</li>
+              <li>{a.criteria.ratings}</li>
+              <li>{a.criteria.value}</li>
+              <li>{a.criteria.suitability}</li>
             </ul>
-            <p>We avoid hotels with inconsistent quality or poor reviews.</p>
+            <p>{a.avoid}</p>
             <p className="pt-4 border-t border-border/40 text-muted-foreground">
-              Our goal: make it easy for you to choose and book with confidence
-              via Booking.com.
+              {a.goal}
             </p>
           </div>
         </div>
