@@ -4,11 +4,6 @@ import { areas, AreaKey } from "@/data/hotels";
 import { useLang } from "@/i18n/LanguageContext";
 
 const typeKeys = ["luxury", "family", "budget"] as const;
-const typeIcons: Record<(typeof typeKeys)[number], string> = {
-  luxury: "💎",
-  family: "👨‍👩‍👧",
-  budget: "💰",
-};
 
 const AreaPage = () => {
   const { slug } = useParams();
@@ -44,9 +39,11 @@ const AreaPage = () => {
                 to={`/hotels/${area.slug}/${key}`}
                 className="group bg-card border border-border/60 hover:border-gold/60 rounded-lg p-10 shadow-elegant hover-lift block transition-colors text-center"
               >
-                <div className="text-5xl">{typeIcons[key]}</div>
-                <h3 className="mt-5 font-serif text-3xl">{t.area.types[key]}</h3>
-                <p className="mt-4 text-foreground/85">{t.area.descs[key]}</p>
+                <h3 className="font-serif text-4xl md:text-5xl font-light tracking-wide text-gradient-gold">
+                  {t.area.types[key]}
+                </h3>
+                <div className="mx-auto mt-4 h-px w-12 bg-gold/50 group-hover:w-20 transition-all duration-500" />
+                <p className="mt-6 text-foreground/85">{t.area.descs[key]}</p>
                 <span className="mt-8 inline-block text-xs uppercase tracking-[0.22em] text-gold border-b border-gold/40 pb-1 group-hover:border-gold transition-colors">
                   {t.area.seeHotels}
                 </span>
