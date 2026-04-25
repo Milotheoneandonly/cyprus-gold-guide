@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound.tsx";
 import WhereToStay from "./pages/WhereToStay.tsx";
 import AreaPage from "./pages/AreaPage.tsx";
 import HotelTypePage from "./pages/HotelTypePage.tsx";
+import About from "./pages/About.tsx";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => (
             <Route path="/where-to-stay" element={<WhereToStay />} />
             <Route path="/hotels/:slug" element={<AreaPage />} />
             <Route path="/hotels/:slug/:type" element={<HotelTypePage />} />
+            <Route path="/about" element={<About />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -25,6 +25,12 @@ const Footer = () => {
           <p className="text-sm text-muted-foreground">
             {t.footer.aboutText}
           </p>
+          <Link
+            to="/about"
+            className="inline-block mt-3 text-sm text-foreground/85 hover:text-gold transition-colors"
+          >
+            About us & how we select hotels →
+          </Link>
         </div>
       </div>
       <div className="border-t border-border/40">

@@ -16,7 +16,15 @@ const Navbar = () => {
           </span>
         </Link>
 
-        <LanguageSwitcher />
+        <div className="flex items-center gap-6">
+          <Link
+            to="/about"
+            className="hidden sm:inline text-sm text-foreground/80 hover:text-gold transition-colors"
+          >
+            About
+          </Link>
+          <LanguageSwitcher />
+        </div>
       </div>
     </header>
   );
