@@ -6,11 +6,6 @@ import { areas, AreaKey, HotelCategory } from "@/data/hotels";
 import { useLang } from "@/i18n/LanguageContext";
 
 const validTypes: HotelCategory[] = ["luxury", "family", "budget"];
-const typeIcons: Record<HotelCategory, string> = {
-  luxury: "💎",
-  family: "👨‍👩‍👧",
-  budget: "💰",
-};
 
 const HotelTypePage = () => {
   const { slug, type } = useParams();
@@ -26,14 +21,14 @@ const HotelTypePage = () => {
   return (
     <Layout>
       {/* HERO */}
-      <section className="py-20 md:py-24 border-b border-border/50">
+      <section className="py-20 md:py-28 border-b border-border/50">
         <div className="container-luxe text-center">
           <span className="text-[11px] uppercase tracking-[0.35em] text-gold">{t.step(3, 3)}</span>
-          <div className="mt-5 text-5xl">{typeIcons[category]}</div>
-          <h1 className="mt-5 font-serif text-4xl md:text-6xl font-light">
-            {t.hotelList.title(t.hotelList.types[category], area.name)}
+          <h1 className="mt-6 font-serif text-5xl md:text-7xl font-light leading-[1.05] tracking-wide">
+            <span className="text-gradient-gold italic">{t.hotelList.title(t.hotelList.types[category], area.name)}</span>
           </h1>
-          <p className="mt-5 text-muted-foreground">{t.hotelList.subtitle}</p>
+          <div className="mx-auto mt-6 h-px w-24 bg-gold/50" />
+          <p className="mt-6 text-muted-foreground max-w-xl mx-auto">{t.hotelList.subtitle}</p>
         </div>
       </section>
 
