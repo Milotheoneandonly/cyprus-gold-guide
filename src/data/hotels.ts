@@ -9,6 +9,10 @@ import limassolCityOfDreams from "@/assets/limassol-city-of-dreams.jpg";
 import limassolFourSeasons from "@/assets/limassol-four-seasons.jpg";
 import limassolAmara from "@/assets/limassol-amara.jpg";
 import limassolParklane from "@/assets/limassol-parklane.jpg";
+import limassolMediterraneanBeach from "@/assets/limassol-mediterranean-beach.jpg";
+import limassolCrownePlaza from "@/assets/limassol-crowne-plaza.jpg";
+import limassolAtlanticaMiramare from "@/assets/limassol-atlantica-miramare.jpg";
+import limassolPoseidonia from "@/assets/limassol-poseidonia.jpg";
 import tsanotelImg from "@/assets/tsanotel.png";
 import harmonyBayImg from "@/assets/harmony-bay.png";
 import pefkosImg from "@/assets/pefkos.png";
@@ -268,7 +272,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Mediterranean Beach Hotel",
           description: "Warm beachfront 4★ with friendly staff and easy access to town.",
           tag: "Family",
-          image: img(1),
+          image: limassolMediterraneanBeach,
           bookingUrl: "https://www.booking.com/hotel/cy/mediterranean-beach.en-gb.html?aid=2311236",
           bestFor: "Families who want city + beach",
           location: "Beachfront, near old town",
@@ -280,7 +284,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Crowne Plaza Limassol",
           description: "Modern central seafront 4★ with pools and family rooms.",
           tag: "Family",
-          image: img(0),
+          image: limassolCrownePlaza,
           bookingUrl: "https://www.booking.com/hotel/cy/crowne-plaza-limassol.en-gb.html?aid=2311236",
           bestFor: "City + beach families",
           location: "Central seafront",
@@ -316,7 +320,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Atlantica Miramare Beach",
           description: "All-inclusive beachfront resort with pools and kids' facilities.",
           tag: "Family",
-          image: img(0),
+          image: limassolAtlanticaMiramare,
           bookingUrl: "https://www.booking.com/hotel/cy/atlantica-miramare-beach.en-gb.html?aid=2311236",
           bestFor: "All-inclusive families",
           location: "Amathus area, beachfront",
@@ -328,7 +332,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Poseidonia Beach Hotel",
           description: "Classic beachfront 4★ with gardens and a relaxed atmosphere.",
           tag: "Family",
-          image: img(1),
+          image: limassolPoseidonia,
           bookingUrl: "https://www.booking.com/hotel/cy/poseidonia-beach.en-gb.html?aid=2311236",
           bestFor: "Classic family stay",
           location: "Beachfront",
