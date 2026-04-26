@@ -14,6 +14,7 @@ import harmonyBayImg from "@/assets/harmony-bay.png";
 import pefkosImg from "@/assets/pefkos.png";
 import chrielkaImg from "@/assets/chrielka.png";
 import yamasImg from "@/assets/yamas.png";
+import mariannaImg from "@/assets/marianna.png";
 
 // Booking.com affiliate ID (aid).
 export const BOOKING_AFFILIATE_ID = "2311236";
@@ -299,7 +300,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Marianna Apartments",
           description: "Comfortable apartments close to the beach.",
           tag: "Budget",
-          image: img(0),
+          image: mariannaImg,
           bookingUrl: "https://www.booking.com/hotel/cy/marianna-apartments.en-gb.html?aid=2311236",
           bestFor: "Families on a budget",
           location: "Tourist area, near the beach",
