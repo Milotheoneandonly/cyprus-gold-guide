@@ -13,6 +13,7 @@ import tsanotelImg from "@/assets/tsanotel.jpg";
 import harmonyBayImg from "@/assets/harmony-bay.png";
 import pefkosImg from "@/assets/pefkos.png";
 import chrielkaImg from "@/assets/chrielka.png";
+import yamasImg from "@/assets/yamas.png";
 
 // Booking.com affiliate ID (aid).
 export const BOOKING_AFFILIATE_ID = "2311236";
@@ -286,7 +287,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Yamas Urban Living",
           description: "Modern urban apartments in the heart of Limassol.",
           tag: "Budget",
-          image: img(3),
+          image: yamasImg,
           bookingUrl: "https://www.booking.com/hotel/cy/yamas-urban-living.en-gb.html?aid=2311236",
           bestFor: "Stylish city stays",
           location: "Central Limassol",
