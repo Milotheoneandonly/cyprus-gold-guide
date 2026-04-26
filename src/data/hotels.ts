@@ -13,6 +13,8 @@ import limassolMediterraneanBeach from "@/assets/limassol-mediterranean-beach.jp
 import limassolCrownePlaza from "@/assets/limassol-crowne-plaza.jpg";
 import limassolAtlanticaMiramare from "@/assets/limassol-atlantica-miramare.jpg";
 import limassolPoseidonia from "@/assets/limassol-poseidonia.jpg";
+import limassolAlasia from "@/assets/limassol-alasia.jpg";
+import limassolAtlanticaOasis from "@/assets/limassol-atlantica-oasis.jpg";
 import tsanotelImg from "@/assets/tsanotel.png";
 import harmonyBayImg from "@/assets/harmony-bay.png";
 import pefkosImg from "@/assets/pefkos.png";
@@ -296,7 +298,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Alasia Boutique Hotel",
           description: "Stylish 4★ boutique hotel in central Limassol with a rooftop pool.",
           tag: "Family",
-          image: img(3),
+          image: limassolAlasia,
           bookingUrl: "https://www.booking.com/hotel/cy/alasia.en-gb.html?aid=2311236",
           bestFor: "Families who like boutique stays",
           location: "Central Limassol",
@@ -308,7 +310,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Atlantica Oasis Hotel",
           description: "4★ family resort with large pools, gardens and kids' activities.",
           tag: "Family",
-          image: img(2),
+          image: limassolAtlanticaOasis,
           bookingUrl: "https://www.booking.com/hotel/cy/atlantica-oasis.en-gb.html?aid=2311236",
           bestFor: "Families wanting a resort feel",
           location: "Tourist area, Limassol",
