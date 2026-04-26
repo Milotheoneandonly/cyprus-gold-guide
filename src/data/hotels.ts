@@ -29,6 +29,8 @@ import atlanticaAeneasImg from "@/assets/atlantica-aeneas-resort.png";
 import grecianBayImg from "@/assets/grecian-bay-hotel.png";
 import amarandeImg from "@/assets/amarande-hotel.png";
 import capoBayImg from "@/assets/capo-bay-hotel.png";
+import vassosNissiImg from "@/assets/vassos-nissi-plage.png";
+import okeanosBeachImg from "@/assets/okeanos-beach.png";
 
 // Booking.com affiliate ID (aid).
 export const BOOKING_AFFILIATE_ID = "2311236";
