@@ -16,6 +16,7 @@ import chrielkaImg from "@/assets/chrielka.png";
 import yamasImg from "@/assets/yamas.png";
 import mariannaImg from "@/assets/marianna.png";
 import jediImg from "@/assets/jedi.png";
+import olympiaImg from "@/assets/olympia.png";
 
 // Booking.com affiliate ID (aid).
 export const BOOKING_AFFILIATE_ID = "2311236";
@@ -337,7 +338,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Olympia Studio (Old Town Marvel)",
           description: "Charming studio in the heart of the old town.",
           tag: "Budget",
-          image: img(3),
+          image: olympiaImg,
           bookingUrl: "https://www.booking.com/hotel/cy/olympia-studio-old-town-marvel.en-gb.html?aid=2311236",
           bestFor: "Couples exploring the old town",
           location: "Limassol old town",
