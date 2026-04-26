@@ -10,12 +10,11 @@ import limassolFourSeasons from "@/assets/limassol-four-seasons.jpg";
 import limassolAmara from "@/assets/limassol-amara.jpg";
 import limassolParklane from "@/assets/limassol-parklane.jpg";
 
-// 🔑 Replace YOUR_AFFILIATE_ID below with your real Booking.com affiliate ID (aid).
-export const BOOKING_AFFILIATE_ID = "YOUR_AFFILIATE_ID";
+// Booking.com affiliate ID (aid).
+export const BOOKING_AFFILIATE_ID = "2311236";
 
-// Build a Booking.com search URL for a given hotel name + city in Cyprus.
-// This always lands on a real Booking.com results page with the hotel,
-// so we never link to a 404 invented hotel slug.
+// Build a clean Booking.com search URL for a given hotel name + city in Cyprus.
+// Only the base URL + ss query + affiliate ID — no tracking params.
 const booking = (hotelName: string, city: string) => {
   const ss = encodeURIComponent(`${hotelName} ${city} Cyprus`);
   return `https://www.booking.com/searchresults.html?ss=${ss}&aid=${BOOKING_AFFILIATE_ID}`;
