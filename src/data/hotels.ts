@@ -15,6 +15,7 @@ import pefkosImg from "@/assets/pefkos.png";
 import chrielkaImg from "@/assets/chrielka.png";
 import yamasImg from "@/assets/yamas.png";
 import mariannaImg from "@/assets/marianna.png";
+import jediImg from "@/assets/jedi.png";
 
 // Booking.com affiliate ID (aid).
 export const BOOKING_AFFILIATE_ID = "2311236";
@@ -312,7 +313,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Jedi Hub",
           description: "Trendy budget stay with a creative atmosphere.",
           tag: "Budget",
-          image: img(2),
+          image: jediImg,
           bookingUrl: "https://www.booking.com/hotel/cy/jedi-omdom.en-gb.html?aid=2311236",
           bestFor: "Solo travellers and couples",
           location: "Central Limassol",
