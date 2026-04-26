@@ -27,6 +27,8 @@ import nissibluImg from "@/assets/nissiblu-beach-resort.png";
 import alionBeachImg from "@/assets/alion-beach-hotel.png";
 import atlanticaAeneasImg from "@/assets/atlantica-aeneas-resort.png";
 import grecianBayImg from "@/assets/grecian-bay-hotel.png";
+import amarandeImg from "@/assets/amarande-hotel.png";
+import capoBayImg from "@/assets/capo-bay-hotel.png";
 
 // Booking.com affiliate ID (aid).
 export const BOOKING_AFFILIATE_ID = "2311236";
@@ -179,7 +181,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Amarande Hotel",
           description: "Adults-only 5★ retreat with a refined Mediterranean feel.",
           tag: "Luxury",
-          image: img(0),
+          image: amarandeImg,
           bookingUrl: "https://www.booking.com/hotel/cy/amarande.en-gb.html?aid=2311236",
           bestFor: "Adults-only escapes",
           location: "Ayia Napa",
@@ -203,7 +205,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Capo Bay Hotel",
           description: "Polished beachfront 5★ on Fig Tree Bay, Protaras.",
           tag: "Luxury",
-          image: img(2),
+          image: capoBayImg,
           bookingUrl: "https://www.booking.com/hotel/cy/capo-bay.en-gb.html?aid=2311236",
           bestFor: "Beachfront elegance",
           location: "Fig Tree Bay, Protaras",
