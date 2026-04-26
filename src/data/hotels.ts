@@ -11,6 +11,7 @@ import limassolAmara from "@/assets/limassol-amara.jpg";
 import limassolParklane from "@/assets/limassol-parklane.jpg";
 import tsanotelImg from "@/assets/tsanotel.jpg";
 import harmonyBayImg from "@/assets/harmony-bay.png";
+import pefkosImg from "@/assets/pefkos.png";
 
 // Booking.com affiliate ID (aid).
 export const BOOKING_AFFILIATE_ID = "2311236";
@@ -260,7 +261,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Pefkos Hotel",
           description: "Simple, well-priced hotel close to the old town.",
           tag: "Budget",
-          image: img(2),
+          image: pefkosImg,
           bookingUrl: "https://www.booking.com/hotel/cy/pefkos.en-gb.html?aid=2311236",
           bestFor: "Quiet budget stay",
           location: "Near Limassol old town",
