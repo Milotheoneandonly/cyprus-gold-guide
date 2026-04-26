@@ -23,6 +23,10 @@ import yamasImg from "@/assets/yamas.png";
 import mariannaImg from "@/assets/marianna.png";
 import jediImg from "@/assets/jedi.png";
 import olympiaImg from "@/assets/olympia.png";
+import nissibluImg from "@/assets/nissiblu-beach-resort.png";
+import alionBeachImg from "@/assets/alion-beach-hotel.png";
+import atlanticaAeneasImg from "@/assets/atlantica-aeneas-resort.png";
+import grecianBayImg from "@/assets/grecian-bay-hotel.png";
 
 // Booking.com affiliate ID (aid).
 export const BOOKING_AFFILIATE_ID = "2311236";
@@ -139,7 +143,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "NissiBlu Beach Resort",
           description: "Modern beachfront 5★ on iconic Nissi Beach.",
           tag: "Luxury",
-          image: img(1),
+          image: nissibluImg,
           bookingUrl: "https://www.booking.com/hotel/cy/nissiblu-beach-resort.en-gb.html?aid=2311236",
           bestFor: "Premium beachfront stays",
           location: "Nissi Beach",
@@ -151,7 +155,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Alion Beach Hotel",
           description: "Refined 5★ with manicured gardens and beachfront calm.",
           tag: "Luxury",
-          image: img(2),
+          image: alionBeachImg,
           bookingUrl: "https://www.booking.com/hotel/cy/alion-beach.en-gb.html?aid=2311236",
           bestFor: "Quiet luxury",
           location: "Ayia Napa beachfront",
@@ -187,7 +191,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Atlantica Aeneas Resort",
           description: "Elegant 5★ with lush gardens close to Nissi Beach.",
           tag: "Luxury",
-          image: img(0),
+          image: atlanticaAeneasImg,
           bookingUrl: "https://www.booking.com/hotel/cy/atlantica-aeneas-resort.en-gb.html?aid=2311236",
           bestFor: "Refined family luxury",
           location: "Nissi Beach area",
@@ -199,7 +203,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Grecian Bay Hotel",
           description: "Timeless 5★ beachfront landmark in central Ayia Napa.",
           tag: "Luxury",
-          image: img(1),
+          image: grecianBayImg,
           bookingUrl: "https://www.booking.com/hotel/cy/grecian-bay.en-gb.html?aid=2311236",
           bestFor: "Classic beachfront luxury",
           location: "Grecian Bay",
