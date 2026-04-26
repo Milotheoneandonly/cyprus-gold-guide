@@ -12,6 +12,7 @@ import limassolParklane from "@/assets/limassol-parklane.jpg";
 import tsanotelImg from "@/assets/tsanotel.jpg";
 import harmonyBayImg from "@/assets/harmony-bay.png";
 import pefkosImg from "@/assets/pefkos.png";
+import chrielkaImg from "@/assets/chrielka.png";
 
 // Booking.com affiliate ID (aid).
 export const BOOKING_AFFILIATE_ID = "2311236";
@@ -273,7 +274,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Chrielka Apartments",
           description: "Self-catering apartments with a homely feel.",
           tag: "Budget",
-          image: img(1),
+          image: chrielkaImg,
           bookingUrl: "https://www.booking.com/hotel/cy/chrielka-apartments.en-gb.html?aid=2311236",
           bestFor: "Longer stays on a budget",
           location: "Tourist area, Limassol",
