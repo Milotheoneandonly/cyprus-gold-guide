@@ -10,6 +10,7 @@ import limassolFourSeasons from "@/assets/limassol-four-seasons.jpg";
 import limassolAmara from "@/assets/limassol-amara.jpg";
 import limassolParklane from "@/assets/limassol-parklane.jpg";
 import tsanotelImg from "@/assets/tsanotel.jpg";
+import harmonyBayImg from "@/assets/harmony-bay.png";
 
 // Booking.com affiliate ID (aid).
 export const BOOKING_AFFILIATE_ID = "2311236";
@@ -246,7 +247,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Harmony Bay Hotel",
           description: "Affordable seafront stay on the east side of Limassol.",
           tag: "Budget",
-          image: img(4),
+          image: harmonyBayImg,
           bookingUrl: "https://www.booking.com/hotel/cy/harmony-bay.en-gb.html?aid=2311236",
           bestFor: "Affordable seafront stay",
           location: "East Limassol, by the sea",
