@@ -9,6 +9,7 @@ import limassolCityOfDreams from "@/assets/limassol-city-of-dreams.jpg";
 import limassolFourSeasons from "@/assets/limassol-four-seasons.jpg";
 import limassolAmara from "@/assets/limassol-amara.jpg";
 import limassolParklane from "@/assets/limassol-parklane.jpg";
+import tsanotelImg from "@/assets/tsanotel.jpg";
 
 // Booking.com affiliate ID (aid).
 export const BOOKING_AFFILIATE_ID = "2311236";
@@ -318,7 +319,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Tsanotel",
           description: "Reliable city hotel with friendly service.",
           tag: "Budget",
-          image: img(1),
+          image: tsanotelImg,
           bookingUrl: "https://www.booking.com/hotel/cy/tsanotel.en-gb.html?aid=2311236",
           bestFor: "Short city breaks",
           location: "Central Limassol",
