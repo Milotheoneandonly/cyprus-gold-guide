@@ -9,7 +9,7 @@ import limassolCityOfDreams from "@/assets/limassol-city-of-dreams.jpg";
 import limassolFourSeasons from "@/assets/limassol-four-seasons.jpg";
 import limassolAmara from "@/assets/limassol-amara.jpg";
 import limassolParklane from "@/assets/limassol-parklane.jpg";
-import tsanotelImg from "@/assets/tsanotel.jpg";
+import tsanotelImg from "@/assets/tsanotel.png";
 import harmonyBayImg from "@/assets/harmony-bay.png";
 import pefkosImg from "@/assets/pefkos.png";
 import chrielkaImg from "@/assets/chrielka.png";
