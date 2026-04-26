@@ -29,6 +29,8 @@ import atlanticaAeneasImg from "@/assets/atlantica-aeneas-resort.png";
 import grecianBayImg from "@/assets/grecian-bay-hotel.png";
 import amarandeImg from "@/assets/amarande-hotel.png";
 import capoBayImg from "@/assets/capo-bay-hotel.png";
+import vassosNissiImg from "@/assets/vassos-nissi-plage.png";
+import okeanosBeachImg from "@/assets/okeanos-beach.png";
 
 // Booking.com affiliate ID (aid).
 export const BOOKING_AFFILIATE_ID = "2311236";
@@ -193,7 +195,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Vassos Nissi Plage Hotel & Spa",
           description: "Refined 5★ beachfront retreat steps from Nissi Beach.",
           tag: "Luxury",
-          image: img(1),
+          image: vassosNissiImg,
           bookingUrl: "https://www.booking.com/hotel/cy/vassos-nissi-plage.en-gb.html?aid=2311236",
           bestFor: "Beachfront luxury",
           location: "Nissi Beach, Ayia Napa",
@@ -217,7 +219,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Okeanos Beach Boutique Hotel",
           description: "Stylish boutique stay with a chic seafront setting.",
           tag: "Luxury",
-          image: img(3),
+          image: okeanosBeachImg,
           bookingUrl: "https://www.booking.com/hotel/cy/okeanos-beach.en-gb.html?aid=2311236",
           bestFor: "Boutique seafront escapes",
           location: "Ayia Napa seafront",
