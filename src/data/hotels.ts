@@ -38,6 +38,9 @@ import margadinaImg from "@/assets/margadina-hotel.png";
 import christofiniaImg from "@/assets/christofinia-hotel.png";
 import pavloNapaImg from "@/assets/pavlo-napa-beach.png";
 import tofinisImg from "@/assets/tofinis-hotel.png";
+import nissiParkImg from "@/assets/nissi-park-hotel.png";
+import antheaImg from "@/assets/anthea-hotel.png";
+import corfuImg from "@/assets/corfu-hotel.png";
 
 // Booking.com affiliate ID (aid).
 export const BOOKING_AFFILIATE_ID = "2311236";
@@ -341,7 +344,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Nissi Park Hotel",
           description: "Affordable 3★ close to Nissi Beach with great value for money.",
           tag: "Budget",
-          image: img(0),
+          image: nissiParkImg,
           bookingUrl: "https://www.booking.com/hotel/cy/nissi-park.en-gb.html?aid=2311236",
           bestFor: "Budget beach stays",
           location: "Near Nissi Beach",
@@ -378,7 +381,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Anthea Hotel Apartments",
           description: "Simple budget apartments close to shops, beach and nightlife.",
           tag: "Budget",
-          image: img(3),
+          image: antheaImg,
           bookingUrl: "https://www.booking.com/hotel/cy/anthea.en-gb.html?aid=2311236",
           bestFor: "Central budget stays",
           location: "Town centre",
@@ -390,7 +393,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Corfu Hotel",
           description: "Easy 3★ hotel with pool and friendly service at a low price.",
           tag: "Budget",
-          image: img(4),
+          image: corfuImg,
           bookingUrl: "https://www.booking.com/hotel/cy/corfu.en-gb.html?aid=2311236",
           bestFor: "Simple value stays",
           location: "Ayia Napa centre",
