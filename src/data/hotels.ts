@@ -36,6 +36,7 @@ import asteriasBeachImg from "@/assets/asterias-beach-hotel.png";
 import neliaBeachImg from "@/assets/nelia-beach-hotel.png";
 import margadinaImg from "@/assets/margadina-hotel.png";
 import christofiniaImg from "@/assets/christofinia-hotel.png";
+import pavloNapaImg from "@/assets/pavlo-napa-beach.png";
 
 // Booking.com affiliate ID (aid).
 export const BOOKING_AFFILIATE_ID = "2311236";
@@ -276,7 +277,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Pavlo Napa Beach Hotel",
           description: "Modern 4★ steps from Pantachou Beach.",
           tag: "Family",
-          image: img(2),
+          image: pavloNapaImg,
           bookingUrl: "https://www.booking.com/hotel/cy/pavlo-napa.en-gb.html?aid=2311236",
           bestFor: "Beach holidays with kids",
           location: "Pantachou Beach",
