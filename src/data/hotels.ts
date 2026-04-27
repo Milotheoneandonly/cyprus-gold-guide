@@ -37,6 +37,7 @@ import neliaBeachImg from "@/assets/nelia-beach-hotel.png";
 import margadinaImg from "@/assets/margadina-hotel.png";
 import christofiniaImg from "@/assets/christofinia-hotel.png";
 import pavloNapaImg from "@/assets/pavlo-napa-beach.png";
+import tofinisImg from "@/assets/tofinis-hotel.png";
 
 // Booking.com affiliate ID (aid).
 export const BOOKING_AFFILIATE_ID = "2311236";
@@ -301,7 +302,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Tofinis Hotel",
           description: "Family-friendly 4★ with a great pool in central Ayia Napa.",
           tag: "Family",
-          image: img(4),
+          image: tofinisImg,
           bookingUrl: "https://www.booking.com/hotel/cy/tofinis.en-gb.html?aid=2311236",
           bestFor: "Family value stays",
           location: "Ayia Napa, near centre",
