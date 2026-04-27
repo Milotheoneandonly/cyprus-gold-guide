@@ -37,6 +37,7 @@ import neliaBeachImg from "@/assets/nelia-beach-hotel.png";
 import margadinaImg from "@/assets/margadina-hotel.png";
 import christofiniaImg from "@/assets/christofinia-hotel.png";
 import pavloNapaImg from "@/assets/pavlo-napa-beach.png";
+import tofinisImg from "@/assets/tofinis-hotel.png";
 
 // Booking.com affiliate ID (aid).
 export const BOOKING_AFFILIATE_ID = "2311236";
