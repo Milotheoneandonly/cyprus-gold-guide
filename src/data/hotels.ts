@@ -31,6 +31,11 @@ import amarandeImg from "@/assets/amarande-hotel.png";
 import capoBayImg from "@/assets/capo-bay-hotel.png";
 import vassosNissiImg from "@/assets/vassos-nissi-plage.png";
 import okeanosBeachImg from "@/assets/okeanos-beach.png";
+import nissiBeachResortImg from "@/assets/nissi-beach-resort.png";
+import asteriasBeachImg from "@/assets/asterias-beach-hotel.png";
+import neliaBeachImg from "@/assets/nelia-beach-hotel.png";
+import margadinaImg from "@/assets/margadina-hotel.png";
+import christofiniaImg from "@/assets/christofinia-hotel.png";
 
 // Booking.com affiliate ID (aid).
 export const BOOKING_AFFILIATE_ID = "2311236";
@@ -234,7 +239,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Nissi Beach Resort",
           description: "Iconic family beachfront resort right on Nissi Beach.",
           tag: "Family",
-          image: img(0),
+          image: nissiBeachResortImg,
           bookingUrl: "https://www.booking.com/hotel/cy/nissi-beach-resort.en-gb.html?aid=2311236",
           bestFor: "Families wanting iconic beach",
           location: "Nissi Beach",
@@ -259,7 +264,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Asterias Beach Hotel",
           description: "Reliable beachfront 4★ with friendly family service.",
           tag: "Family",
-          image: img(1),
+          image: asteriasBeachImg,
           bookingUrl: "https://www.booking.com/hotel/cy/asterias-beach.en-gb.html?aid=2311236",
           bestFor: "Stress-free family weeks",
           location: "Beachfront, quiet end of town",
@@ -283,7 +288,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Nelia Beach Hotel & Spa",
           description: "Calm seaside 4★ with pools and family-friendly comfort.",
           tag: "Family",
-          image: img(3),
+          image: neliaBeachImg,
           bookingUrl: "https://www.booking.com/hotel/cy/nelia-beach.en-gb.html?aid=2311236",
           bestFor: "Relaxed beach families",
           location: "Ayia Napa promenade",
@@ -307,7 +312,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Margadina Hotel",
           description: "Quiet, well-kept 4★ with a relaxed family atmosphere.",
           tag: "Family",
-          image: img(0),
+          image: margadinaImg,
           bookingUrl: "https://www.booking.com/hotel/cy/margadina.en-gb.html?aid=2311236",
           bestFor: "Calm family stays",
           location: "Ayia Napa, near centre",
@@ -319,7 +324,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Christofinia Hotel",
           description: "Popular all-inclusive 4★ for easy family holidays.",
           tag: "Family",
-          image: img(2),
+          image: christofiniaImg,
           bookingUrl: "https://www.booking.com/hotel/cy/christofinia.en-gb.html?aid=2311236",
           bestFor: "All-inclusive simplicity",
           location: "Town centre",
