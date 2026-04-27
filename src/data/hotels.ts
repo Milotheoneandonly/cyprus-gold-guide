@@ -302,7 +302,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Tofinis Hotel",
           description: "Family-friendly 4★ with a great pool in central Ayia Napa.",
           tag: "Family",
-          image: img(4),
+          image: tofinisImg,
           bookingUrl: "https://www.booking.com/hotel/cy/tofinis.en-gb.html?aid=2311236",
           bestFor: "Family value stays",
           location: "Ayia Napa, near centre",
