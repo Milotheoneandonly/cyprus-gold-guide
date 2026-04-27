@@ -41,6 +41,11 @@ import tofinisImg from "@/assets/tofinis-hotel.png";
 import nissiParkImg from "@/assets/nissi-park-hotel.png";
 import antheaImg from "@/assets/anthea-hotel.png";
 import corfuImg from "@/assets/corfu-hotel.png";
+import euronapaImg from "@/assets/euronapa-hotel.png";
+import christabelleImg from "@/assets/christabelle-hotel.png";
+import cosmeleniaImg from "@/assets/cosmelenia-hotel.png";
+import piereAnneImg from "@/assets/piere-anne-beach-hotel.png";
+import loutsianaImg from "@/assets/loutsiana-hotel.png";
 
 // Booking.com affiliate ID (aid).
 export const BOOKING_AFFILIATE_ID = "2311236";
@@ -381,7 +386,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Euronapa Hotel Apartments",
           description: "Self-catering apartments offering simple comfort at a low price.",
           tag: "Budget",
-          image: img(1),
+          image: euronapaImg,
           bookingUrl: "https://www.booking.com/searchresults.en-gb.html?ss=Euronapa+Hotel+Apartments+Ayia+Napa",
           bestFor: "Self-catering on a budget",
           location: "Ayia Napa centre",
@@ -393,7 +398,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Christabelle Hotel Apartments",
           description: "Quiet, friendly 3★ apartments with a pool and good value.",
           tag: "Budget",
-          image: img(2),
+          image: christabelleImg,
           bookingUrl: "https://www.booking.com/searchresults.en-gb.html?ss=Christabelle+Hotel+Apartments+Ayia+Napa",
           bestFor: "Relaxed budget stays",
           location: "Ayia Napa, near centre",
@@ -405,7 +410,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Cosmelenia Hotel Apartments",
           description: "Simple 3★ apartments with pool, great value in Ayia Napa.",
           tag: "Budget",
-          image: img(3),
+          image: cosmeleniaImg,
           bookingUrl: "https://www.booking.com/searchresults.en-gb.html?ss=Cosmelenia+Hotel+Apartments+Ayia+Napa",
           bestFor: "Affordable apartment stays",
           location: "Ayia Napa",
@@ -417,7 +422,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Piere-Anne Beach Hotel",
           description: "Easygoing 3★ near the beach with great value for the location.",
           tag: "Budget",
-          image: img(2),
+          image: piereAnneImg,
           bookingUrl: "https://www.booking.com/searchresults.en-gb.html?ss=Piere-Anne+Beach+Hotel+Ayia+Napa",
           bestFor: "Beach on a budget",
           location: "Near Pantachou Beach",
@@ -429,7 +434,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Loutsiana Hotel Apartments",
           description: "Self-catering apartments with pool, perfect for budget travellers.",
           tag: "Budget",
-          image: img(0),
+          image: loutsianaImg,
           bookingUrl: "https://www.booking.com/searchresults.en-gb.html?ss=Loutsiana+Hotel+Apartments+Ayia+Napa",
           bestFor: "Longer budget stays",
           location: "Town centre",
