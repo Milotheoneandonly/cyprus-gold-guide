@@ -61,6 +61,7 @@ import athenaBeachImg from "@/assets/athena-beach-hotel.png";
 import avantiPaphosImg from "@/assets/avanti-hotel.png";
 import mayfairPaphosImg from "@/assets/mayfair-hotel.png";
 import kefalosBeachImg from "@/assets/kefalos-beach-hotel.png";
+import aquamareImg from "@/assets/aquamare-beach-hotel.png";
 
 // Booking.com affiliate ID (aid).
 export const BOOKING_AFFILIATE_ID = "2311236";
@@ -904,7 +905,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Aquamare Beach Hotel & Spa",
           description: "Family-friendly beachfront 4★ with pools, spa and comfortable rooms.",
           tag: "Family",
-          image: img(3),
+          image: aquamareImg,
           bookingUrl: "https://www.booking.com/searchresults.en-gb.html?ss=Aquamare+Beach+Hotel+Paphos",
           bestFor: "Beach families & comfort",
           location: "Paphos beachfront",
