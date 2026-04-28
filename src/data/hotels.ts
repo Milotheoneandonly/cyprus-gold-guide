@@ -54,6 +54,13 @@ import asiminaSuitesImg from "@/assets/asimina-suites-hotel.png";
 import louisIviMareImg from "@/assets/louis-ivi-mare-hotel.png";
 import olympicLagoonPaphosImg from "@/assets/olympic-lagoon-paphos-hotel.png";
 import aziaResortImg from "@/assets/azia-resort-hotel.png";
+import alexanderGreatImg from "@/assets/alexander-the-great-hotel.png";
+import leonardoLauraImg from "@/assets/leonardo-laura-hotel.png";
+import louisPhaethonImg from "@/assets/louis-phaethon-hotel.png";
+import athenaBeachImg from "@/assets/athena-beach-hotel.png";
+import avantiPaphosImg from "@/assets/avanti-hotel.png";
+import mayfairPaphosImg from "@/assets/mayfair-hotel.png";
+import kefalosBeachImg from "@/assets/kefalos-beach-hotel.png";
 
 // Booking.com affiliate ID (aid).
 export const BOOKING_AFFILIATE_ID = "2311236";
