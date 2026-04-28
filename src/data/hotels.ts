@@ -62,6 +62,14 @@ import avantiPaphosImg from "@/assets/avanti-hotel.png";
 import mayfairPaphosImg from "@/assets/mayfair-hotel.png";
 import kefalosBeachImg from "@/assets/kefalos-beach-hotel.png";
 import aquamareImg from "@/assets/aquamare-beach-hotel.png";
+import kefalosDamonImg from "@/assets/kefalos-damon-hotel.png";
+import dionysosCentralImg from "@/assets/dionysos-central-hotel.png";
+import pagonaHolidayImg from "@/assets/pagona-holiday-hotel.png";
+import pandreamImg from "@/assets/pandream-hotel.png";
+import basilicaHolidayImg from "@/assets/basilica-holiday-resort.png";
+import paphosGardensImg from "@/assets/paphos-gardens-hotel.png";
+import tasmariaImg from "@/assets/tasmaria-aparthotel.png";
+import heliosBayImg from "@/assets/helios-bay-hotel.png";
 
 // Booking.com affiliate ID (aid).
 export const BOOKING_AFFILIATE_ID = "2311236";
