@@ -54,6 +54,13 @@ import asiminaSuitesImg from "@/assets/asimina-suites-hotel.png";
 import louisIviMareImg from "@/assets/louis-ivi-mare-hotel.png";
 import olympicLagoonPaphosImg from "@/assets/olympic-lagoon-paphos-hotel.png";
 import aziaResortImg from "@/assets/azia-resort-hotel.png";
+import alexanderGreatImg from "@/assets/alexander-the-great-hotel.png";
+import leonardoLauraImg from "@/assets/leonardo-laura-hotel.png";
+import louisPhaethonImg from "@/assets/louis-phaethon-hotel.png";
+import athenaBeachImg from "@/assets/athena-beach-hotel.png";
+import avantiPaphosImg from "@/assets/avanti-hotel.png";
+import mayfairPaphosImg from "@/assets/mayfair-hotel.png";
+import kefalosBeachImg from "@/assets/kefalos-beach-hotel.png";
 
 // Booking.com affiliate ID (aid).
 export const BOOKING_AFFILIATE_ID = "2311236";
@@ -860,7 +867,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Alexander The Great Beach Hotel",
           description: "Family-friendly 4★ beachfront hotel with pools and central location.",
           tag: "Family",
-          image: img(0),
+          image: alexanderGreatImg,
           bookingUrl: "https://www.booking.com/searchresults.en-gb.html?ss=Alexander+The+Great+Beach+Hotel+Paphos",
           bestFor: "Beachfront family stays",
           location: "Paphos beachfront",
@@ -873,7 +880,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Leonardo Laura Beach & Splash Resort",
           description: "Family resort with a splash water park and big pools.",
           tag: "Family",
-          image: img(1),
+          image: leonardoLauraImg,
           bookingUrl: "https://www.booking.com/searchresults.en-gb.html?ss=Leonardo+Laura+Beach+Resort+Paphos",
           bestFor: "Kids who love water parks",
           location: "Chlorakas beachfront",
@@ -885,7 +892,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Louis Phaethon Beach",
           description: "All-inclusive family resort with extensive gardens and pools.",
           tag: "Family",
-          image: img(2),
+          image: louisPhaethonImg,
           bookingUrl: "https://www.booking.com/searchresults.en-gb.html?ss=Louis+Phaethon+Beach+Paphos",
           bestFor: "All-inclusive families",
           location: "Yeroskipou beachfront",
@@ -909,7 +916,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Athena Beach Hotel",
           description: "Reliable beachfront 4★ with pools and family-friendly comfort.",
           tag: "Family",
-          image: img(4),
+          image: athenaBeachImg,
           bookingUrl: "https://www.booking.com/searchresults.en-gb.html?ss=Athena+Beach+Hotel+Paphos",
           bestFor: "Easy family weeks",
           location: "Paphos seafront",
@@ -921,7 +928,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Avanti Hotel",
           description: "Popular family-favourite hotel with big pools and central walks.",
           tag: "Family",
-          image: img(0),
+          image: avantiPaphosImg,
           bookingUrl: "https://www.booking.com/searchresults.en-gb.html?ss=Avanti+Hotel+Paphos",
           bestFor: "Family-favourite all-inclusive",
           location: "Paphos centre",
@@ -933,7 +940,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Mayfair Hotel",
           description: "Friendly family hotel close to the centre with pool and good value.",
           tag: "Family",
-          image: img(1),
+          image: mayfairPaphosImg,
           bookingUrl: "https://www.booking.com/searchresults.en-gb.html?ss=Mayfair+Hotel+Paphos",
           bestFor: "Central family value",
           location: "Kato Paphos",
@@ -945,7 +952,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Kefalos Beach Tourist Village",
           description: "Bungalow-style family village with gardens, pools and beach access.",
           tag: "Family",
-          image: img(2),
+          image: kefalosBeachImg,
           bookingUrl: "https://www.booking.com/searchresults.en-gb.html?ss=Kefalos+Beach+Tourist+Village+Paphos",
           bestFor: "Bungalow family stays",
           location: "Paphos beachfront",
