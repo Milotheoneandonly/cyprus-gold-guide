@@ -46,6 +46,14 @@ import christabelleImg from "@/assets/christabelle-hotel.png";
 import cosmeleniaImg from "@/assets/cosmelenia-hotel.png";
 import piereAnneImg from "@/assets/piere-anne-beach-hotel.png";
 import loutsianaImg from "@/assets/loutsiana-hotel.png";
+import elysiumImg from "@/assets/elysium-hotel.png";
+import amaviImg from "@/assets/amavi-hotel.png";
+import annabelleImg from "@/assets/annabelle-hotel.png";
+import almyraImg from "@/assets/almyra-hotel.png";
+import asiminaSuitesImg from "@/assets/asimina-suites-hotel.png";
+import louisIviMareImg from "@/assets/louis-ivi-mare-hotel.png";
+import olympicLagoonPaphosImg from "@/assets/olympic-lagoon-paphos-hotel.png";
+import aziaResortImg from "@/assets/azia-resort-hotel.png";
 
 // Booking.com affiliate ID (aid).
 export const BOOKING_AFFILIATE_ID = "2311236";
@@ -753,7 +761,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Elysium Hotel",
           description: "Iconic 5★ beachfront resort by the Tombs of the Kings.",
           tag: "Luxury",
-          image: img(0),
+          image: elysiumImg,
           bookingUrl: "https://www.booking.com/searchresults.en-gb.html?ss=Elysium+Paphos",
           bestFor: "Heritage luxury experience",
           location: "Tombs of the Kings, Paphos",
@@ -766,7 +774,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Amavi Hotel (Adults Only)",
           description: "Sleek adults-only 5★ retreat with refined seafront design.",
           tag: "Luxury",
-          image: img(1),
+          image: amaviImg,
           bookingUrl: "https://www.booking.com/searchresults.en-gb.html?ss=Amavi+Hotel+Paphos",
           bestFor: "Adults-only escapes",
           location: "Paphos beach area",
@@ -778,7 +786,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Annabelle Hotel",
           description: "Timeless 5★ luxury landmark by Paphos harbour.",
           tag: "Luxury",
-          image: img(2),
+          image: annabelleImg,
           bookingUrl: "https://www.booking.com/searchresults.en-gb.html?ss=Annabelle+Paphos",
           bestFor: "Romantic premium stays",
           location: "Paphos harbour",
@@ -790,7 +798,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Almyra Hotel",
           description: "Design-led 5★ beachfront hotel with a stylish Mediterranean vibe.",
           tag: "Luxury",
-          image: img(3),
+          image: almyraImg,
           bookingUrl: "https://www.booking.com/searchresults.en-gb.html?ss=Almyra+Paphos",
           bestFor: "Design lovers & couples",
           location: "Paphos harbour",
@@ -802,7 +810,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Constantinou Bros Asimina Suites Hotel",
           description: "Adults-only all-suite 5★ resort directly on the beach.",
           tag: "Luxury",
-          image: img(4),
+          image: asiminaSuitesImg,
           bookingUrl: "https://www.booking.com/searchresults.en-gb.html?ss=Asimina+Suites+Paphos",
           bestFor: "Adults-only beachfront luxury",
           location: "Paphos beachfront",
@@ -814,7 +822,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Louis Ivi Mare Hotel",
           description: "Modern adults-only 5★ with a chic seafront setting.",
           tag: "Luxury",
-          image: img(0),
+          image: louisIviMareImg,
           bookingUrl: "https://www.booking.com/searchresults.en-gb.html?ss=Louis+Ivi+Mare+Paphos",
           bestFor: "Stylish adults-only stays",
           location: "Paphos seafront",
@@ -826,7 +834,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Olympic Lagoon Resort Paphos",
           description: "Premium all-inclusive 5★ with lagoon pools and top dining.",
           tag: "Luxury",
-          image: img(1),
+          image: olympicLagoonPaphosImg,
           bookingUrl: "https://www.booking.com/searchresults.en-gb.html?ss=Olympic+Lagoon+Paphos",
           bestFor: "Premium all-inclusive",
           location: "Universal area, Paphos",
@@ -838,7 +846,7 @@ export const areas: Record<AreaKey, AreaData> = {
           name: "Azia Resort & Spa",
           description: "Cliffside 5★ resort with breathtaking sea views and a top spa.",
           tag: "Luxury",
-          image: img(2),
+          image: aziaResortImg,
           bookingUrl: "https://www.booking.com/searchresults.en-gb.html?ss=Azia+Resort+Paphos",
           bestFor: "Spa & sea-view luxury",
           location: "Chlorakas, Paphos",
