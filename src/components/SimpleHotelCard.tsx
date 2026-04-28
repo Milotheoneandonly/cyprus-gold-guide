@@ -9,7 +9,7 @@ const SimpleHotelCard = ({ hotel }: { hotel: Hotel }) => {
     <a
       href={hotel.bookingUrl}
       target="_blank"
-      rel="noopener noreferrer sponsored"
+      rel="noopener noreferrer"
       aria-label={`${t.card.cta} — ${hotel.name}`}
       className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-lg"
     >
