@@ -50,6 +50,20 @@ type Dict = {
     rights: string;
     madeFor: string;
   };
+  navAbout: string;
+  whereToStay: {
+    eyebrow: string;
+    titlePart1: string;
+    titleAccent: string;
+    intro: string;
+    destinationLabel: (n: number) => string;
+    bestForLabel: string;
+    viewHotels: (name: string) => string;
+    stillDeciding: string;
+    topPicksTitle: string;
+    topPicksSubtitle: string;
+    seeTop3: string;
+  };
   aboutPage: {
     eyebrow: string;
     title: string;
