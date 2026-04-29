@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
+import ScrollDownArrow from "@/components/ScrollDownArrow";
 import { useLang } from "@/i18n/LanguageContext";
 import heroImg from "@/assets/hero.jpg";
 import paphosImg from "@/assets/paphos.jpg";
@@ -36,10 +37,11 @@ const Index = () => {
             {t.home.helper}
           </p>
         </div>
+        <ScrollDownArrow targetId="destinations" />
       </section>
 
       {/* DESTINATIONS */}
-      <section className="py-20 md:py-28">
+      <section id="destinations" className="py-20 md:py-28">
         <div className="container-luxe">
           <div className="grid gap-6 md:grid-cols-3">
             {destinations.map((d) => (

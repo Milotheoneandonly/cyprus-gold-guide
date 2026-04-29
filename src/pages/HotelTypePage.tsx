@@ -2,6 +2,7 @@ import { useParams, Navigate, Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import GoldButton from "@/components/GoldButton";
 import SimpleHotelCard from "@/components/SimpleHotelCard";
+import ScrollDownArrow from "@/components/ScrollDownArrow";
 import { areas, AreaKey, HotelCategory } from "@/data/hotels";
 import { useLang } from "@/i18n/LanguageContext";
 
@@ -30,10 +31,11 @@ const HotelTypePage = () => {
           <div className="mx-auto mt-6 h-px w-24 bg-gold/50" />
           <p className="mt-6 text-muted-foreground max-w-xl mx-auto">{t.hotelList.subtitle}</p>
         </div>
+        <ScrollDownArrow targetId="hotels" />
       </section>
 
       {/* HOTELS */}
-      <section className="py-16 md:py-20">
+      <section id="hotels" className="py-16 md:py-20">
         <div className="container-luxe">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {hotels.map((h) => (
