@@ -46,7 +46,7 @@ const Index = () => {
               <Link
                 key={d.slug}
                 to={`/hotels/${d.slug}`}
-                className="group relative overflow-hidden rounded-lg border border-border/60 hover:border-gold/60 shadow-elegant hover-lift block transition-colors min-h-[420px] flex flex-col justify-end text-center"
+                className="group relative overflow-hidden rounded-xl border border-border/60 hover:border-gold/70 shadow-elegant hover-lift block transition-all min-h-[420px] flex flex-col justify-end text-center"
               >
                 <img
                   src={d.image}
@@ -54,14 +54,15 @@ const Index = () => {
                   loading="lazy"
                   width={1280}
                   height={896}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110 saturate-110 contrast-105 brightness-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/60 to-background/30" />
+                <div className="absolute inset-0 bg-gradient-card" />
+                <div className="absolute inset-0 opacity-60 mix-blend-overlay bg-gradient-to-br from-sky-500/20 via-transparent to-orange-400/20" />
                 <div className="relative p-10">
-                  <span className="text-[11px] uppercase tracking-[0.3em] text-gold">{t.home.chips}</span>
+                  <span className="text-[11px] uppercase tracking-[0.3em] text-gold drop-shadow">{t.home.chips}</span>
                   <h3 className="mt-4 font-serif text-4xl text-foreground drop-shadow-lg">{d.name}</h3>
-                  <p className="mt-5 text-foreground/90">{t.home.destinations[d.key]}</p>
-                  <span className="mt-8 inline-block text-xs uppercase tracking-[0.22em] text-gold border-b border-gold/40 pb-1 group-hover:border-gold transition-colors">
+                  <p className="mt-5 text-foreground/95 drop-shadow">{t.home.destinations[d.key]}</p>
+                  <span className="mt-8 inline-block text-xs uppercase tracking-[0.22em] text-gold border-b border-gold/40 pb-1 group-hover:border-gold group-hover:tracking-[0.28em] transition-all">
                     {t.home.choose}
                   </span>
                 </div>
