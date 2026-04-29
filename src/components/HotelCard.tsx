@@ -16,15 +16,16 @@ const HotelCard = ({
     aria-label={`${cta} — ${hotel.name}`}
     className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-lg"
   >
-    <article className="group bg-card border border-border/60 overflow-hidden hover-lift shadow-elegant flex flex-col rounded-lg h-full">
+    <article className="group bg-card border border-border/60 hover:border-gold/50 overflow-hidden hover-lift shadow-elegant flex flex-col rounded-xl h-full">
       <div className="relative aspect-[4/3] overflow-hidden">
         <img
           src={hotel.image}
           alt={hotel.name}
           loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+          className="h-full w-full object-cover saturate-110 contrast-105 transition-transform duration-[1000ms] ease-out group-hover:scale-110"
         />
-        <span className="absolute top-4 left-4 bg-background/90 backdrop-blur px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-gold border border-gold/30 rounded-full">
+        <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent opacity-70" />
+        <span className="absolute top-4 left-4 bg-background/85 backdrop-blur px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-gold border border-gold/30 rounded-full">
           {hotel.tag}
         </span>
       </div>
