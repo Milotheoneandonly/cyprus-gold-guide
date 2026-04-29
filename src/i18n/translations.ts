@@ -50,6 +50,20 @@ type Dict = {
     rights: string;
     madeFor: string;
   };
+  navAbout: string;
+  whereToStay: {
+    eyebrow: string;
+    titlePart1: string;
+    titleAccent: string;
+    intro: string;
+    destinationLabel: (n: number) => string;
+    bestForLabel: string;
+    viewHotels: (name: string) => string;
+    stillDeciding: string;
+    topPicksTitle: string;
+    topPicksSubtitle: string;
+    seeTop3: string;
+  };
   aboutPage: {
     eyebrow: string;
     title: string;
@@ -139,6 +153,20 @@ export const translations: Record<Lang, Dict> = {
       avoid: "Vi undviker hotell med ojämn kvalitet eller dåliga recensioner.",
       goal: "Vårt mål: göra det enkelt för dig att välja och boka tryggt via Booking.com.",
     },
+    navAbout: "Om oss",
+    whereToStay: {
+      eyebrow: "Guiden",
+      titlePart1: "Var ska du bo",
+      titleAccent: "på Cypern?",
+      intro: "Tre kuster, tre olika stämningar. Välj området som passar din resa – och utforska sedan våra handplockade hotell.",
+      destinationLabel: (n) => `Destination 0${n}`,
+      bestForLabel: "Bäst för",
+      viewHotels: (name) => `Se hotell i ${name}`,
+      stillDeciding: "Fortfarande osäker?",
+      topPicksTitle: "Bläddra bland våra toppval på Cypern",
+      topPicksSubtitle: "Om du har ont om tid, börja med våra övergripande favoriter – handplockade från alla tre regionerna.",
+      seeTop3: "Se topp 3",
+    },
   },
   no: {
     brand: "Kypros · Hoteller",
@@ -210,6 +238,20 @@ export const translations: Record<Lang, Dict> = {
       },
       avoid: "Vi unngår hoteller med ujevn kvalitet eller dårlige anmeldelser.",
       goal: "Vårt mål: gjøre det enkelt for deg å velge og bestille trygt via Booking.com.",
+    },
+    navAbout: "Om oss",
+    whereToStay: {
+      eyebrow: "Guiden",
+      titlePart1: "Hvor skal du bo",
+      titleAccent: "på Kypros?",
+      intro: "Tre kyster, tre ulike stemninger. Velg området som passer turen din – og utforsk deretter våre håndplukkede hoteller.",
+      destinationLabel: (n) => `Destinasjon 0${n}`,
+      bestForLabel: "Best for",
+      viewHotels: (name) => `Se hoteller i ${name}`,
+      stillDeciding: "Fortsatt usikker?",
+      topPicksTitle: "Utforsk våre toppvalg på Kypros",
+      topPicksSubtitle: "Hvis du har dårlig tid, start med våre overordnede favoritter – håndplukket fra alle tre regioner.",
+      seeTop3: "Se topp 3",
     },
   },
   da: {
@@ -283,6 +325,20 @@ export const translations: Record<Lang, Dict> = {
       avoid: "Vi undgår hoteller med svingende kvalitet eller dårlige anmeldelser.",
       goal: "Vores mål: gøre det nemt for dig at vælge og booke trygt via Booking.com.",
     },
+    navAbout: "Om os",
+    whereToStay: {
+      eyebrow: "Guiden",
+      titlePart1: "Hvor skal du bo",
+      titleAccent: "på Cypern?",
+      intro: "Tre kyster, tre forskellige stemninger. Vælg området der passer til din rejse – og udforsk derefter vores håndplukkede hoteller.",
+      destinationLabel: (n) => `Destination 0${n}`,
+      bestForLabel: "Bedst til",
+      viewHotels: (name) => `Se hoteller i ${name}`,
+      stillDeciding: "Stadig i tvivl?",
+      topPicksTitle: "Udforsk vores topvalg på Cypern",
+      topPicksSubtitle: "Hvis du har travlt, så start med vores overordnede favoritter – håndplukket fra alle tre regioner.",
+      seeTop3: "Se top 3",
+    },
   },
   en: {
     brand: "Cyprus · Hotels",
@@ -354,6 +410,20 @@ export const translations: Record<Lang, Dict> = {
       },
       avoid: "We avoid hotels with inconsistent quality or poor reviews.",
       goal: "Our goal: make it easy for you to choose and book with confidence via Booking.com.",
+    },
+    navAbout: "About",
+    whereToStay: {
+      eyebrow: "The Guide",
+      titlePart1: "Where Should You Stay",
+      titleAccent: "in Cyprus?",
+      intro: "Three coastlines, three very different moods. Choose the area that matches your trip — then explore our handpicked hotels.",
+      destinationLabel: (n) => `Destination 0${n}`,
+      bestForLabel: "Best For",
+      viewHotels: (name) => `View Hotels in ${name}`,
+      stillDeciding: "Still deciding?",
+      topPicksTitle: "Browse our top picks across Cyprus",
+      topPicksSubtitle: "If you're short on time, start with our overall favorites — handpicked across all three regions.",
+      seeTop3: "See Top 3 Picks",
     },
   },
 };

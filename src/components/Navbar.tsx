@@ -21,7 +21,7 @@ const Navbar = () => {
             to="/about"
             className="hidden sm:inline text-sm text-foreground/80 hover:text-gold transition-colors"
           >
-            About
+            {t.navAbout}
           </Link>
           <LanguageSwitcher />
         </div>
