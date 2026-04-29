@@ -42,11 +42,14 @@
     --radius: 0.25rem;
 
     --gradient-gold: linear-gradient(135deg, hsl(42 55% 58%), hsl(44 70% 70%), hsl(38 50% 48%));
-    --gradient-dark: linear-gradient(180deg, hsl(0 0% 4%) 0%, hsl(0 0% 7%) 100%);
-    --gradient-hero: linear-gradient(180deg, hsl(0 0% 0% / 0.3) 0%, hsl(0 0% 4% / 0.9) 100%);
+    --gradient-dark: linear-gradient(180deg, hsl(0 0% 4%) 0%, hsl(210 25% 9%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(210 50% 8% / 0.15) 0%, hsl(0 0% 4% / 0.55) 60%, hsl(0 0% 3% / 0.85) 100%);
+    --gradient-card: linear-gradient(180deg, transparent 0%, transparent 35%, hsl(0 0% 3% / 0.55) 70%, hsl(0 0% 2% / 0.92) 100%);
+    --gradient-ocean: linear-gradient(135deg, hsl(200 70% 45% / 0.12), hsl(28 80% 55% / 0.10));
 
-    --shadow-gold: 0 10px 40px -10px hsl(42 55% 58% / 0.35);
-    --shadow-elegant: 0 20px 60px -20px hsl(0 0% 0% / 0.6);
+    --shadow-gold: 0 10px 40px -10px hsl(42 55% 58% / 0.45);
+    --shadow-elegant: 0 24px 70px -18px hsl(0 0% 0% / 0.7);
+    --shadow-glow: 0 18px 60px -12px hsl(42 70% 55% / 0.35);
 
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -105,6 +108,14 @@
     transition: var(--transition-smooth);
   }
   .hover-lift:hover {
-    transform: translateY(-6px);
+    transform: translateY(-8px) scale(1.015);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .bg-gradient-card {
+    background: var(--gradient-card);
+  }
+  .bg-gradient-ocean {
+    background: var(--gradient-ocean);
   }
 }

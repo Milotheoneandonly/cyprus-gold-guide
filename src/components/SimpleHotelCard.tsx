@@ -13,7 +13,7 @@ const SimpleHotelCard = ({ hotel }: { hotel: Hotel }) => {
       aria-label={`${t.card.cta} — ${hotel.name}`}
       className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-lg"
     >
-      <article className="group bg-card border border-border/60 overflow-hidden hover-lift shadow-elegant flex flex-col rounded-lg relative h-full">
+      <article className="group bg-card border border-border/60 hover:border-gold/50 overflow-hidden hover-lift shadow-elegant flex flex-col rounded-xl relative h-full">
         {hotel.highlight && (
           <span className="absolute top-4 right-4 z-10 bg-gradient-gold text-gold-foreground px-3 py-1 text-[10px] uppercase tracking-[0.22em] rounded-full shadow-gold">
             {hotel.highlight}
@@ -24,8 +24,9 @@ const SimpleHotelCard = ({ hotel }: { hotel: Hotel }) => {
             src={hotel.image}
             alt={hotel.name}
             loading="lazy"
-            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            className="h-full w-full object-cover saturate-110 contrast-105 transition-transform duration-[1000ms] ease-out group-hover:scale-110"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent opacity-70" />
         </div>
         <div className="p-6 flex flex-col flex-1">
           <h3 className="font-serif text-2xl text-foreground">{hotel.name}</h3>
