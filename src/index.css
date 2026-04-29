@@ -108,6 +108,14 @@
     transition: var(--transition-smooth);
   }
   .hover-lift:hover {
-    transform: translateY(-6px);
+    transform: translateY(-8px) scale(1.015);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .bg-gradient-card {
+    background: var(--gradient-card);
+  }
+  .bg-gradient-ocean {
+    background: var(--gradient-ocean);
   }
 }
