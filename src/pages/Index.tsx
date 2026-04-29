@@ -23,10 +23,10 @@ const Index = () => {
           alt="Luxury Cyprus seaside resort at dusk"
           width={1920}
           height={1280}
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover saturate-110 contrast-105 scale-105"
         />
         <div className="absolute inset-0 bg-gradient-hero" />
-        <div className="absolute inset-0 bg-background/55" />
+        <div className="absolute inset-0 bg-background/25" />
         <div className="relative container-luxe h-full flex flex-col justify-center items-center text-center animate-fade-up">
           <span className="text-[11px] uppercase tracking-[0.35em] text-gold">{t.step(1, 3)}</span>
           <h1 className="mt-5 font-serif text-5xl md:text-7xl font-light leading-[1.05] max-w-4xl">
