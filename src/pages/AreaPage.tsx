@@ -1,5 +1,6 @@
 import { useParams, Navigate, Link } from "react-router-dom";
 import Layout from "@/components/Layout";
+import ScrollDownArrow from "@/components/ScrollDownArrow";
 import { areas, AreaKey } from "@/data/hotels";
 import { useLang } from "@/i18n/LanguageContext";
 
@@ -27,10 +28,11 @@ const AreaPage = () => {
             {t.area.helper(area.name)}
           </p>
         </div>
+        <ScrollDownArrow targetId="type-selection" />
       </section>
 
       {/* TYPE SELECTION */}
-      <section className="py-20 md:py-28">
+      <section id="type-selection" className="py-20 md:py-28">
         <div className="container-luxe">
           <div className="grid gap-6 md:grid-cols-3">
             {typeKeys.map((key) => (
