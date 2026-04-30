@@ -32,6 +32,11 @@ type Dict = {
     subtitle: string;
     back: string;
     types: { luxury: string; family: string; budget: string };
+    topPicksEyebrow: string;
+    topPicksTitle: string;
+    topPicksSubtitle: string;
+    moreHotels: string;
+    badges: { first: string; second: string; third: string };
   };
   card: {
     bestFor: string;
