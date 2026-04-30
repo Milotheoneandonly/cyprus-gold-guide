@@ -14,16 +14,101 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      hotels: {
+        Row: {
+          area: Database["public"]["Enums"]["hotel_area"]
+          best_for: string | null
+          booking_url: string
+          category: Database["public"]["Enums"]["hotel_category"]
+          created_at: string
+          description: string
+          highlight: string | null
+          id: string
+          image_url: string
+          location: string | null
+          name: string
+          note: string | null
+          sort_order: number
+          stars: number | null
+          tag: string
+          updated_at: string
+        }
+        Insert: {
+          area: Database["public"]["Enums"]["hotel_area"]
+          best_for?: string | null
+          booking_url?: string
+          category: Database["public"]["Enums"]["hotel_category"]
+          created_at?: string
+          description?: string
+          highlight?: string | null
+          id?: string
+          image_url?: string
+          location?: string | null
+          name: string
+          note?: string | null
+          sort_order?: number
+          stars?: number | null
+          tag?: string
+          updated_at?: string
+        }
+        Update: {
+          area?: Database["public"]["Enums"]["hotel_area"]
+          best_for?: string | null
+          booking_url?: string
+          category?: Database["public"]["Enums"]["hotel_category"]
+          created_at?: string
+          description?: string
+          highlight?: string | null
+          id?: string
+          image_url?: string
+          location?: string | null
+          name?: string
+          note?: string | null
+          sort_order?: number
+          stars?: number | null
+          tag?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
+      hotel_area: "ayia-napa" | "limassol" | "paphos"
+      hotel_category: "luxury" | "family" | "budget"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +235,10 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+      hotel_area: ["ayia-napa", "limassol", "paphos"],
+      hotel_category: ["luxury", "family", "budget"],
+    },
   },
 } as const
