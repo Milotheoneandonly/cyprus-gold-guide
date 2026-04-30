@@ -393,6 +393,11 @@ export const translations: Record<Lang, Dict> = {
       subtitle: "Click a hotel to see prices on Booking.com.",
       back: "← Choose another type",
       types: { luxury: "luxury", family: "family", budget: "budget" },
+      topPicksEyebrow: "Our top picks",
+      topPicksTitle: "Top 3 Best Hotels",
+      topPicksSubtitle: "Handpicked favorites — our most recommended options.",
+      moreHotels: "More recommended hotels",
+      badges: { first: "#1 Best Choice", second: "#2 Popular Choice", third: "#3 Great Value" },
     },
     card: {
       bestFor: "Best for",
