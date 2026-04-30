@@ -222,7 +222,7 @@ const Admin = () => {
             </button>
           ))}
           <div className="flex-1" />
-          <GoldButton size="sm" onClick={() => setCreating(true)}>+ Add hotel</GoldButton>
+          <GoldButton onClick={() => setCreating(true)} className="!px-4 !py-2 !text-[11px]">+ Add hotel</GoldButton>
         </div>
 
         {isLoading ? (
