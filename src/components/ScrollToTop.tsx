@@ -17,8 +17,20 @@ const ScrollToTop = () => {
   }, []);
 
   useEffect(() => {
-    // Always scroll to top on any navigation (PUSH, POP, REPLACE)
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    // Temporarily disable smooth scroll so navigation jumps instantly to top
+    const html = document.documentElement;
+    const prevBehavior = html.style.scrollBehavior;
+    html.style.scrollBehavior = "auto";
+
+    window.scrollTo(0, 0);
+    document.body.scrollTop = 0;
+    html.scrollTop = 0;
+
+    // Restore smooth scrolling on next frame
+    const id = requestAnimationFrame(() => {
+      html.style.scrollBehavior = prevBehavior;
+    });
+    return () => cancelAnimationFrame(id);
   }, [pathname, search, hash, navType]);
 
   return null;
