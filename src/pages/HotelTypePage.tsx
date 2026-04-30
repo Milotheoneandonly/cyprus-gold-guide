@@ -6,6 +6,7 @@ import TopPickHotelCard from "@/components/TopPickHotelCard";
 import ScrollDownArrow from "@/components/ScrollDownArrow";
 import { areas, AreaKey, HotelCategory } from "@/data/hotels";
 import { useLang } from "@/i18n/LanguageContext";
+import { useHotels } from "@/lib/hotelsApi";
 
 const validTypes: HotelCategory[] = ["luxury", "family", "budget"];
 
@@ -15,10 +16,15 @@ const HotelTypePage = () => {
   const isValidType = type && validTypes.includes(type as HotelCategory);
   const { t } = useLang();
 
+  const category = (isValidType ? (type as HotelCategory) : undefined);
+  const areaKey = area ? (slug as AreaKey) : undefined;
+  const { data: dbHotels } = useHotels(areaKey, category);
+
   if (!area || !isValidType) return <Navigate to="/" replace />;
 
-  const category = type as HotelCategory;
-  const hotels = area.categories[category].slice(0, 8);
+  // Fallback to static data while loading first time, then use DB
+  const fallback = area.categories[category!];
+  const hotels = (dbHotels && dbHotels.length > 0 ? dbHotels : fallback).slice(0, 8);
   const topPicks = hotels.slice(0, 3);
   const rest = hotels.slice(3);
 
