@@ -211,6 +211,11 @@ export const translations: Record<Lang, Dict> = {
       subtitle: "Klikk på et hotell for å se priser på Booking.com.",
       back: "← Velg en annen type",
       types: { luxury: "luksus", family: "familie", budget: "budsjett" },
+      topPicksEyebrow: "Våre toppvalg",
+      topPicksTitle: "Topp 3 beste hoteller",
+      topPicksSubtitle: "Håndplukkede favoritter — våre mest anbefalte alternativer.",
+      moreHotels: "Flere anbefalte hoteller",
+      badges: { first: "#1 Beste valg", second: "#2 Populært valg", third: "#3 God verdi" },
     },
     card: {
       bestFor: "Best for",
