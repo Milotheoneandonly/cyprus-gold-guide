@@ -11,6 +11,8 @@ import WhereToStay from "./pages/WhereToStay.tsx";
 import AreaPage from "./pages/AreaPage.tsx";
 import HotelTypePage from "./pages/HotelTypePage.tsx";
 import About from "./pages/About.tsx";
+import AdminLogin from "./pages/AdminLogin.tsx";
+import Admin from "./pages/Admin.tsx";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +30,8 @@ const App = () => (
             <Route path="/hotels/:slug" element={<AreaPage />} />
             <Route path="/hotels/:slug/:type" element={<HotelTypePage />} />
             <Route path="/about" element={<About />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin" element={<Admin />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
