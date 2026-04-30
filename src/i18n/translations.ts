@@ -32,6 +32,11 @@ type Dict = {
     subtitle: string;
     back: string;
     types: { luxury: string; family: string; budget: string };
+    topPicksEyebrow: string;
+    topPicksTitle: string;
+    topPicksSubtitle: string;
+    moreHotels: string;
+    badges: { first: string; second: string; third: string };
   };
   card: {
     bestFor: string;
@@ -115,6 +120,11 @@ export const translations: Record<Lang, Dict> = {
       subtitle: "Klicka på ett hotell för att se priser på Booking.com.",
       back: "← Välj en annan typ",
       types: { luxury: "lyx", family: "familje", budget: "budget" },
+      topPicksEyebrow: "Våra toppval",
+      topPicksTitle: "Topp 3 bästa hotellen",
+      topPicksSubtitle: "Handplockade favoriter — våra mest rekommenderade alternativ.",
+      moreHotels: "Fler rekommenderade hotell",
+      badges: { first: "#1 Bästa val", second: "#2 Populärt val", third: "#3 Bra värde" },
     },
     card: {
       bestFor: "Bäst för",
@@ -201,6 +211,11 @@ export const translations: Record<Lang, Dict> = {
       subtitle: "Klikk på et hotell for å se priser på Booking.com.",
       back: "← Velg en annen type",
       types: { luxury: "luksus", family: "familie", budget: "budsjett" },
+      topPicksEyebrow: "Våre toppvalg",
+      topPicksTitle: "Topp 3 beste hoteller",
+      topPicksSubtitle: "Håndplukkede favoritter — våre mest anbefalte alternativer.",
+      moreHotels: "Flere anbefalte hoteller",
+      badges: { first: "#1 Beste valg", second: "#2 Populært valg", third: "#3 God verdi" },
     },
     card: {
       bestFor: "Best for",
@@ -287,6 +302,11 @@ export const translations: Record<Lang, Dict> = {
       subtitle: "Klik på et hotel for at se priser på Booking.com.",
       back: "← Vælg en anden type",
       types: { luxury: "luksus", family: "familie", budget: "budget" },
+      topPicksEyebrow: "Vores topvalg",
+      topPicksTitle: "Top 3 bedste hoteller",
+      topPicksSubtitle: "Håndplukkede favoritter — vores mest anbefalede valg.",
+      moreHotels: "Flere anbefalede hoteller",
+      badges: { first: "#1 Bedste valg", second: "#2 Populært valg", third: "#3 God værdi" },
     },
     card: {
       bestFor: "Bedst til",
@@ -373,6 +393,11 @@ export const translations: Record<Lang, Dict> = {
       subtitle: "Click a hotel to see prices on Booking.com.",
       back: "← Choose another type",
       types: { luxury: "luxury", family: "family", budget: "budget" },
+      topPicksEyebrow: "Our top picks",
+      topPicksTitle: "Top 3 Best Hotels",
+      topPicksSubtitle: "Handpicked favorites — our most recommended options.",
+      moreHotels: "More recommended hotels",
+      badges: { first: "#1 Best Choice", second: "#2 Popular Choice", third: "#3 Great Value" },
     },
     card: {
       bestFor: "Best for",
