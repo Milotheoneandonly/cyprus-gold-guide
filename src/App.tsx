@@ -15,6 +15,13 @@ import About from "./pages/About.tsx";
 import AdminLogin from "./pages/AdminLogin.tsx";
 import Admin from "./pages/Admin.tsx";
 import AdminImportHotels from "./pages/AdminImportHotels.tsx";
+import AdminQA from "./pages/AdminQA.tsx";
+import OmOss from "./pages/OmOss.tsx";
+import Kontakt from "./pages/Kontakt.tsx";
+import Annonslankar from "./pages/Annonslankar.tsx";
+import Integritetspolicy from "./pages/Integritetspolicy.tsx";
+import CookiesPage from "./pages/Cookies.tsx";
+import Villkor from "./pages/Villkor.tsx";
 
 const queryClient = new QueryClient();
 
@@ -55,9 +62,16 @@ const App = () => (
             <Route path="/hotels/:area/:type/:hotelSlug" element={<LegacyDetailRedirect />} />
 
             <Route path="/about" element={<About />} />
+            <Route path="/om-oss" element={<OmOss />} />
+            <Route path="/kontakt" element={<Kontakt />} />
+            <Route path="/annonslankar" element={<Annonslankar />} />
+            <Route path="/integritetspolicy" element={<Integritetspolicy />} />
+            <Route path="/cookies" element={<CookiesPage />} />
+            <Route path="/villkor" element={<Villkor />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/import-hotels" element={<AdminImportHotels />} />
+            <Route path="/admin/qa" element={<AdminQA />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
