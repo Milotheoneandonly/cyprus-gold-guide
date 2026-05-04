@@ -5,6 +5,8 @@ import GoldButton from "@/components/GoldButton";
 import SimpleHotelCard from "@/components/SimpleHotelCard";
 import TopPickHotelCard from "@/components/TopPickHotelCard";
 import ScrollDownArrow from "@/components/ScrollDownArrow";
+import AffiliateDisclosure from "@/components/AffiliateDisclosure";
+import { BreadcrumbSchema } from "@/components/SchemaJsonLd";
 import { areas, AreaKey, HotelCategory } from "@/data/hotels";
 import { useLang } from "@/i18n/LanguageContext";
 import { useHotels } from "@/lib/hotelsApi";
@@ -57,6 +59,13 @@ const HotelTypePage = () => {
 
   return (
     <Layout>
+      <BreadcrumbSchema
+        items={[
+          { name: "Hem", path: "/" },
+          { name: areaMeta.swedishName, path: `/hotell/${areaMeta.slug}` },
+          { name: categoryLabelSv, path: `/hotell/${areaMeta.slug}/${category}` },
+        ]}
+      />
       {/* HERO */}
       <section className="py-20 md:py-28 border-b border-border/50">
         <div className="container-luxe text-center">
