@@ -124,6 +124,11 @@ const Admin = () => {
         last_verified_at: values.last_verified_at || null,
         is_active: values.is_active,
         traveller_tags: values.traveller_tags || [],
+        image_alt: values.image_alt || null,
+        image_source: values.image_source || null,
+        image_license_status: values.image_license_status || "unknown",
+        image_verified_at: values.image_verified_at || null,
+        image_needs_review: values.image_needs_review,
       };
       if (values.id) {
         const { error } = await supabase.from("hotels").update(payload).eq("id", values.id);
