@@ -25,6 +25,12 @@ export type HotelFormValues = {
   hotel_slug: string;
   seo_title: string;
   seo_description: string;
+  sub_area: string;
+  official_website_url: string;
+  source_url: string;
+  last_verified_at: string;
+  is_active: boolean;
+  traveller_tags: string[];
 };
 
 export const emptyHotel = (area: AreaKey, category: HotelCategory, sort_order: number): HotelFormValues => ({
@@ -44,6 +50,12 @@ export const emptyHotel = (area: AreaKey, category: HotelCategory, sort_order: n
   hotel_slug: "",
   seo_title: "",
   seo_description: "",
+  sub_area: "",
+  official_website_url: "",
+  source_url: "",
+  last_verified_at: "",
+  is_active: true,
+  traveller_tags: [],
 });
 
 interface Props {
