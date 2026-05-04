@@ -369,6 +369,71 @@ if (existsSync(sitemapPath)) {
 }
 
 
+// ---------- LanguageSwitcher must use SE/NO/DK/EN labels ----------
+const lsPath = "src/components/LanguageSwitcher.tsx";
+if (existsSync(lsPath)) {
+  const src = readFileSync(lsPath, "utf8");
+  for (const code of ["SE", "NO", "DK", "EN"]) {
+    if (!new RegExp(`["']${code}["']`).test(src))
+      fail(`LanguageSwitcher.tsx is missing label "${code}"`);
+    else ok(`LanguageSwitcher exposes label ${code}`);
+  }
+}
+
+// ---------- Translations: SV title is Swedish, EN title is English ----------
+const trPath = "src/i18n/translations.ts";
+if (existsSync(trPath)) {
+  const src = readFileSync(trPath, "utf8");
+  // crude but effective: pull the first title1 within sv:{...} and en:{...}
+  const svBlock = src.match(/sv:\s*\{[\s\S]*?\},?\s*no:/);
+  const enBlock = src.match(/en:\s*\{[\s\S]*?\},?\s*\}\s*;/);
+  if (svBlock && /Välj din destination/.test(svBlock[0])) ok("translations.sv has Swedish home.title1");
+  else fail("translations.sv home.title1 is not Swedish");
+  if (enBlock && /Choose your destination/.test(enBlock[0])) ok("translations.en has English home.title1");
+  else fail("translations.en home.title1 is not English");
+}
+
+// ---------- Image policy: no disallowed hosts in active hotels ----------
+if (SUPABASE_URL && ANON) {
+  const r = await fetch(
+    `${SUPABASE_URL.replace(/\/$/, "")}/rest/v1/hotels?select=area,name,image_url,image_alt,image_license_status,image_verified_at,is_active&is_active=eq.true`,
+    { headers: { apikey: ANON, Authorization: `Bearer ${ANON}` } },
+  );
+  if (r.ok) {
+    const rows = await r.json();
+    const DISALLOWED = ["instagram.com", "tripadvisor.", "googleusercontent.com"];
+    const bad = rows.filter((h) => DISALLOWED.some((d) => (h.image_url || "").includes(d)));
+    if (bad.length) fail(`hotels with disallowed image hosts: ${bad.map((b) => b.name).join(", ")}`);
+    else ok("no active hotels use disallowed image hosts");
+
+    const APPROVED = new Set(["licensed", "booking_partner_api", "hotel_permission", "own_photo"]);
+    const photoReadyByArea = {};
+    const activeByArea = {};
+    for (const h of rows) {
+      activeByArea[h.area] = (activeByArea[h.area] || 0) + 1;
+      const ready =
+        h.image_url &&
+        !h.image_url.startsWith("seed:") &&
+        h.image_alt &&
+        h.image_verified_at &&
+        APPROVED.has(h.image_license_status || "unknown");
+      if (ready) photoReadyByArea[h.area] = (photoReadyByArea[h.area] || 0) + 1;
+    }
+    console.log("  · photo-ready per area:");
+    for (const a of Object.keys(activeByArea).sort()) {
+      console.log(`      ${a}: active=${activeByArea[a]} photo-ready=${photoReadyByArea[a] || 0}`);
+    }
+    // Only enforce 5-photo-ready minimum when in production indexing mode.
+    if (PUBLIC_INDEXING_ENV) {
+      for (const a of ["protaras", "larnaca", "coral-bay", "polis-latchi"]) {
+        const n = photoReadyByArea[a] || 0;
+        if (n < 5) fail(`area ${a} has only ${n} photo-ready hotels (min 5) while indexing is on`);
+        else ok(`area ${a} meets photo-ready minimum`);
+      }
+    }
+  }
+}
+
 // ---------- summary ----------
 if (failures.length) {
   console.error(`\n[seo-audit] ❌ ${failures.length} failure(s):`);

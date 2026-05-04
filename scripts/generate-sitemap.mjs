@@ -5,22 +5,17 @@
  * Required env vars:
  *   SUPABASE_URL          (or VITE_SUPABASE_URL)
  *   SUPABASE_ANON_KEY     (or VITE_SUPABASE_PUBLISHABLE_KEY)
- *   SITE_URL              (final production domain, e.g. https://cypern-hotell.se)
+ *   SITE_URL              public site origin (default https://cyprus-gold-guide.lovable.app)
+ *   VITE_PUBLIC_INDEXING  "true" to apply launch-readiness filtering (production mode)
  *
- * No Supabase URL or anon key is hardcoded here.
+ * Launch readiness rules (only enforced when PUBLIC_INDEXING=true):
+ *   - area must have ≥ 5 active hotels
+ *   - area must have ≥ 5 photo-ready hotels
+ *     (image_url not 'seed:%', image_alt set, image_verified_at set,
+ *      image_license_status in licensed/booking_partner_api/hotel_permission/own_photo)
  *
- * Includes:
- *   /
- *   /where-to-stay
- *   /about
- *   every destination page
- *   only category pages with >= 1 active hotel
- *   only active hotel detail pages with valid area + category + hotel_slug
- *
- * Excludes: /admin*, legacy /hotels/*, inactive hotels, empty category pages,
- * duplicates.
- *
- * Run: node scripts/generate-sitemap.mjs
+ * In staging (PUBLIC_INDEXING=false) we still emit all destination URLs so the
+ * QA team can verify them.
  */
 import { writeFileSync } from "node:fs";
 
@@ -28,6 +23,8 @@ const SITE_URL_RAW = process.env.SITE_URL || "https://cyprus-gold-guide.lovable.
 const SITE = SITE_URL_RAW.replace(/\/$/, "");
 const SUPABASE_URL = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
 const ANON = process.env.SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+const PUBLIC_INDEXING =
+  String(process.env.VITE_PUBLIC_INDEXING ?? "false").toLowerCase() === "true";
 
 if (!SUPABASE_URL) {
   console.error("[sitemap] FATAL: SUPABASE_URL (or VITE_SUPABASE_URL) is not set.");
@@ -50,9 +47,16 @@ const AREAS = [
   "polis-latchi",
 ];
 const CATS = ["luxury", "family", "budget"];
+const APPROVED_LICENSES = new Set([
+  "licensed",
+  "booking_partner_api",
+  "hotel_permission",
+  "own_photo",
+]);
+const MIN_PHOTO_READY = 5;
 
 const res = await fetch(
-  `${SUPABASE_URL.replace(/\/$/, "")}/rest/v1/hotels?select=area,category,hotel_slug,is_active&is_active=eq.true&order=area`,
+  `${SUPABASE_URL.replace(/\/$/, "")}/rest/v1/hotels?select=area,category,hotel_slug,is_active,image_url,image_alt,image_license_status,image_verified_at&is_active=eq.true&order=area`,
   { headers: { apikey: ANON, Authorization: `Bearer ${ANON}` } },
 );
 if (!res.ok) {
@@ -65,10 +69,38 @@ if (!Array.isArray(hotels)) {
   process.exit(1);
 }
 
-// Set of (area|category) combos that have at least 1 active hotel
+const isPhotoReady = (h) =>
+  !!h.image_url &&
+  !h.image_url.startsWith("seed:") &&
+  !!h.image_alt &&
+  !!h.image_verified_at &&
+  APPROVED_LICENSES.has(h.image_license_status || "unknown");
+
+const photoReadyByArea = {};
+const activeByArea = {};
+for (const h of hotels) {
+  activeByArea[h.area] = (activeByArea[h.area] || 0) + 1;
+  if (isPhotoReady(h)) photoReadyByArea[h.area] = (photoReadyByArea[h.area] || 0) + 1;
+}
+
+// Areas allowed in the public sitemap.
+const launchReadyAreas = new Set(
+  AREAS.filter(
+    (a) =>
+      (activeByArea[a] || 0) >= MIN_PHOTO_READY && (photoReadyByArea[a] || 0) >= MIN_PHOTO_READY,
+  ),
+);
+const allowedAreas = PUBLIC_INDEXING ? launchReadyAreas : new Set(AREAS);
+
+console.log(
+  `[sitemap] PUBLIC_INDEXING=${PUBLIC_INDEXING}; launch-ready areas: ${[...launchReadyAreas].join(", ") || "(none)"}`,
+);
+
 const activeCatKeys = new Set();
 for (const h of hotels) {
-  if (h.area && h.category && h.is_active) activeCatKeys.add(`${h.area}|${h.category}`);
+  if (h.area && h.category && h.is_active && allowedAreas.has(h.area)) {
+    activeCatKeys.add(`${h.area}|${h.category}`);
+  }
 }
 
 const seenLocs = new Set();
@@ -91,6 +123,7 @@ add("/cookies", "0.3");
 add("/villkor", "0.3");
 
 for (const a of AREAS) {
+  if (!allowedAreas.has(a)) continue;
   add(`/hotell/${a}`, "0.9");
   for (const c of CATS) {
     if (activeCatKeys.has(`${a}|${c}`)) add(`/hotell/${a}/${c}`, "0.8");
@@ -100,6 +133,7 @@ for (const a of AREAS) {
 for (const h of hotels) {
   if (!h.is_active) continue;
   if (!h.area || !h.category || !h.hotel_slug) continue;
+  if (!allowedAreas.has(h.area)) continue;
   add(`/hotell/${h.area}/${h.category}/${h.hotel_slug}`, "0.7");
 }
 

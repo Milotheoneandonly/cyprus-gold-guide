@@ -10,20 +10,40 @@ type Ctx = {
 const LanguageContext = createContext<Ctx | null>(null);
 
 const STORAGE_KEY = "cy-lang";
+const VALID: readonly Lang[] = ["sv", "no", "da", "en"];
+
+const isValidLang = (v: unknown): v is Lang =>
+  typeof v === "string" && (VALID as readonly string[]).includes(v);
+
+const readStoredLang = (): Lang => {
+  if (typeof window === "undefined") return "sv";
+  try {
+    const saved = window.localStorage.getItem(STORAGE_KEY);
+    if (isValidLang(saved)) return saved;
+    // Stale/invalid — clear it so we don't read it again.
+    if (saved !== null) window.localStorage.removeItem(STORAGE_KEY);
+  } catch {
+    /* ignore */
+  }
+  return "sv";
+};
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [lang, setLangState] = useState<Lang>(() => {
-    if (typeof window === "undefined") return "sv";
-    const saved = localStorage.getItem(STORAGE_KEY) as Lang | null;
-    return saved && ["sv", "no", "da", "en"].includes(saved) ? saved : "sv";
-  });
+  const [lang, setLangState] = useState<Lang>(() => readStoredLang());
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, lang);
+    try {
+      window.localStorage.setItem(STORAGE_KEY, lang);
+    } catch {
+      /* ignore */
+    }
     document.documentElement.lang = lang;
   }, [lang]);
 
-  const setLang = (l: Lang) => setLangState(l);
+  const setLang = (l: Lang) => {
+    if (!isValidLang(l)) return;
+    setLangState(l);
+  };
 
   return (
     <LanguageContext.Provider value={{ lang, setLang, t: translations[lang] }}>

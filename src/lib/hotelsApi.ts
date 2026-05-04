@@ -28,6 +28,11 @@ export type HotelRow = {
   last_verified_at?: string | null;
   is_active?: boolean;
   traveller_tags?: string[] | null;
+  image_alt?: string | null;
+  image_source?: string | null;
+  image_license_status?: string | null;
+  image_verified_at?: string | null;
+  image_needs_review?: boolean | null;
 };
 
 export type HotelWithMeta = Hotel & {
@@ -39,6 +44,11 @@ export type HotelWithMeta = Hotel & {
   subArea?: string;
   officialWebsiteUrl?: string;
   travellerTags?: string[];
+  imageAlt?: string;
+  imageSource?: string;
+  imageLicenseStatus?: string;
+  imageVerifiedAt?: string;
+  imageNeedsReview?: boolean;
 };
 
 export function rowToHotel(r: HotelRow): HotelWithMeta {
@@ -62,6 +72,11 @@ export function rowToHotel(r: HotelRow): HotelWithMeta {
     subArea: r.sub_area ?? undefined,
     officialWebsiteUrl: r.official_website_url ?? undefined,
     travellerTags: r.traveller_tags ?? undefined,
+    imageAlt: r.image_alt ?? undefined,
+    imageSource: r.image_source ?? undefined,
+    imageLicenseStatus: r.image_license_status ?? undefined,
+    imageVerifiedAt: r.image_verified_at ?? undefined,
+    imageNeedsReview: r.image_needs_review ?? undefined,
   };
 }
 

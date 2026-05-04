@@ -36,8 +36,13 @@ const SimpleHotelCard = ({ hotel }: Props) => {
         <div className="relative aspect-[16/10] overflow-hidden">
           <img
             src={hotel.image}
-            alt={hotel.name}
+            alt={
+              ("imageAlt" in (h as object) && (h as { imageAlt?: string }).imageAlt) ||
+              `${hotel.name} i ${(h.area || "Cypern")}, Cypern`
+            }
             loading="lazy"
+            width={1280}
+            height={800}
             className="h-full w-full object-cover saturate-110 contrast-105 transition-transform duration-[1000ms] ease-out group-hover:scale-110"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent opacity-70" />

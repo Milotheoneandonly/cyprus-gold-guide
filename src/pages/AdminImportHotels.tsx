@@ -33,6 +33,11 @@ type ImportRow = {
   last_verified_at?: string | null;
   is_active?: boolean;
   traveller_tags?: string[];
+  image_alt?: string;
+  image_source?: string;
+  image_license_status?: string;
+  image_verified_at?: string | null;
+  image_needs_review?: boolean;
 };
 
 type RawRow = Record<string, unknown>;
@@ -144,6 +149,16 @@ function normalizeRow(input: unknown): ImportRow | { __error: string } {
     last_verified_at: raw.last_verified_at ? String(raw.last_verified_at) : null,
     is_active,
     traveller_tags,
+    image_alt: raw.image_alt ? String(raw.image_alt) : "",
+    image_source: raw.image_source ? String(raw.image_source) : "",
+    image_license_status: raw.image_license_status ? String(raw.image_license_status) : "unknown",
+    image_verified_at: raw.image_verified_at ? String(raw.image_verified_at) : null,
+    image_needs_review:
+      raw.image_needs_review === false ||
+      raw.image_needs_review === "false" ||
+      raw.image_needs_review === 0
+        ? false
+        : true,
   };
 }
 
@@ -267,6 +282,11 @@ const AdminImportHotels = () => {
           source_url: row.source_url || null,
           last_verified_at: row.last_verified_at || null,
           traveller_tags: row.traveller_tags || [],
+          image_alt: row.image_alt || null,
+          image_source: row.image_source || null,
+          image_license_status: row.image_license_status || "unknown",
+          image_verified_at: row.image_verified_at || null,
+          image_needs_review: row.image_needs_review ?? true,
         } as TablesInsert<"hotels">;
 
         if (existing?.id) {

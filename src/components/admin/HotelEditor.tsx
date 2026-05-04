@@ -6,6 +6,12 @@ import { toast } from "@/hooks/use-toast";
 import { slugify } from "@/lib/slugify";
 import type { AreaKey, HotelCategory } from "@/data/hotels";
 import { AREA_KEYS, CATEGORIES } from "@/lib/areas";
+import {
+  IMAGE_LICENSE_VALUES,
+  type ImageLicenseStatus,
+  imageUrlIsDisallowed,
+  looksLikeBookingHotlink,
+} from "@/lib/hotelImagePolicy";
 
 export type HotelFormValues = {
   id?: string;
@@ -31,6 +37,11 @@ export type HotelFormValues = {
   last_verified_at: string;
   is_active: boolean;
   traveller_tags: string[];
+  image_alt: string;
+  image_source: string;
+  image_license_status: ImageLicenseStatus;
+  image_verified_at: string;
+  image_needs_review: boolean;
 };
 
 export const emptyHotel = (area: AreaKey, category: HotelCategory, sort_order: number): HotelFormValues => ({
@@ -56,6 +67,11 @@ export const emptyHotel = (area: AreaKey, category: HotelCategory, sort_order: n
   last_verified_at: "",
   is_active: true,
   traveller_tags: [],
+  image_alt: "",
+  image_source: "",
+  image_license_status: "unknown",
+  image_verified_at: "",
+  image_needs_review: true,
 });
 
 interface Props {
@@ -127,6 +143,30 @@ const HotelEditor = ({ initial, onClose, onSave, saving }: Props) => {
       toast({ title: "Slug is required", variant: "destructive" });
       return;
     }
+    if (v.image_url && !v.image_alt.trim()) {
+      toast({ title: "image_alt is required when image_url is set", variant: "destructive" });
+      return;
+    }
+    if (v.image_url && !v.image_license_status) {
+      toast({ title: "image_license_status is required", variant: "destructive" });
+      return;
+    }
+    if (v.image_url && imageUrlIsDisallowed(v.image_url)) {
+      toast({
+        title: "Disallowed image source",
+        description: "Instagram / Tripadvisor / Google Images are not permitted.",
+        variant: "destructive",
+      });
+      return;
+    }
+    if (v.image_url && looksLikeBookingHotlink(v.image_url, v.image_license_status)) {
+      toast({
+        title: "Booking.com hotlink not allowed",
+        description: "Set image_license_status to booking_partner_api if this came from the official API.",
+        variant: "destructive",
+      });
+      return;
+    }
     onSave({ ...v, hotel_slug: finalSlug });
   };
 
@@ -171,6 +211,61 @@ const HotelEditor = ({ initial, onClose, onSave, saving }: Props) => {
                 />
               </div>
             </div>
+          </Field>
+
+          <div className="grid grid-cols-2 gap-4">
+            <Field label="Image alt (Swedish)" hint="Required if image_url is set.">
+              <input
+                value={v.image_alt}
+                onChange={(e) => update("image_alt", e.target.value)}
+                className={inputCls}
+                placeholder="Capo Bay Hotel i Protaras, Cypern"
+              />
+            </Field>
+            <Field label="Image source" hint="Where this image came from (e.g. hotel PR, own photo, partner API).">
+              <input
+                value={v.image_source}
+                onChange={(e) => update("image_source", e.target.value)}
+                className={inputCls}
+              />
+            </Field>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <Field label="Image license status" hint="Photo-ready requires licensed / partner / hotel_permission / own_photo.">
+              <select
+                value={v.image_license_status}
+                onChange={(e) =>
+                  update("image_license_status", e.target.value as typeof v.image_license_status)
+                }
+                className={inputCls}
+              >
+                {IMAGE_LICENSE_VALUES.map((s) => (
+                  <option key={s} value={s}>
+                    {s}
+                  </option>
+                ))}
+              </select>
+            </Field>
+            <Field label="Image verified at" hint="Date you confirmed legal use.">
+              <input
+                type="date"
+                value={v.image_verified_at ? v.image_verified_at.slice(0, 10) : ""}
+                onChange={(e) => update("image_verified_at", e.target.value)}
+                className={inputCls}
+              />
+            </Field>
+          </div>
+
+          <Field label="Needs review">
+            <select
+              value={v.image_needs_review ? "true" : "false"}
+              onChange={(e) => update("image_needs_review", e.target.value === "true")}
+              className={inputCls}
+            >
+              <option value="true">Yes — flag in Data Health</option>
+              <option value="false">No — reviewed</option>
+            </select>
           </Field>
 
           <div className="grid grid-cols-2 gap-4">
