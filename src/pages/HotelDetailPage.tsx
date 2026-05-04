@@ -46,8 +46,9 @@ const HotelDetailPage = () => {
   }
 
   if (!hotel) {
-    // Fallback: try static data by name match
-    const staticHotel = areas[areaKey].categories[category].find(
+    // Fallback: try static data by name match (only if static area exists)
+    const staticArea = areas[areaKey];
+    const staticHotel = staticArea?.categories[category].find(
       (h) => h.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") === hotelSlug,
     );
     if (!staticHotel) {
