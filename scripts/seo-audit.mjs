@@ -58,11 +58,30 @@ if (!existsSync(sitemapPath)) {
   if (locs.length === 0) fail("sitemap.xml contains zero URLs");
   else ok(`sitemap.xml contains ${locs.length} URLs`);
 
+  console.log(`  · first 10 sitemap URLs:`);
+  for (const u of locs.slice(0, 10)) console.log(`      ${u}`);
+
+  if (/cypernhotell\.se/.test(xml)) fail("sitemap.xml contains cypernhotell.se");
+  else ok("sitemap.xml does not contain cypernhotell.se");
+
+  if (SITE_IS_LOVABLE && /cypern-hotell\.se/.test(xml))
+    fail("sitemap.xml contains cypern-hotell.se while staging mode is active");
+  else ok("sitemap.xml: no cypern-hotell.se while staging");
+
+  if (SITE_IS_FINAL && /lovable\.app/.test(xml))
+    fail("sitemap.xml contains lovable.app while SITE_URL is a final custom domain");
+  else ok("sitemap.xml: lovable.app/final-domain combination is consistent");
+
+  for (const bad of ["localhost", "127.0.0.1"]) {
+    if (xml.includes(bad)) fail(`sitemap.xml contains ${bad}`);
+    else ok(`sitemap.xml does not contain ${bad}`);
+  }
+
   const wrongOrigin = locs.filter((u) => !u.startsWith(SITE + "/") && u !== SITE && !u.startsWith(SITE + "?"));
   if (wrongOrigin.length) fail(`sitemap has URLs not on SITE_URL: ${wrongOrigin.slice(0, 3).join(", ")}…`);
   else ok("every sitemap URL uses SITE_URL");
 
-  const adminUrls = locs.filter((u) => u.includes("/admin"));
+  const adminUrls = locs.filter((u) => /\/admin(\/|$)/.test(u));
   if (adminUrls.length) fail(`sitemap contains admin URLs: ${adminUrls.join(", ")}`);
   else ok("no admin URLs in sitemap");
 
@@ -73,6 +92,14 @@ if (!existsSync(sitemapPath)) {
   const dupes = locs.filter((u, i) => locs.indexOf(u) !== i);
   if (dupes.length) fail(`sitemap has duplicates: ${[...new Set(dupes)].join(", ")}`);
   else ok("no duplicate URLs in sitemap");
+
+  for (const required of ["/", "/where-to-stay", "/om-oss", "/kontakt", "/annonslankar", "/integritetspolicy", "/cookies", "/villkor"]) {
+    const want = `${SITE}${required === "/" ? "/" : required}`;
+    if (!locs.some((u) => u === want || u === want.replace(/\/$/, "")))
+      fail(`sitemap missing required URL ${required}`);
+    else ok(`sitemap includes ${required}`);
+  }
+
 
   // Validate against active rows from Supabase, if available
   if (SUPABASE_URL && ANON) {
