@@ -4,6 +4,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import GoldButton from "@/components/GoldButton";
 import HotelEditor, { HotelFormValues, emptyHotel } from "@/components/admin/HotelEditor";
+import DataHealth from "@/components/admin/DataHealth";
 import { resolveHotelImage } from "@/lib/hotelImages";
 import { toast } from "@/hooks/use-toast";
 import type { AreaKey, HotelCategory } from "@/data/hotels";
@@ -314,6 +315,8 @@ const Admin = () => {
         <p className="text-xs text-muted-foreground mt-6">
           The first 3 hotels (top of the list) appear in "Top 3 Best Picks" on the public site.
         </p>
+
+        <DataHealth />
       </div>
 
       {(editing || creating) && (

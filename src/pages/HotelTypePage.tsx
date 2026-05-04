@@ -26,6 +26,7 @@ const HotelTypePage = () => {
   const areaStatic = areaKey ? areas[areaKey] : undefined;
 
   const categoryLabelSv = category ? CATEGORY_SV[category] : "";
+  const hasActiveHotels = !!dbHotels && dbHotels.length > 0;
   useSeo({
     title:
       areaMeta && category
@@ -36,6 +37,8 @@ const HotelTypePage = () => {
         ? `Handplockade ${categoryLabelSv.toLowerCase()}hotell i ${areaMeta.swedishName}, Cypern. Topp 3 plus fler rekommendationer.`
         : "Hotell på Cypern, handplockade för skandinaver.",
     canonicalPath: areaMeta && category ? `/hotell/${areaMeta.slug}/${category}` : undefined,
+    // If there are no active hotels in the DB for this category, do not let search engines index it.
+    noindex: !isLoading && !hasActiveHotels,
   });
 
   if (!areaMeta || !category) return <Navigate to="/" replace />;

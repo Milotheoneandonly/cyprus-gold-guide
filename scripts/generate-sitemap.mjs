@@ -16,9 +16,15 @@
 import { writeFileSync } from "node:fs";
 
 const SITE = process.env.SITE_URL || "https://cypernhotell.se";
-const SUPABASE_URL = "https://mbsnghmhqqsgqaqnvprr.supabase.co";
-const ANON =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ic25naG1ocXFzZ3FhcW52cHJyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc1Mzk3NDcsImV4cCI6MjA5MzExNTc0N30.yjgmCmwb8H3vnW2TOV64TJy2Kzs3b-GDAdsNHNyfaw4";
+const SUPABASE_URL = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
+const ANON = process.env.SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+
+if (!SUPABASE_URL || !ANON) {
+  console.error(
+    "Missing SUPABASE_URL / SUPABASE_ANON_KEY env vars (or VITE_ equivalents). Aborting.",
+  );
+  process.exit(1);
+}
 
 const today = new Date().toISOString().slice(0, 10);
 const areas = [
@@ -38,6 +44,12 @@ const res = await fetch(
 );
 const hotels = await res.json();
 
+// Build set of (area|category) keys that have at least 1 active hotel
+const activeCatKeys = new Set();
+for (const h of hotels) {
+  if (h.area && h.category) activeCatKeys.add(`${h.area}|${h.category}`);
+}
+
 const urls = [];
 const add = (loc, prio = "0.5") =>
   urls.push(
@@ -49,10 +61,12 @@ add("/where-to-stay", "0.8");
 add("/about", "0.5");
 for (const a of areas) {
   add(`/hotell/${a}`, "0.9");
-  for (const c of cats) add(`/hotell/${a}/${c}`, "0.8");
+  for (const c of cats) {
+    if (activeCatKeys.has(`${a}|${c}`)) add(`/hotell/${a}/${c}`, "0.8");
+  }
 }
 for (const h of hotels) {
-  if (!h.hotel_slug) continue;
+  if (!h.hotel_slug || !h.area || !h.category) continue;
   add(`/hotell/${h.area}/${h.category}/${h.hotel_slug}`, "0.7");
 }
 
