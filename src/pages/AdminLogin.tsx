@@ -37,8 +37,9 @@ const AdminLogin = () => {
         toast({ title: "Account created", description: "You can now sign in." });
         setMode("signin");
       }
-    } catch (err: any) {
-      toast({ title: "Error", description: err.message ?? String(err), variant: "destructive" });
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : String(err);
+      toast({ title: "Error", description: msg, variant: "destructive" });
     } finally {
       setLoading(false);
     }

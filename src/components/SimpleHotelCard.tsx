@@ -12,12 +12,13 @@ type Props = {
 
 const SimpleHotelCard = ({ hotel }: Props) => {
   const { t } = useLang();
-  const area = (hotel as any).area as string | undefined;
-  const slug = (hotel as any).slug || slugify(hotel.name);
+  const h = hotel as Partial<HotelWithMeta>;
+  const area = h.area;
+  const slug = h.slug || slugify(hotel.name);
   const detailHref = area ? `/hotell/${area}/${hotel.category ?? "luxury"}/${slug}` : undefined;
 
-  const Wrapper: any = detailHref ? Link : "div";
-  const wrapperProps: any = detailHref ? { to: detailHref } : {};
+  const Wrapper = (detailHref ? Link : "div") as React.ElementType;
+  const wrapperProps: Record<string, unknown> = detailHref ? { to: detailHref } : {};
 
   return (
     <Wrapper
