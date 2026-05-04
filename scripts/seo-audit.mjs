@@ -11,7 +11,7 @@
  */
 import { existsSync, readFileSync } from "node:fs";
 
-const SITE = (process.env.SITE_URL || "https://cypern-hotell.se").replace(/\/$/, "");
+const SITE = (process.env.SITE_URL || "https://cyprus-gold-guide.lovable.app").replace(/\/$/, "");
 const SUPABASE_URL = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
 const ANON = process.env.SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 

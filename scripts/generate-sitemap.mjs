@@ -24,7 +24,7 @@
  */
 import { writeFileSync } from "node:fs";
 
-const SITE_URL_RAW = process.env.SITE_URL || "https://cypern-hotell.se";
+const SITE_URL_RAW = process.env.SITE_URL || "https://cyprus-gold-guide.lovable.app";
 const SITE = SITE_URL_RAW.replace(/\/$/, "");
 const SUPABASE_URL = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
 const ANON = process.env.SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_PUBLISHABLE_KEY;
