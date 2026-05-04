@@ -159,7 +159,7 @@ const h = (
 //  - Family  = 4 stars and below, family-suitable
 //  - Budget  = 3 stars only
 // Each category contains exactly 8 hotels.
-export const areas: Record<AreaKey, AreaData> = {
+export const areas: Partial<Record<AreaKey, AreaData>> = {
   "ayia-napa": {
     slug: "ayia-napa",
     name: "Ayia Napa",
