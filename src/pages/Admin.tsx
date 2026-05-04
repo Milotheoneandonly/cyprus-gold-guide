@@ -204,6 +204,9 @@ const Admin = () => {
           <Link to="/admin/import-hotels" className="text-gold hover:underline">
             Bulk import
           </Link>
+          <Link to="/admin/qa" className="text-gold hover:underline">
+            QA
+          </Link>
           <button onClick={() => navigate("/")} className="text-muted-foreground hover:text-gold">
             View site
           </button>

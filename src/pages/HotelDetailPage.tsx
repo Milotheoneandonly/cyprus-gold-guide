@@ -3,6 +3,8 @@ import { ShieldCheck, ExternalLink, Star } from "lucide-react";
 import Layout from "@/components/Layout";
 import GoldButton from "@/components/GoldButton";
 import SimpleHotelCard from "@/components/SimpleHotelCard";
+import AffiliateDisclosure from "@/components/AffiliateDisclosure";
+import { BreadcrumbSchema } from "@/components/SchemaJsonLd";
 import { areas, AreaKey, HotelCategory } from "@/data/hotels";
 import { useHotelBySlug, useHotels } from "@/lib/hotelsApi";
 import { useSeo } from "@/lib/useSeo";
@@ -73,6 +75,14 @@ const HotelDetailPage = () => {
 
   return (
     <Layout>
+      <BreadcrumbSchema
+        items={[
+          { name: "Hem", path: "/" },
+          { name: areaMeta.swedishName, path: `/hotell/${areaMeta.slug}` },
+          { name: CATEGORY_SV[category], path: `/hotell/${areaMeta.slug}/${category}` },
+          { name: h.name, path: `/hotell/${areaMeta.slug}/${category}/${hotelSlug}` },
+        ]}
+      />
       <article className="pb-20">
         {/* HERO IMAGE */}
         <section className="relative h-[55vh] min-h-[420px] overflow-hidden">
@@ -164,6 +174,7 @@ const HotelDetailPage = () => {
               <div className="sticky top-24 bg-card border border-gold/40 rounded-xl p-6 shadow-elegant">
                 <p className="text-[11px] uppercase tracking-[0.22em] text-gold mb-2">Boka via Booking.com</p>
                 <h3 className="font-serif text-xl text-foreground mb-4">Se aktuella priser</h3>
+                <AffiliateDisclosure variant="block" className="mb-4" />
                 <a
                   href={h.bookingUrl}
                   target="_blank"
