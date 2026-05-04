@@ -314,6 +314,76 @@ const HotelEditor = ({ initial, onClose, onSave, saving }: Props) => {
               />
             </Field>
           </div>
+
+          <div className="border-t border-border/40 pt-4 space-y-4">
+            <h3 className="text-[10px] uppercase tracking-wider text-gold">Advanced (optional)</h3>
+
+            <div className="grid grid-cols-2 gap-4">
+              <Field label="Sub-area / neighborhood">
+                <input
+                  value={v.sub_area}
+                  onChange={(e) => update("sub_area", e.target.value)}
+                  className={inputCls}
+                  placeholder="Fig Tree Bay"
+                />
+              </Field>
+              <Field label="Active (visible to public)">
+                <select
+                  value={v.is_active ? "true" : "false"}
+                  onChange={(e) => update("is_active", e.target.value === "true")}
+                  className={inputCls}
+                >
+                  <option value="true">Active</option>
+                  <option value="false">Hidden</option>
+                </select>
+              </Field>
+            </div>
+
+            <Field label="Official website URL">
+              <input
+                value={v.official_website_url}
+                onChange={(e) => update("official_website_url", e.target.value)}
+                className={inputCls}
+                placeholder="https://..."
+              />
+            </Field>
+
+            <Field label="Source URL (where data was verified)">
+              <input
+                value={v.source_url}
+                onChange={(e) => update("source_url", e.target.value)}
+                className={inputCls}
+                placeholder="https://..."
+              />
+            </Field>
+
+            <div className="grid grid-cols-2 gap-4">
+              <Field label="Last verified at" hint="ISO date or leave blank">
+                <input
+                  type="date"
+                  value={v.last_verified_at ? v.last_verified_at.slice(0, 10) : ""}
+                  onChange={(e) => update("last_verified_at", e.target.value)}
+                  className={inputCls}
+                />
+              </Field>
+              <Field label="Traveller tags (comma-separated)">
+                <input
+                  value={(v.traveller_tags || []).join(", ")}
+                  onChange={(e) =>
+                    update(
+                      "traveller_tags",
+                      e.target.value
+                        .split(",")
+                        .map((s) => s.trim())
+                        .filter(Boolean),
+                    )
+                  }
+                  className={inputCls}
+                  placeholder="couples, spa, beachfront"
+                />
+              </Field>
+            </div>
+          </div>
         </div>
 
         <div className="sticky bottom-0 bg-card border-t border-border px-6 py-4 flex justify-end gap-3">
