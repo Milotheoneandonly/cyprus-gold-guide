@@ -152,17 +152,29 @@ if (!existsSync(robotsPath)) {
   ok("robots.txt exists");
   const robotsBuf = readFileSync(robotsPath);
   const robots = robotsBuf.toString("utf8");
-  const lfCount = robotsBuf.filter ? [...robotsBuf].filter((b) => b === 0x0a).length : (robots.match(/\n/g) || []).length;
-  console.log(`  · robots.txt LF count: ${lfCount} (lines: ${robots.split("\n").length})`);
-  if (lfCount < 10) fail(`robots.txt has only ${lfCount} newline characters — expected ≥ 10`);
-  else ok(`robots.txt has ${lfCount} real LF newline characters`);
+  const lfCount = [...robotsBuf].filter((b) => b === 0x0a).length;
+  const lineCount = robots.split("\n").length;
+  console.log(`  · robots.txt LF count: ${lfCount}`);
+  console.log(`  · robots.txt line count: ${lineCount}`);
+  console.log(`  · ---- robots.txt content begin ----`);
+  for (const ln of robots.split("\n")) console.log(`    ${ln}`);
+  console.log(`  · ---- robots.txt content end ----`);
+
+  if (lfCount < 20) fail(`robots.txt has only ${lfCount} LF newline characters — expected ≥ 20`);
+  else ok(`robots.txt has ${lfCount} real LF newline characters (≥ 20)`);
+
+  if (lineCount <= 1) fail("robots.txt is one physical line — line breaks were lost");
+  else ok("robots.txt has multiple physical lines");
+
+  if (!/Disallow:/.test(robots)) fail("robots.txt does not visibly contain Disallow rules");
+  else ok("robots.txt visibly contains Disallow rules");
 
   const sitemapLine = `Sitemap: ${SITE}/sitemap.xml`;
   if (!robots.includes(sitemapLine))
     fail(`robots.txt missing sitemap line: ${sitemapLine}`);
   else ok("robots.txt references the SITE_URL sitemap");
 
-  for (const path of ["/admin", "/admin/", "/admin/login", "/admin/import-hotels"]) {
+  for (const path of ["/admin", "/admin/", "/admin/login", "/admin/import-hotels", "/admin/qa"]) {
     if (!new RegExp(`Disallow:\\s*${path.replace(/\//g, "\\/")}\\b`).test(robots))
       fail(`robots.txt missing Disallow ${path}`);
     else ok(`robots.txt disallows ${path}`);
