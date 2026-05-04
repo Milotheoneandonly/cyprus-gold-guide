@@ -200,6 +200,9 @@ const Admin = () => {
         <h1 className="font-serif text-2xl text-gradient-gold italic">Admin</h1>
         <div className="flex items-center gap-4 text-sm">
           <span className="text-muted-foreground hidden sm:inline">{session.user.email}</span>
+          <Link to="/admin/import-hotels" className="text-gold hover:underline">
+            Bulk import
+          </Link>
           <button onClick={() => navigate("/")} className="text-muted-foreground hover:text-gold">
             View site
           </button>
