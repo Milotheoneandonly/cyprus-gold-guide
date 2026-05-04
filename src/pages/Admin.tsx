@@ -338,6 +338,12 @@ const Admin = () => {
                   hotel_slug: editing.hotel_slug ?? "",
                   seo_title: editing.seo_title ?? "",
                   seo_description: editing.seo_description ?? "",
+                  sub_area: editing.sub_area ?? "",
+                  official_website_url: editing.official_website_url ?? "",
+                  source_url: editing.source_url ?? "",
+                  last_verified_at: editing.last_verified_at ?? "",
+                  is_active: editing.is_active ?? true,
+                  traveller_tags: editing.traveller_tags ?? [],
                 }
               : { ...emptyHotel(area, category, hotels.length) }
           }
