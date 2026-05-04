@@ -9,7 +9,12 @@
  * For Node scripts (sitemap, audit) read process.env.SITE_URL instead.
  */
 
-const env = (import.meta as any).env ?? {};
+type ViteEnv = {
+  VITE_SITE_URL?: string;
+  VITE_SITE_NAME?: string;
+  VITE_PUBLIC_INDEXING?: string;
+};
+const env: ViteEnv = ((import.meta as unknown as { env?: ViteEnv }).env) ?? {};
 
 export const SITE_URL: string = (env.VITE_SITE_URL || "https://cyprus-gold-guide.lovable.app").replace(/\/$/, "");
 export const SITE_NAME: string = env.VITE_SITE_NAME || "Cypern Hotell";
