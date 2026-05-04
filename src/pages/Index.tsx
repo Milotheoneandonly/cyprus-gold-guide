@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import ScrollDownArrow from "@/components/ScrollDownArrow";
 import { useLang } from "@/i18n/LanguageContext";
+import { useSeo } from "@/lib/useSeo";
 import heroImg from "@/assets/hero.jpg";
 import paphosImg from "@/assets/paphos.jpg";
 import ayiaNapaImg from "@/assets/ayia-napa.jpg";
@@ -15,6 +16,12 @@ const destinations = [
 
 const Index = () => {
   const { t } = useLang();
+  useSeo({
+    title: "Hotell på Cypern – Handplockade lyxhotell för skandinaver",
+    description:
+      "Handplockade hotell på Cypern: Ayia Napa, Limassol och Paphos. Lyx, familj och budget – kuraterat för skandinaver.",
+    canonicalPath: "/",
+  });
   return (
     <Layout>
       {/* HERO */}
@@ -47,7 +54,7 @@ const Index = () => {
             {destinations.map((d) => (
               <Link
                 key={d.slug}
-                to={`/hotels/${d.slug}`}
+                to={`/hotell/${d.slug}`}
                 className="group relative overflow-hidden rounded-xl border border-border/60 hover:border-gold/70 shadow-elegant hover-lift block transition-all min-h-[420px] flex flex-col justify-end text-center"
               >
                 <img

@@ -23,11 +23,14 @@ export type Database = {
           created_at: string
           description: string
           highlight: string | null
+          hotel_slug: string
           id: string
           image_url: string
           location: string | null
           name: string
           note: string | null
+          seo_description: string | null
+          seo_title: string | null
           sort_order: number
           stars: number | null
           tag: string
@@ -41,11 +44,14 @@ export type Database = {
           created_at?: string
           description?: string
           highlight?: string | null
+          hotel_slug: string
           id?: string
           image_url?: string
           location?: string | null
           name: string
           note?: string | null
+          seo_description?: string | null
+          seo_title?: string | null
           sort_order?: number
           stars?: number | null
           tag?: string
@@ -59,11 +65,14 @@ export type Database = {
           created_at?: string
           description?: string
           highlight?: string | null
+          hotel_slug?: string
           id?: string
           image_url?: string
           location?: string | null
           name?: string
           note?: string | null
+          seo_description?: string | null
+          seo_title?: string | null
           sort_order?: number
           stars?: number | null
           tag?: string
@@ -104,6 +113,7 @@ export type Database = {
         }
         Returns: boolean
       }
+      slugify: { Args: { input: string }; Returns: string }
     }
     Enums: {
       app_role: "admin" | "user"

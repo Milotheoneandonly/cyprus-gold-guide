@@ -40,7 +40,7 @@ const WhereToStay = () => {
                 <p className="mt-1 text-foreground">{a.bestFor}</p>
               </div>
               <div className="mt-8">
-                <Link to={`/hotels/${a.slug}`}>
+                <Link to={`/hotell/${a.slug}`}>
                   <GoldButton>{w.viewHotels(a.name)}</GoldButton>
                 </Link>
               </div>

@@ -1,8 +1,10 @@
-import { ShieldCheck, Crown, Flame, Gem } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ShieldCheck, Crown, Flame, Gem, ExternalLink } from "lucide-react";
 import GoldButton from "./GoldButton";
-import { Hotel } from "@/data/hotels";
 import { useLang } from "@/i18n/LanguageContext";
 import { cn } from "@/lib/utils";
+import type { HotelWithMeta } from "@/lib/hotelsApi";
+import { slugify } from "@/lib/slugify";
 
 type Rank = 1 | 2 | 3;
 
@@ -24,17 +26,27 @@ const rankStyles: Record<Rank, { ring: string; glow: string; badgeIcon: JSX.Elem
   },
 };
 
-const TopPickHotelCard = ({ hotel, rank }: { hotel: Hotel; rank: Rank }) => {
+type Props = {
+  hotel: HotelWithMeta | (import("@/data/hotels").Hotel & { area?: string; slug?: string });
+  rank: Rank;
+};
+
+const TopPickHotelCard = ({ hotel, rank }: Props) => {
   const { t } = useLang();
   const badgeText =
     rank === 1 ? t.hotelList.badges.first : rank === 2 ? t.hotelList.badges.second : t.hotelList.badges.third;
   const styles = rankStyles[rank];
 
+  const area = (hotel as any).area as string | undefined;
+  const slug = (hotel as any).slug || slugify(hotel.name);
+  const detailHref = area ? `/hotell/${area}/${hotel.category ?? "luxury"}/${slug}` : undefined;
+
+  const Wrapper: any = detailHref ? Link : "div";
+  const wrapperProps: any = detailHref ? { to: detailHref } : {};
+
   return (
-    <a
-      href={hotel.bookingUrl}
-      target="_blank"
-      rel="noopener noreferrer"
+    <Wrapper
+      {...wrapperProps}
       aria-label={`${badgeText} — ${hotel.name}`}
       className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-xl"
     >
@@ -74,18 +86,30 @@ const TopPickHotelCard = ({ hotel, rank }: { hotel: Hotel; rank: Rank }) => {
             {hotel.bestFor || hotel.location || hotel.note || ""}
           </p>
 
-          <div className="mt-6">
+          <div className="mt-6 space-y-2">
             <GoldButton variant="solid" className="w-full rounded-full">
-              {t.card.cta}
+              Visa hotellet
             </GoldButton>
-            <p className="mt-2 flex items-center justify-center gap-1.5 text-[11px] text-center text-muted-foreground/80">
+            <a
+              href={hotel.bookingUrl}
+              target="_blank"
+              rel="sponsored nofollow noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="block w-full text-center text-[11px] uppercase tracking-[0.22em] text-gold border border-gold/40 hover:border-gold rounded-full py-2 transition-colors"
+            >
+              <span className="inline-flex items-center gap-1.5">
+                {t.card.cta}
+                <ExternalLink className="h-3 w-3" />
+              </span>
+            </a>
+            <p className="flex items-center justify-center gap-1.5 text-[11px] text-center text-muted-foreground/80">
               <ShieldCheck className="h-3 w-3 text-gold" />
               {t.card.secure}
             </p>
           </div>
         </div>
       </article>
-    </a>
+    </Wrapper>
   );
 };
 

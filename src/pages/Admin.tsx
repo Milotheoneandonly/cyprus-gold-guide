@@ -8,6 +8,7 @@ import { resolveHotelImage } from "@/lib/hotelImages";
 import { toast } from "@/hooks/use-toast";
 import type { AreaKey, HotelCategory } from "@/data/hotels";
 import type { Session } from "@supabase/supabase-js";
+import { useSeo } from "@/lib/useSeo";
 
 const AREAS: { key: AreaKey; label: string }[] = [
   { key: "ayia-napa", label: "Ayia Napa" },
@@ -35,6 +36,9 @@ type DbHotel = {
   stars: number | null;
   highlight: string | null;
   sort_order: number;
+  hotel_slug?: string | null;
+  seo_title?: string | null;
+  seo_description?: string | null;
 };
 
 const Admin = () => {
@@ -46,6 +50,8 @@ const Admin = () => {
   const [category, setCategory] = useState<HotelCategory>("luxury");
   const [editing, setEditing] = useState<DbHotel | null>(null);
   const [creating, setCreating] = useState(false);
+
+  useSeo({ title: "Admin – Cypern Hotell", description: "Admin", noindex: true });
 
   // Auth + role check
   useEffect(() => {
@@ -59,7 +65,6 @@ const Admin = () => {
         return;
       }
       setSession(data.session);
-      // Check role
       const { data: roles } = await supabase
         .from("user_roles")
         .select("role")
@@ -74,7 +79,7 @@ const Admin = () => {
   const { data: hotels = [], isLoading } = useQuery({
     queryKey: ["admin-hotels", area, category],
     queryFn: async () => {
-      const { data, error } = await supabase
+      const { data, error } = await (supabase as any)
         .from("hotels")
         .select("*")
         .eq("area", area)
@@ -88,7 +93,7 @@ const Admin = () => {
 
   const saveMutation = useMutation({
     mutationFn: async (values: HotelFormValues & { id?: string }) => {
-      const payload = {
+      const payload: any = {
         area: values.area,
         category: values.category,
         name: values.name,
@@ -102,12 +107,15 @@ const Admin = () => {
         stars: values.stars,
         highlight: values.highlight || null,
         sort_order: values.sort_order,
+        hotel_slug: values.hotel_slug,
+        seo_title: values.seo_title || null,
+        seo_description: values.seo_description || null,
       };
       if (values.id) {
-        const { error } = await supabase.from("hotels").update(payload).eq("id", values.id);
+        const { error } = await (supabase as any).from("hotels").update(payload).eq("id", values.id);
         if (error) throw error;
       } else {
-        const { error } = await supabase.from("hotels").insert(payload);
+        const { error } = await (supabase as any).from("hotels").insert(payload);
         if (error) throw error;
       }
     },
@@ -194,35 +202,39 @@ const Admin = () => {
       </header>
 
       <div className="container-luxe py-8">
-        {/* Area tabs */}
         <div className="flex gap-2 mb-4 flex-wrap">
           {AREAS.map((a) => (
             <button
               key={a.key}
               onClick={() => setArea(a.key)}
               className={`px-4 py-2 rounded-md text-sm border ${
-                area === a.key ? "bg-gold/15 border-gold text-gold" : "border-border text-muted-foreground hover:border-gold/50"
+                area === a.key
+                  ? "bg-gold/15 border-gold text-gold"
+                  : "border-border text-muted-foreground hover:border-gold/50"
               }`}
             >
               {a.label}
             </button>
           ))}
         </div>
-        {/* Category tabs */}
         <div className="flex gap-2 mb-8 flex-wrap">
           {CATEGORIES.map((c) => (
             <button
               key={c.key}
               onClick={() => setCategory(c.key)}
               className={`px-3 py-1.5 rounded-md text-xs uppercase tracking-wider border ${
-                category === c.key ? "bg-gold/10 border-gold/60 text-gold" : "border-border/60 text-muted-foreground hover:border-gold/40"
+                category === c.key
+                  ? "bg-gold/10 border-gold/60 text-gold"
+                  : "border-border/60 text-muted-foreground hover:border-gold/40"
               }`}
             >
               {c.label}
             </button>
           ))}
           <div className="flex-1" />
-          <GoldButton onClick={() => setCreating(true)} className="!px-4 !py-2 !text-[11px]">+ Add hotel</GoldButton>
+          <GoldButton onClick={() => setCreating(true)} className="!px-4 !py-2 !text-[11px]">
+            + Add hotel
+          </GoldButton>
         </div>
 
         {isLoading ? (
@@ -245,6 +257,7 @@ const Admin = () => {
                     {h.stars ? "★".repeat(h.stars) + " · " : ""}
                     {h.location || h.tag}
                     {h.highlight ? ` · ${h.highlight}` : ""}
+                    {h.hotel_slug ? ` · /${h.hotel_slug}` : ""}
                   </div>
                 </div>
                 <div className="flex items-center gap-1">
@@ -311,6 +324,9 @@ const Admin = () => {
                   stars: editing.stars ?? null,
                   highlight: editing.highlight ?? "",
                   sort_order: editing.sort_order,
+                  hotel_slug: editing.hotel_slug ?? "",
+                  seo_title: editing.seo_title ?? "",
+                  seo_description: editing.seo_description ?? "",
                 }
               : { ...emptyHotel(area, category, hotels.length) }
           }

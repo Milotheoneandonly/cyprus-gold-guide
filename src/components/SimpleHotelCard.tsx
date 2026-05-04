@@ -1,16 +1,27 @@
-import { ShieldCheck } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ShieldCheck, ExternalLink } from "lucide-react";
 import GoldButton from "./GoldButton";
-import { Hotel } from "@/data/hotels";
 import { useLang } from "@/i18n/LanguageContext";
+import type { HotelWithMeta } from "@/lib/hotelsApi";
+import { slugify } from "@/lib/slugify";
 
-const SimpleHotelCard = ({ hotel }: { hotel: Hotel }) => {
+type Props = {
+  hotel: HotelWithMeta | (import("@/data/hotels").Hotel & { area?: string; slug?: string });
+};
+
+const SimpleHotelCard = ({ hotel }: Props) => {
   const { t } = useLang();
+  const area = (hotel as any).area as string | undefined;
+  const slug = (hotel as any).slug || slugify(hotel.name);
+  const detailHref = area ? `/hotell/${area}/${hotel.category ?? "luxury"}/${slug}` : undefined;
+
+  const Wrapper: any = detailHref ? Link : "div";
+  const wrapperProps: any = detailHref ? { to: detailHref } : {};
+
   return (
-    <a
-      href={hotel.bookingUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={`${t.card.cta} — ${hotel.name}`}
+    <Wrapper
+      {...wrapperProps}
+      aria-label={`${hotel.name} – mer information`}
       className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-lg"
     >
       <article className="group bg-card border border-border/60 hover:border-gold/50 overflow-hidden hover-lift shadow-elegant flex flex-col rounded-xl relative h-full">
@@ -52,21 +63,30 @@ const SimpleHotelCard = ({ hotel }: { hotel: Hotel }) => {
             )}
           </dl>
 
-          <div className="mt-6">
+          <div className="mt-6 space-y-2">
             <GoldButton variant="solid" className="w-full rounded-full">
-              {t.card.cta}
+              Visa hotellet
             </GoldButton>
-            <p className="mt-2 text-[11px] text-center text-muted-foreground">
-              {t.card.redirect}
-            </p>
-            <p className="mt-1 flex items-center justify-center gap-1.5 text-[11px] text-center text-muted-foreground/80">
+            <a
+              href={hotel.bookingUrl}
+              target="_blank"
+              rel="sponsored nofollow noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="block w-full text-center text-[11px] uppercase tracking-[0.22em] text-gold border border-gold/40 hover:border-gold rounded-full py-2 transition-colors"
+            >
+              <span className="inline-flex items-center gap-1.5">
+                {t.card.cta}
+                <ExternalLink className="h-3 w-3" />
+              </span>
+            </a>
+            <p className="flex items-center justify-center gap-1.5 text-[11px] text-center text-muted-foreground/80">
               <ShieldCheck className="h-3 w-3 text-gold" />
               {t.card.secure}
             </p>
           </div>
         </div>
       </article>
-    </a>
+    </Wrapper>
   );
 };
 
