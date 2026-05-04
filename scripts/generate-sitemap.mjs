@@ -83,7 +83,12 @@ const add = (loc, prio = "0.5") => {
 
 add("/", "1.0");
 add("/where-to-stay", "0.8");
-add("/about", "0.5");
+add("/om-oss", "0.5");
+add("/kontakt", "0.5");
+add("/annonslankar", "0.4");
+add("/integritetspolicy", "0.3");
+add("/cookies", "0.3");
+add("/villkor", "0.3");
 
 for (const a of AREAS) {
   add(`/hotell/${a}`, "0.9");

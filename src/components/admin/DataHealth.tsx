@@ -27,7 +27,7 @@ const DataHealth = () => {
   const { data: rows = [], isLoading } = useQuery({
     queryKey: ["admin-data-health"],
     queryFn: async () => {
-      const { data, error } = await (supabase as any)
+      const { data, error } = await supabase
         .from("hotels")
         .select("id,area,category,is_active,booking_url,source_url,seo_title,seo_description");
       if (error) throw error;

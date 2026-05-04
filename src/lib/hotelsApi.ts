@@ -67,7 +67,7 @@ export function rowToHotel(r: HotelRow): HotelWithMeta {
 
 // Public listings: only active hotels
 export async function fetchHotels(area: AreaKey, category: HotelCategory) {
-  const { data, error } = await (supabase as any)
+  const { data, error } = await supabase
     .from("hotels")
     .select("*")
     .eq("area", area)
@@ -88,7 +88,7 @@ export function useHotels(area: AreaKey | undefined, category: HotelCategory | u
 }
 
 export async function fetchHotelBySlug(area: AreaKey, slug: string) {
-  const { data, error } = await (supabase as any)
+  const { data, error } = await supabase
     .from("hotels")
     .select("*")
     .eq("area", area)
@@ -110,7 +110,7 @@ export function useHotelBySlug(area: AreaKey | undefined, slug: string | undefin
 
 // Admin: fetch all hotels regardless of is_active
 export async function fetchAllHotels() {
-  const { data, error } = await (supabase as any)
+  const { data, error } = await supabase
     .from("hotels")
     .select("*")
     .order("area")

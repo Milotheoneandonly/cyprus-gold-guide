@@ -82,7 +82,7 @@ const Admin = () => {
   const { data: hotels = [], isLoading } = useQuery({
     queryKey: ["admin-hotels", area, category],
     queryFn: async () => {
-      const { data, error } = await (supabase as any)
+      const { data, error } = await supabase
         .from("hotels")
         .select("*")
         .eq("area", area)
@@ -96,7 +96,7 @@ const Admin = () => {
 
   const saveMutation = useMutation({
     mutationFn: async (values: HotelFormValues & { id?: string }) => {
-      const payload: any = {
+      const payload = {
         area: values.area,
         category: values.category,
         name: values.name,
@@ -121,10 +121,10 @@ const Admin = () => {
         traveller_tags: values.traveller_tags || [],
       };
       if (values.id) {
-        const { error } = await (supabase as any).from("hotels").update(payload).eq("id", values.id);
+        const { error } = await supabase.from("hotels").update(payload).eq("id", values.id);
         if (error) throw error;
       } else {
-        const { error } = await (supabase as any).from("hotels").insert(payload);
+        const { error } = await supabase.from("hotels").insert(payload);
         if (error) throw error;
       }
     },
@@ -135,7 +135,7 @@ const Admin = () => {
       setCreating(false);
       toast({ title: "Saved" });
     },
-    onError: (e: any) => toast({ title: "Save failed", description: e.message, variant: "destructive" }),
+    onError: (e: Error) => toast({ title: "Save failed", description: e.message, variant: "destructive" }),
   });
 
   const deleteMutation = useMutation({
@@ -148,7 +148,7 @@ const Admin = () => {
       qc.invalidateQueries({ queryKey: ["hotels"] });
       toast({ title: "Deleted" });
     },
-    onError: (e: any) => toast({ title: "Delete failed", description: e.message, variant: "destructive" }),
+    onError: (e: Error) => toast({ title: "Delete failed", description: e.message, variant: "destructive" }),
   });
 
   const moveMutation = useMutation({

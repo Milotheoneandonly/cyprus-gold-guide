@@ -236,7 +236,7 @@ const AdminImportHotels = () => {
       for (const row of parsed.rows) {
         // Upsert key: (area, hotel_slug). Category is not part of the
         // identity — if a hotel moves category, we update the existing row.
-        const { data: existing, error: selErr } = await (supabase as any)
+        const { data: existing, error: selErr } = await supabase
           .from("hotels")
           .select("id,category")
           .eq("area", row.area)
@@ -265,7 +265,7 @@ const AdminImportHotels = () => {
 
         if (existing?.id) {
           // Always update — including category if it changed.
-          const { error } = await (supabase as any)
+          const { error } = await supabase
             .from("hotels")
             .update(payload)
             .eq("id", existing.id);
@@ -276,7 +276,7 @@ const AdminImportHotels = () => {
           }
           updated++;
         } else {
-          const { error } = await (supabase as any).from("hotels").insert(payload);
+          const { error } = await supabase.from("hotels").insert(payload);
           if (error) {
             // Most likely a uniqueness collision we somehow missed → count as skipped.
             if (String(error.message || "").toLowerCase().includes("duplicate")) {

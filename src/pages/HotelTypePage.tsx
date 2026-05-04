@@ -156,13 +156,16 @@ const HotelTypePage = () => {
               </div>
 
               <div className="grid gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                {topPicks.map((h, i) => (
-                  <TopPickHotelCard
-                    key={(h as any).id || h.name}
-                    hotel={h as any}
-                    rank={(i + 1) as 1 | 2 | 3}
-                  />
-                ))}
+                {topPicks.map((h, i) => {
+                  const hh = h as { id?: string; name: string };
+                  return (
+                    <TopPickHotelCard
+                      key={hh.id || hh.name}
+                      hotel={h}
+                      rank={(i + 1) as 1 | 2 | 3}
+                    />
+                  );
+                })}
               </div>
             </div>
           </section>
@@ -178,9 +181,10 @@ const HotelTypePage = () => {
                   <div className="mx-auto mt-4 h-px w-16 bg-gold/40" />
                 </div>
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                  {visibleRest.map((h) => (
-                    <SimpleHotelCard key={(h as any).id || h.name} hotel={h as any} />
-                  ))}
+                  {visibleRest.map((h) => {
+                    const hh = h as { id?: string; name: string };
+                    return <SimpleHotelCard key={hh.id || hh.name} hotel={h} />;
+                  })}
                 </div>
                 {hiddenCount > 0 && (
                   <div className="mt-10 text-center">
