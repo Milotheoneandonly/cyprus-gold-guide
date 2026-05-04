@@ -81,8 +81,9 @@ function parseCsv(text: string): RawRow[] {
   return objs;
 }
 
-function normalizeRow(raw: RawRow | unknown): ImportRow | { __error: string } {
-  if (!raw || typeof raw !== "object") return { __error: "Row is not an object" };
+function normalizeRow(input: unknown): ImportRow | { __error: string } {
+  if (!input || typeof input !== "object") return { __error: "Row is not an object" };
+  const raw = input as Record<string, unknown>;
   const name = String(raw.name ?? "").trim();
   if (!name) return { __error: "Missing hotel name" };
 
