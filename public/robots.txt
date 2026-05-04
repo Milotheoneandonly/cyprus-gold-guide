@@ -25,4 +25,4 @@ Disallow: /admin/
 Disallow: /admin/login
 Disallow: /admin/import-hotels
 
-Sitemap: https://cypernhotell.se/sitemap.xml
+Sitemap: https://cypern-hotell.se/sitemap.xml
