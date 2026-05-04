@@ -96,7 +96,7 @@ const Admin = () => {
 
   const saveMutation = useMutation({
     mutationFn: async (values: HotelFormValues & { id?: string }) => {
-      const payload: any = {
+      const payload = {
         area: values.area,
         category: values.category,
         name: values.name,
@@ -135,7 +135,7 @@ const Admin = () => {
       setCreating(false);
       toast({ title: "Saved" });
     },
-    onError: (e: any) => toast({ title: "Save failed", description: e.message, variant: "destructive" }),
+    onError: (e: Error) => toast({ title: "Save failed", description: e.message, variant: "destructive" }),
   });
 
   const deleteMutation = useMutation({
@@ -148,7 +148,7 @@ const Admin = () => {
       qc.invalidateQueries({ queryKey: ["hotels"] });
       toast({ title: "Deleted" });
     },
-    onError: (e: any) => toast({ title: "Delete failed", description: e.message, variant: "destructive" }),
+    onError: (e: Error) => toast({ title: "Delete failed", description: e.message, variant: "destructive" }),
   });
 
   const moveMutation = useMutation({

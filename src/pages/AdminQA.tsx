@@ -84,7 +84,7 @@ const AdminQA = () => {
       .from("hotels")
       .select("id", { count: "exact", head: true })
       .eq("is_active", true)
-      .then(({ count }: any) => setHotelCount(count ?? 0));
+      .then(({ count }) => setHotelCount(count ?? 0));
     fetch("/sitemap.xml")
       .then((r) => r.text())
       .then((xml) => setSitemapCount((xml.match(/<loc>/g) || []).length))
