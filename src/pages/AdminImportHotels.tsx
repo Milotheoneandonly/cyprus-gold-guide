@@ -34,13 +34,15 @@ type ImportRow = {
   traveller_tags?: string[];
 };
 
+type RawRow = Record<string, unknown>;
+
 type Parsed = {
   rows: ImportRow[];
-  errors: { index: number; reason: string; raw?: any }[];
+  errors: { index: number; reason: string; raw?: RawRow }[];
 };
 
 // Very small CSV parser (handles quoted strings + commas)
-function parseCsv(text: string): any[] {
+function parseCsv(text: string): RawRow[] {
   const lines = text.split(/\r?\n/).filter((l) => l.trim().length > 0);
   if (lines.length === 0) return [];
   const split = (line: string) => {
@@ -67,10 +69,10 @@ function parseCsv(text: string): any[] {
     return out.map((s) => s.trim());
   };
   const headers = split(lines[0]);
-  const objs: any[] = [];
+  const objs: RawRow[] = [];
   for (let i = 1; i < lines.length; i++) {
     const cells = split(lines[i]);
-    const row: any = {};
+    const row: RawRow = {};
     headers.forEach((h, idx) => {
       row[h] = cells[idx] ?? "";
     });
@@ -79,7 +81,7 @@ function parseCsv(text: string): any[] {
   return objs;
 }
 
-function normalizeRow(raw: any): ImportRow | { __error: string } {
+function normalizeRow(raw: RawRow | unknown): ImportRow | { __error: string } {
   if (!raw || typeof raw !== "object") return { __error: "Row is not an object" };
   const name = String(raw.name ?? "").trim();
   if (!name) return { __error: "Missing hotel name" };
