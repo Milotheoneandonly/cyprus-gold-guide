@@ -19,7 +19,26 @@ const failures = [];
 const fail = (msg) => failures.push(msg);
 const ok = (msg) => console.log(`  ✓ ${msg}`);
 
-console.log(`\n[seo-audit] SITE=${SITE}\n`);
+const PUBLIC_INDEXING_ENV = String(process.env.VITE_PUBLIC_INDEXING ?? "false").toLowerCase() === "true";
+const SITE_IS_LOVABLE = /lovable\.app/.test(SITE);
+const SITE_IS_FINAL = !SITE_IS_LOVABLE;
+
+console.log(`\n[seo-audit] SITE_URL=${SITE}`);
+console.log(`[seo-audit] PUBLIC_INDEXING=${PUBLIC_INDEXING_ENV}\n`);
+
+// ---------- check for cypernhotell.se anywhere in public/ ----------
+const publicFiles = ["public/sitemap.xml", "public/robots.txt", "public/_headers"];
+let foundOldDomain = false;
+for (const f of publicFiles) {
+  if (!existsSync(f)) continue;
+  const txt = readFileSync(f, "utf8");
+  if (/cypernhotell\.se/.test(txt)) {
+    fail(`${f} still references cypernhotell.se`);
+    foundOldDomain = true;
+  }
+}
+console.log(`  · cypernhotell.se present in any public/ file: ${foundOldDomain ? "YES" : "no"}`);
+
 
 // ---------- sitemap.xml ----------
 const sitemapPath = "public/sitemap.xml";
@@ -39,11 +58,30 @@ if (!existsSync(sitemapPath)) {
   if (locs.length === 0) fail("sitemap.xml contains zero URLs");
   else ok(`sitemap.xml contains ${locs.length} URLs`);
 
+  console.log(`  · first 10 sitemap URLs:`);
+  for (const u of locs.slice(0, 10)) console.log(`      ${u}`);
+
+  if (/cypernhotell\.se/.test(xml)) fail("sitemap.xml contains cypernhotell.se");
+  else ok("sitemap.xml does not contain cypernhotell.se");
+
+  if (SITE_IS_LOVABLE && /cypern-hotell\.se/.test(xml))
+    fail("sitemap.xml contains cypern-hotell.se while staging mode is active");
+  else ok("sitemap.xml: no cypern-hotell.se while staging");
+
+  if (SITE_IS_FINAL && /lovable\.app/.test(xml))
+    fail("sitemap.xml contains lovable.app while SITE_URL is a final custom domain");
+  else ok("sitemap.xml: lovable.app/final-domain combination is consistent");
+
+  for (const bad of ["localhost", "127.0.0.1"]) {
+    if (xml.includes(bad)) fail(`sitemap.xml contains ${bad}`);
+    else ok(`sitemap.xml does not contain ${bad}`);
+  }
+
   const wrongOrigin = locs.filter((u) => !u.startsWith(SITE + "/") && u !== SITE && !u.startsWith(SITE + "?"));
   if (wrongOrigin.length) fail(`sitemap has URLs not on SITE_URL: ${wrongOrigin.slice(0, 3).join(", ")}…`);
   else ok("every sitemap URL uses SITE_URL");
 
-  const adminUrls = locs.filter((u) => u.includes("/admin"));
+  const adminUrls = locs.filter((u) => /\/admin(\/|$)/.test(u));
   if (adminUrls.length) fail(`sitemap contains admin URLs: ${adminUrls.join(", ")}`);
   else ok("no admin URLs in sitemap");
 
@@ -54,6 +92,14 @@ if (!existsSync(sitemapPath)) {
   const dupes = locs.filter((u, i) => locs.indexOf(u) !== i);
   if (dupes.length) fail(`sitemap has duplicates: ${[...new Set(dupes)].join(", ")}`);
   else ok("no duplicate URLs in sitemap");
+
+  for (const required of ["/", "/where-to-stay", "/om-oss", "/kontakt", "/annonslankar", "/integritetspolicy", "/cookies", "/villkor"]) {
+    const want = `${SITE}${required === "/" ? "/" : required}`;
+    if (!locs.some((u) => u === want || u === want.replace(/\/$/, "")))
+      fail(`sitemap missing required URL ${required}`);
+    else ok(`sitemap includes ${required}`);
+  }
+
 
   // Validate against active rows from Supabase, if available
   if (SUPABASE_URL && ANON) {
@@ -106,17 +152,29 @@ if (!existsSync(robotsPath)) {
   ok("robots.txt exists");
   const robotsBuf = readFileSync(robotsPath);
   const robots = robotsBuf.toString("utf8");
-  const lfCount = robotsBuf.filter ? [...robotsBuf].filter((b) => b === 0x0a).length : (robots.match(/\n/g) || []).length;
-  console.log(`  · robots.txt LF count: ${lfCount} (lines: ${robots.split("\n").length})`);
-  if (lfCount < 10) fail(`robots.txt has only ${lfCount} newline characters — expected ≥ 10`);
-  else ok(`robots.txt has ${lfCount} real LF newline characters`);
+  const lfCount = [...robotsBuf].filter((b) => b === 0x0a).length;
+  const lineCount = robots.split("\n").length;
+  console.log(`  · robots.txt LF count: ${lfCount}`);
+  console.log(`  · robots.txt line count: ${lineCount}`);
+  console.log(`  · ---- robots.txt content begin ----`);
+  for (const ln of robots.split("\n")) console.log(`    ${ln}`);
+  console.log(`  · ---- robots.txt content end ----`);
+
+  if (lfCount < 20) fail(`robots.txt has only ${lfCount} LF newline characters — expected ≥ 20`);
+  else ok(`robots.txt has ${lfCount} real LF newline characters (≥ 20)`);
+
+  if (lineCount <= 1) fail("robots.txt is one physical line — line breaks were lost");
+  else ok("robots.txt has multiple physical lines");
+
+  if (!/Disallow:/.test(robots)) fail("robots.txt does not visibly contain Disallow rules");
+  else ok("robots.txt visibly contains Disallow rules");
 
   const sitemapLine = `Sitemap: ${SITE}/sitemap.xml`;
   if (!robots.includes(sitemapLine))
     fail(`robots.txt missing sitemap line: ${sitemapLine}`);
   else ok("robots.txt references the SITE_URL sitemap");
 
-  for (const path of ["/admin", "/admin/", "/admin/login", "/admin/import-hotels"]) {
+  for (const path of ["/admin", "/admin/", "/admin/login", "/admin/import-hotels", "/admin/qa"]) {
     if (!new RegExp(`Disallow:\\s*${path.replace(/\//g, "\\/")}\\b`).test(robots))
       fail(`robots.txt missing Disallow ${path}`);
     else ok(`robots.txt disallows ${path}`);

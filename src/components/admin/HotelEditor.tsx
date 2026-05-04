@@ -108,8 +108,9 @@ const HotelEditor = ({ initial, onClose, onSave, saving }: Props) => {
       const { data } = supabase.storage.from("hotel-images").getPublicUrl(path);
       update("image_url", data.publicUrl);
       toast({ title: "Image uploaded" });
-    } catch (e: any) {
-      toast({ title: "Upload failed", description: e.message, variant: "destructive" });
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : String(e);
+      toast({ title: "Upload failed", description: msg, variant: "destructive" });
     } finally {
       setUploading(false);
     }

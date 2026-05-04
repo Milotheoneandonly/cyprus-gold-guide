@@ -5,6 +5,7 @@ import GoldButton from "@/components/GoldButton";
 import { toast } from "@/hooks/use-toast";
 import { useSeo } from "@/lib/useSeo";
 import type { Session } from "@supabase/supabase-js";
+import type { TablesInsert } from "@/integrations/supabase/types";
 import { AREA_KEYS, CATEGORIES } from "@/lib/areas";
 import { slugify } from "@/lib/slugify";
 import type { AreaKey, HotelCategory } from "@/data/hotels";
@@ -34,13 +35,15 @@ type ImportRow = {
   traveller_tags?: string[];
 };
 
+type RawRow = Record<string, unknown>;
+
 type Parsed = {
   rows: ImportRow[];
-  errors: { index: number; reason: string; raw?: any }[];
+  errors: { index: number; reason: string; raw?: RawRow }[];
 };
 
 // Very small CSV parser (handles quoted strings + commas)
-function parseCsv(text: string): any[] {
+function parseCsv(text: string): RawRow[] {
   const lines = text.split(/\r?\n/).filter((l) => l.trim().length > 0);
   if (lines.length === 0) return [];
   const split = (line: string) => {
@@ -67,10 +70,10 @@ function parseCsv(text: string): any[] {
     return out.map((s) => s.trim());
   };
   const headers = split(lines[0]);
-  const objs: any[] = [];
+  const objs: RawRow[] = [];
   for (let i = 1; i < lines.length; i++) {
     const cells = split(lines[i]);
-    const row: any = {};
+    const row: RawRow = {};
     headers.forEach((h, idx) => {
       row[h] = cells[idx] ?? "";
     });
@@ -79,8 +82,9 @@ function parseCsv(text: string): any[] {
   return objs;
 }
 
-function normalizeRow(raw: any): ImportRow | { __error: string } {
-  if (!raw || typeof raw !== "object") return { __error: "Row is not an object" };
+function normalizeRow(input: unknown): ImportRow | { __error: string } {
+  if (!input || typeof input !== "object") return { __error: "Row is not an object" };
+  const raw = input as Record<string, unknown>;
   const name = String(raw.name ?? "").trim();
   if (!name) return { __error: "Missing hotel name" };
 
@@ -145,7 +149,7 @@ function normalizeRow(raw: any): ImportRow | { __error: string } {
 
 function parseInput(text: string): Parsed {
   const trimmed = text.trim();
-  let raw: any[] = [];
+  let raw: unknown[] = [];
   const errors: Parsed["errors"] = [];
   if (!trimmed) return { rows: [], errors };
 
@@ -153,21 +157,23 @@ function parseInput(text: string): Parsed {
     try {
       const parsed = JSON.parse(trimmed);
       raw = Array.isArray(parsed) ? parsed : [parsed];
-    } catch (e: any) {
-      return { rows: [], errors: [{ index: 0, reason: `Invalid JSON: ${e.message}` }] };
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : String(e);
+      return { rows: [], errors: [{ index: 0, reason: `Invalid JSON: ${msg}` }] };
     }
   } else {
     try {
       raw = parseCsv(trimmed);
-    } catch (e: any) {
-      return { rows: [], errors: [{ index: 0, reason: `Invalid CSV: ${e.message}` }] };
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : String(e);
+      return { rows: [], errors: [{ index: 0, reason: `Invalid CSV: ${msg}` }] };
     }
   }
 
   const rows: ImportRow[] = [];
   raw.forEach((r, i) => {
     const norm = normalizeRow(r);
-    if ("__error" in norm) errors.push({ index: i, reason: norm.__error, raw: r });
+    if ("__error" in norm) errors.push({ index: i, reason: norm.__error, raw: (r && typeof r === "object" ? (r as RawRow) : undefined) });
     else rows.push(norm);
   });
 
@@ -248,7 +254,7 @@ const AdminImportHotels = () => {
           continue;
         }
 
-        const payload: any = {
+        const payload: TablesInsert<"hotels"> = {
           ...row,
           best_for: row.best_for || null,
           location: row.location || null,
@@ -261,7 +267,7 @@ const AdminImportHotels = () => {
           source_url: row.source_url || null,
           last_verified_at: row.last_verified_at || null,
           traveller_tags: row.traveller_tags || [],
-        };
+        } as TablesInsert<"hotels">;
 
         if (existing?.id) {
           // Always update — including category if it changed.
@@ -276,7 +282,7 @@ const AdminImportHotels = () => {
           }
           updated++;
         } else {
-          const { error } = await supabase.from("hotels").insert(payload);
+          const { error } = await supabase.from("hotels").insert([payload]);
           if (error) {
             // Most likely a uniqueness collision we somehow missed → count as skipped.
             if (String(error.message || "").toLowerCase().includes("duplicate")) {
@@ -295,8 +301,9 @@ const AdminImportHotels = () => {
         title: `Import complete`,
         description: `${inserted} inserted · ${updated} updated · ${skipped} skipped · ${errored} errors`,
       });
-    } catch (e: any) {
-      toast({ title: "Import failed", description: e.message, variant: "destructive" });
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : String(e);
+      toast({ title: "Import failed", description: msg, variant: "destructive" });
     } finally {
       setImporting(false);
     }
