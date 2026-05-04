@@ -5,6 +5,7 @@ import GoldButton from "@/components/GoldButton";
 import { toast } from "@/hooks/use-toast";
 import { useSeo } from "@/lib/useSeo";
 import type { Session } from "@supabase/supabase-js";
+import type { TablesInsert } from "@/integrations/supabase/types";
 import { AREA_KEYS, CATEGORIES } from "@/lib/areas";
 import { slugify } from "@/lib/slugify";
 import type { AreaKey, HotelCategory } from "@/data/hotels";
@@ -253,7 +254,7 @@ const AdminImportHotels = () => {
           continue;
         }
 
-        const payload = {
+        const payload: TablesInsert<"hotels"> = {
           ...row,
           best_for: row.best_for || null,
           location: row.location || null,
@@ -266,7 +267,7 @@ const AdminImportHotels = () => {
           source_url: row.source_url || null,
           last_verified_at: row.last_verified_at || null,
           traveller_tags: row.traveller_tags || [],
-        };
+        } as TablesInsert<"hotels">;
 
         if (existing?.id) {
           // Always update — including category if it changed.
