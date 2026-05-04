@@ -172,7 +172,7 @@ function parseInput(text: string): Parsed {
   const rows: ImportRow[] = [];
   raw.forEach((r, i) => {
     const norm = normalizeRow(r);
-    if ("__error" in norm) errors.push({ index: i, reason: norm.__error, raw: r });
+    if ("__error" in norm) errors.push({ index: i, reason: norm.__error, raw: (r && typeof r === "object" ? (r as RawRow) : undefined) });
     else rows.push(norm);
   });
 
