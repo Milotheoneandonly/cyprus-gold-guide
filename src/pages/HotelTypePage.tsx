@@ -76,10 +76,30 @@ const HotelTypePage = () => {
             <span className="text-gold">{categoryLabelSv}</span>
           </nav>
         </div>
-        {!isEmpty && <ScrollDownArrow targetId="top-picks" />}
+        {!isEmpty && !isError && <ScrollDownArrow targetId="top-picks" />}
       </section>
 
-      {isEmpty ? (
+      {isError ? (
+        <section className="py-24 md:py-32">
+          <div className="container-luxe text-center max-w-xl">
+            <div className="mx-auto h-px w-16 bg-gold/50 mb-8" />
+            <h2 className="font-serif text-3xl md:text-4xl">
+              <span className="text-gradient-gold italic">Något gick fel</span>
+            </h2>
+            <p className="mt-6 text-muted-foreground leading-relaxed">
+              Vi kunde inte hämta hotellen för {areaMeta.swedishName} just nu. Försök igen om en stund.
+            </p>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+              <Link to={`/hotell/${areaMeta.slug}`}>
+                <GoldButton variant="outline">Andra hotelltyper i {areaMeta.swedishName}</GoldButton>
+              </Link>
+              <Link to="/">
+                <GoldButton variant="outline">Andra destinationer</GoldButton>
+              </Link>
+            </div>
+          </div>
+        </section>
+      ) : isEmpty ? (
         // PREMIUM EMPTY STATE — no fake hotels
         <section className="py-24 md:py-32">
           <div className="container-luxe text-center max-w-xl">
