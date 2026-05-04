@@ -148,7 +148,7 @@ function normalizeRow(input: unknown): ImportRow | { __error: string } {
 
 function parseInput(text: string): Parsed {
   const trimmed = text.trim();
-  let raw: any[] = [];
+  let raw: unknown[] = [];
   const errors: Parsed["errors"] = [];
   if (!trimmed) return { rows: [], errors };
 
@@ -156,14 +156,16 @@ function parseInput(text: string): Parsed {
     try {
       const parsed = JSON.parse(trimmed);
       raw = Array.isArray(parsed) ? parsed : [parsed];
-    } catch (e: any) {
-      return { rows: [], errors: [{ index: 0, reason: `Invalid JSON: ${e.message}` }] };
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : String(e);
+      return { rows: [], errors: [{ index: 0, reason: `Invalid JSON: ${msg}` }] };
     }
   } else {
     try {
       raw = parseCsv(trimmed);
-    } catch (e: any) {
-      return { rows: [], errors: [{ index: 0, reason: `Invalid CSV: ${e.message}` }] };
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : String(e);
+      return { rows: [], errors: [{ index: 0, reason: `Invalid CSV: ${msg}` }] };
     }
   }
 
@@ -251,7 +253,7 @@ const AdminImportHotels = () => {
           continue;
         }
 
-        const payload: any = {
+        const payload = {
           ...row,
           best_for: row.best_for || null,
           location: row.location || null,
@@ -298,8 +300,9 @@ const AdminImportHotels = () => {
         title: `Import complete`,
         description: `${inserted} inserted · ${updated} updated · ${skipped} skipped · ${errored} errors`,
       });
-    } catch (e: any) {
-      toast({ title: "Import failed", description: e.message, variant: "destructive" });
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : String(e);
+      toast({ title: "Import failed", description: msg, variant: "destructive" });
     } finally {
       setImporting(false);
     }
