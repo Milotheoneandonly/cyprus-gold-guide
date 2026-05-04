@@ -3,23 +3,15 @@ import Layout from "@/components/Layout";
 import ScrollDownArrow from "@/components/ScrollDownArrow";
 import { useLang } from "@/i18n/LanguageContext";
 import { useSeo } from "@/lib/useSeo";
+import { AREA_LIST } from "@/lib/areas";
 import heroImg from "@/assets/hero.jpg";
-import paphosImg from "@/assets/paphos.jpg";
-import ayiaNapaImg from "@/assets/ayia-napa.jpg";
-import limassolImg from "@/assets/limassol.jpg";
-
-const destinations = [
-  { slug: "paphos", name: "Paphos", key: "paphos" as const, image: paphosImg },
-  { slug: "ayia-napa", name: "Ayia Napa", key: "ayiaNapa" as const, image: ayiaNapaImg },
-  { slug: "limassol", name: "Limassol", key: "limassol" as const, image: limassolImg },
-];
 
 const Index = () => {
   const { t } = useLang();
   useSeo({
     title: "Hotell på Cypern – Handplockade lyxhotell för skandinaver",
     description:
-      "Handplockade hotell på Cypern: Ayia Napa, Limassol och Paphos. Lyx, familj och budget – kuraterat för skandinaver.",
+      "Handplockade hotell på Cypern: Ayia Napa, Protaras, Paphos, Larnaca, Limassol, Coral Bay och Polis & Latchi. Lyx, familj och budget – kuraterat för skandinaver.",
     canonicalPath: "/",
   });
   return (
@@ -50,8 +42,8 @@ const Index = () => {
       {/* DESTINATIONS */}
       <section id="destinations" className="py-20 md:py-28">
         <div className="container-luxe">
-          <div className="grid gap-6 md:grid-cols-3">
-            {destinations.map((d) => (
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {AREA_LIST.map((d) => (
               <Link
                 key={d.slug}
                 to={`/hotell/${d.slug}`}
@@ -59,7 +51,7 @@ const Index = () => {
               >
                 <img
                   src={d.image}
-                  alt={`${d.name} Cyprus`}
+                  alt={`Hotell i ${d.swedishName}, Cypern`}
                   loading="lazy"
                   width={1280}
                   height={896}
@@ -70,7 +62,7 @@ const Index = () => {
                 <div className="relative p-10">
                   <span className="text-[11px] uppercase tracking-[0.3em] text-gold drop-shadow">{t.home.chips}</span>
                   <h3 className="mt-4 font-serif text-4xl text-foreground drop-shadow-lg">{d.name}</h3>
-                  <p className="mt-5 text-foreground/95 drop-shadow">{t.home.destinations[d.key]}</p>
+                  <p className="mt-5 text-foreground/95 drop-shadow">{d.description}</p>
                   <span className="mt-8 inline-block text-xs uppercase tracking-[0.22em] text-gold border-b border-gold/40 pb-1 group-hover:border-gold group-hover:tracking-[0.28em] transition-all">
                     {t.home.choose}
                   </span>
