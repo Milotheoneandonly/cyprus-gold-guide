@@ -3,9 +3,11 @@ import { useNavigate, Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import GoldButton from "@/components/GoldButton";
 import { toast } from "@/hooks/use-toast";
+import { useSeo } from "@/lib/useSeo";
 
 const AdminLogin = () => {
   const navigate = useNavigate();
+  useSeo({ title: "Admin – Logga in", description: "Admin sign in", noindex: true });
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
