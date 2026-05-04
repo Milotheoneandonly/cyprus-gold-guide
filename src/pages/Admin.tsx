@@ -350,6 +350,11 @@ const Admin = () => {
                   last_verified_at: editing.last_verified_at ?? "",
                   is_active: editing.is_active ?? true,
                   traveller_tags: editing.traveller_tags ?? [],
+                  image_alt: editing.image_alt ?? "",
+                  image_source: editing.image_source ?? "",
+                  image_license_status: (editing.image_license_status as "licensed" | "booking_partner_api" | "hotel_permission" | "own_photo" | "stock_area_fallback" | "unknown") ?? "unknown",
+                  image_verified_at: editing.image_verified_at ?? "",
+                  image_needs_review: editing.image_needs_review ?? true,
                 }
               : { ...emptyHotel(area, category, hotels.length) }
           }
