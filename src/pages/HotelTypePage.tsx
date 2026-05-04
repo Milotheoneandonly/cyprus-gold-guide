@@ -21,15 +21,16 @@ const HotelTypePage = () => {
   const areaKey = isAreaKey(slug) ? (slug as AreaKey) : undefined;
   const category = isCategory(type) ? (type as HotelCategory) : undefined;
 
-  const { data: dbHotels } = useHotels(areaKey, category);
+  const { data: dbHotels, isLoading } = useHotels(areaKey, category);
   const areaMeta = getArea(slug);
   const areaStatic = areaKey ? areas[areaKey] : undefined;
 
   const categoryLabelSv = category ? CATEGORY_SV[category] : "";
   useSeo({
-    title: areaMeta && category
-      ? `Bästa ${categoryLabelSv.toLowerCase()}hotellen i ${areaMeta.swedishName} | Cypern`
-      : "Hotell på Cypern",
+    title:
+      areaMeta && category
+        ? `Bästa ${categoryLabelSv.toLowerCase()}hotellen i ${areaMeta.swedishName} | Cypern`
+        : "Hotell på Cypern",
     description:
       areaMeta && category
         ? `Handplockade ${categoryLabelSv.toLowerCase()}hotell i ${areaMeta.swedishName}, Cypern. Topp 3 plus fler rekommendationer.`
@@ -37,14 +38,19 @@ const HotelTypePage = () => {
     canonicalPath: areaMeta && category ? `/hotell/${areaMeta.slug}/${category}` : undefined,
   });
 
-  if (!areaStatic || !category || !areaMeta) return <Navigate to="/" replace />;
+  if (!areaMeta || !category) return <Navigate to="/" replace />;
 
-  const fallback = areaStatic.categories[category].map((h) => ({ ...h, area: areaKey, slug: undefined as any }));
+  // DB hotels first (already filtered to is_active in hotelsApi); fall back to static seed when DB empty.
+  const fallback = areaStatic
+    ? areaStatic.categories[category].map((h) => ({ ...h, area: areaKey, slug: undefined as any }))
+    : [];
   const hotels = dbHotels && dbHotels.length > 0 ? dbHotels : fallback;
   const topPicks = hotels.slice(0, 3);
   const rest = hotels.slice(3);
   const visibleRest = showAll ? rest : rest.slice(0, PAGE_SIZE);
   const hiddenCount = rest.length - visibleRest.length;
+
+  const isEmpty = !isLoading && hotels.length === 0;
 
   return (
     <Layout>
@@ -67,53 +73,90 @@ const HotelTypePage = () => {
             <span className="text-gold">{categoryLabelSv}</span>
           </nav>
         </div>
-        <ScrollDownArrow targetId="top-picks" />
+        {!isEmpty && <ScrollDownArrow targetId="top-picks" />}
       </section>
 
-      {/* TOP 3 PICKS */}
-      <section id="top-picks" className="py-16 md:py-20 bg-gradient-to-b from-background via-background to-muted/20">
-        <div className="container-luxe">
-          <div className="text-center mb-10 md:mb-14">
-            <span className="text-[11px] uppercase tracking-[0.35em] text-gold">{t.hotelList.topPicksEyebrow}</span>
-            <h2 className="mt-4 font-serif text-3xl md:text-5xl font-light">
-              <span className="text-gradient-gold italic">{t.hotelList.topPicksTitle}</span>
+      {isEmpty ? (
+        // PREMIUM EMPTY STATE — no fake hotels
+        <section className="py-24 md:py-32">
+          <div className="container-luxe text-center max-w-xl">
+            <div className="mx-auto h-px w-16 bg-gold/50 mb-8" />
+            <h2 className="font-serif text-3xl md:text-4xl">
+              <span className="text-gradient-gold italic">Snart här</span>
             </h2>
-            <div className="mx-auto mt-5 h-px w-20 bg-gold/50" />
-            <p className="mt-5 text-sm md:text-base text-muted-foreground max-w-xl mx-auto">
-              {t.hotelList.topPicksSubtitle}
+            <p className="mt-6 text-muted-foreground leading-relaxed">
+              Vi lägger till handplockade hotell här inom kort. Under tiden — utforska närliggande
+              destinationer eller välj en annan hotelltyp i {areaMeta.swedishName}.
             </p>
-          </div>
-
-          <div className="grid gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {topPicks.map((h, i) => (
-              <TopPickHotelCard key={(h as any).id || h.name} hotel={h as any} rank={(i + 1) as 1 | 2 | 3} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* REMAINING HOTELS */}
-      {rest.length > 0 && (
-        <section id="hotels" className="py-16 md:py-20 border-t border-border/40">
-          <div className="container-luxe">
-            <div className="text-center mb-10">
-              <h2 className="font-serif text-2xl md:text-3xl text-foreground/90">{t.hotelList.moreHotels}</h2>
-              <div className="mx-auto mt-4 h-px w-16 bg-gold/40" />
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+              <Link to={`/hotell/${areaMeta.slug}`}>
+                <GoldButton variant="outline">Andra hotelltyper i {areaMeta.swedishName}</GoldButton>
+              </Link>
+              <Link to="/">
+                <GoldButton variant="outline">Andra destinationer</GoldButton>
+              </Link>
             </div>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {visibleRest.map((h) => (
-                <SimpleHotelCard key={(h as any).id || h.name} hotel={h as any} />
-              ))}
-            </div>
-            {hiddenCount > 0 && (
-              <div className="mt-10 text-center">
-                <GoldButton variant="outline" onClick={() => setShowAll(true)}>
-                  Visa fler hotell ({hiddenCount})
-                </GoldButton>
-              </div>
-            )}
           </div>
         </section>
+      ) : (
+        <>
+          {/* TOP 3 PICKS */}
+          <section
+            id="top-picks"
+            className="py-16 md:py-20 bg-gradient-to-b from-background via-background to-muted/20"
+          >
+            <div className="container-luxe">
+              <div className="text-center mb-10 md:mb-14">
+                <span className="text-[11px] uppercase tracking-[0.35em] text-gold">
+                  {t.hotelList.topPicksEyebrow}
+                </span>
+                <h2 className="mt-4 font-serif text-3xl md:text-5xl font-light">
+                  <span className="text-gradient-gold italic">{t.hotelList.topPicksTitle}</span>
+                </h2>
+                <div className="mx-auto mt-5 h-px w-20 bg-gold/50" />
+                <p className="mt-5 text-sm md:text-base text-muted-foreground max-w-xl mx-auto">
+                  {t.hotelList.topPicksSubtitle}
+                </p>
+              </div>
+
+              <div className="grid gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                {topPicks.map((h, i) => (
+                  <TopPickHotelCard
+                    key={(h as any).id || h.name}
+                    hotel={h as any}
+                    rank={(i + 1) as 1 | 2 | 3}
+                  />
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* REMAINING HOTELS */}
+          {rest.length > 0 && (
+            <section id="hotels" className="py-16 md:py-20 border-t border-border/40">
+              <div className="container-luxe">
+                <div className="text-center mb-10">
+                  <h2 className="font-serif text-2xl md:text-3xl text-foreground/90">
+                    {t.hotelList.moreHotels}
+                  </h2>
+                  <div className="mx-auto mt-4 h-px w-16 bg-gold/40" />
+                </div>
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  {visibleRest.map((h) => (
+                    <SimpleHotelCard key={(h as any).id || h.name} hotel={h as any} />
+                  ))}
+                </div>
+                {hiddenCount > 0 && (
+                  <div className="mt-10 text-center">
+                    <GoldButton variant="outline" onClick={() => setShowAll(true)}>
+                      Visa fler hotell ({hiddenCount})
+                    </GoldButton>
+                  </div>
+                )}
+              </div>
+            </section>
+          )}
+        </>
       )}
 
       <section className="pb-20">
