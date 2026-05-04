@@ -3,15 +3,28 @@ import Layout from "@/components/Layout";
 import ScrollDownArrow from "@/components/ScrollDownArrow";
 import { areas, AreaKey } from "@/data/hotels";
 import { useLang } from "@/i18n/LanguageContext";
+import { isAreaKey, getArea, CATEGORY_SV } from "@/lib/areas";
+import { useSeo } from "@/lib/useSeo";
 
 const typeKeys = ["luxury", "family", "budget"] as const;
 
 const AreaPage = () => {
   const { slug } = useParams();
-  const area = slug && areas[slug as AreaKey];
   const { t } = useLang();
 
-  if (!area) return <Navigate to="/" replace />;
+  const areaKey = isAreaKey(slug) ? (slug as AreaKey) : undefined;
+  const areaMeta = getArea(slug);
+  const area = areaKey ? areas[areaKey] : undefined;
+
+  useSeo({
+    title: areaMeta ? `Hotell i ${areaMeta.swedishName} – Cypern | Lyx, Familj & Budget` : "Hotell på Cypern",
+    description: areaMeta
+      ? `Upptäck handplockade hotell i ${areaMeta.swedishName}, Cypern. Välj mellan lyxhotell, familjehotell eller budgetalternativ.`
+      : "Hotell på Cypern.",
+    canonicalPath: areaMeta ? `/hotell/${areaMeta.slug}` : undefined,
+  });
+
+  if (!area || !areaMeta) return <Navigate to="/" replace />;
 
   return (
     <Layout>
@@ -24,9 +37,12 @@ const AreaPage = () => {
           <h1 className="mt-5 font-serif text-5xl md:text-6xl font-light">
             {t.area.title1} <span className="text-gradient-gold italic">{area.name}</span>
           </h1>
-          <p className="mt-5 max-w-xl text-foreground/85">
-            {t.area.helper(area.name)}
-          </p>
+          <p className="mt-5 max-w-xl text-foreground/85">{t.area.helper(area.name)}</p>
+          <nav aria-label="Brödsmulor" className="mt-6 text-xs text-muted-foreground">
+            <Link to="/" className="hover:text-gold">Hem</Link>
+            <span className="mx-2">/</span>
+            <span className="text-gold">{areaMeta.swedishName}</span>
+          </nav>
         </div>
         <ScrollDownArrow targetId="type-selection" />
       </section>
@@ -38,7 +54,7 @@ const AreaPage = () => {
             {typeKeys.map((key) => (
               <Link
                 key={key}
-                to={`/hotels/${area.slug}/${key}`}
+                to={`/hotell/${areaMeta.slug}/${key}`}
                 className="group bg-card border border-border/60 hover:border-gold/60 rounded-lg p-10 shadow-elegant hover-lift block transition-colors text-center"
               >
                 <h3 className="font-serif text-4xl md:text-5xl font-light tracking-wide text-gradient-gold">
