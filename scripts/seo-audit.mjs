@@ -19,7 +19,26 @@ const failures = [];
 const fail = (msg) => failures.push(msg);
 const ok = (msg) => console.log(`  ✓ ${msg}`);
 
-console.log(`\n[seo-audit] SITE=${SITE}\n`);
+const PUBLIC_INDEXING_ENV = String(process.env.VITE_PUBLIC_INDEXING ?? "false").toLowerCase() === "true";
+const SITE_IS_LOVABLE = /lovable\.app/.test(SITE);
+const SITE_IS_FINAL = !SITE_IS_LOVABLE;
+
+console.log(`\n[seo-audit] SITE_URL=${SITE}`);
+console.log(`[seo-audit] PUBLIC_INDEXING=${PUBLIC_INDEXING_ENV}\n`);
+
+// ---------- check for cypernhotell.se anywhere in public/ ----------
+const publicFiles = ["public/sitemap.xml", "public/robots.txt", "public/_headers"];
+let foundOldDomain = false;
+for (const f of publicFiles) {
+  if (!existsSync(f)) continue;
+  const txt = readFileSync(f, "utf8");
+  if (/cypernhotell\.se/.test(txt)) {
+    fail(`${f} still references cypernhotell.se`);
+    foundOldDomain = true;
+  }
+}
+console.log(`  · cypernhotell.se present in any public/ file: ${foundOldDomain ? "YES" : "no"}`);
+
 
 // ---------- sitemap.xml ----------
 const sitemapPath = "public/sitemap.xml";
