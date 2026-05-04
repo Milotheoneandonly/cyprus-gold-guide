@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { AREA_LIST, CATEGORIES } from "@/lib/areas";
+import { isBookingSearchUrl, isBookingDeepLink } from "@/lib/booking";
 
 type Row = {
   id: string;
@@ -50,6 +51,11 @@ const DataHealth = () => {
   const missingSeoTitle = rows.filter((r) => !r.seo_title).length;
   const missingSeoDesc = rows.filter((r) => !r.seo_description).length;
 
+  // Booking URL quality (active hotels only)
+  const activeSearchUrl = active.filter((r) => isBookingSearchUrl(r.booking_url)).length;
+  const activeDeepLink = active.filter((r) => isBookingDeepLink(r.booking_url)).length;
+  const activeMissingBooking = active.filter((r) => !r.booking_url || r.booking_url.trim() === "").length;
+
   const emptyCats: string[] = [];
   for (const a of AREA_LIST) {
     for (const c of CATEGORIES) {
@@ -68,6 +74,12 @@ const DataHealth = () => {
         <Stat label="Missing source_url" value={missingSource} danger />
         <Stat label="Missing seo_title" value={missingSeoTitle} danger />
         <Stat label="Missing seo_description" value={missingSeoDesc} danger />
+      </div>
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
+        <Stat label="Active · Booking search URL" value={activeSearchUrl} />
+        <Stat label="Active · Booking exact hotel" value={activeDeepLink} />
+        <Stat label="Active · missing booking_url" value={activeMissingBooking} danger />
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">

@@ -10,7 +10,10 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "sitemap": "node scripts/generate-sitemap.mjs",
+    "seo:audit": "node scripts/seo-audit.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
