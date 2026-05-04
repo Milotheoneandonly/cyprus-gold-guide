@@ -35,6 +35,12 @@ type DbHotel = {
   hotel_slug?: string | null;
   seo_title?: string | null;
   seo_description?: string | null;
+  sub_area?: string | null;
+  official_website_url?: string | null;
+  source_url?: string | null;
+  last_verified_at?: string | null;
+  is_active?: boolean;
+  traveller_tags?: string[] | null;
 };
 
 const Admin = () => {
