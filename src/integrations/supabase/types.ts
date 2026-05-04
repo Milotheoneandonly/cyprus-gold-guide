@@ -25,7 +25,12 @@ export type Database = {
           highlight: string | null
           hotel_slug: string
           id: string
+          image_alt: string | null
+          image_license_status: string
+          image_needs_review: boolean
+          image_source: string | null
           image_url: string
+          image_verified_at: string | null
           is_active: boolean
           last_verified_at: string | null
           location: string | null
@@ -52,7 +57,12 @@ export type Database = {
           highlight?: string | null
           hotel_slug: string
           id?: string
+          image_alt?: string | null
+          image_license_status?: string
+          image_needs_review?: boolean
+          image_source?: string | null
           image_url?: string
+          image_verified_at?: string | null
           is_active?: boolean
           last_verified_at?: string | null
           location?: string | null
@@ -79,7 +89,12 @@ export type Database = {
           highlight?: string | null
           hotel_slug?: string
           id?: string
+          image_alt?: string | null
+          image_license_status?: string
+          image_needs_review?: boolean
+          image_source?: string | null
           image_url?: string
+          image_verified_at?: string | null
           is_active?: boolean
           last_verified_at?: string | null
           location?: string | null
