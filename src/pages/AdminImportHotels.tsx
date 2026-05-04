@@ -276,7 +276,7 @@ const AdminImportHotels = () => {
           }
           updated++;
         } else {
-          const { error } = await (supabase as any).from("hotels").insert(payload);
+          const { error } = await supabase.from("hotels").insert(payload);
           if (error) {
             // Most likely a uniqueness collision we somehow missed → count as skipped.
             if (String(error.message || "").toLowerCase().includes("duplicate")) {

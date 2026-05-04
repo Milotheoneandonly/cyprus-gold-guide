@@ -121,10 +121,10 @@ const Admin = () => {
         traveller_tags: values.traveller_tags || [],
       };
       if (values.id) {
-        const { error } = await (supabase as any).from("hotels").update(payload).eq("id", values.id);
+        const { error } = await supabase.from("hotels").update(payload).eq("id", values.id);
         if (error) throw error;
       } else {
-        const { error } = await (supabase as any).from("hotels").insert(payload);
+        const { error } = await supabase.from("hotels").insert(payload);
         if (error) throw error;
       }
     },
