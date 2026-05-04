@@ -21,12 +21,15 @@ const HotelTypePage = () => {
   const areaKey = isAreaKey(slug) ? (slug as AreaKey) : undefined;
   const category = isCategory(type) ? (type as HotelCategory) : undefined;
 
-  const { data: dbHotels, isLoading } = useHotels(areaKey, category);
+  const { data: dbHotels, isLoading, isError } = useHotels(areaKey, category);
   const areaMeta = getArea(slug);
-  const areaStatic = areaKey ? areas[areaKey] : undefined;
 
   const categoryLabelSv = category ? CATEGORY_SV[category] : "";
   const hasActiveHotels = !!dbHotels && dbHotels.length > 0;
+  // noindex when:
+  //   - DB returned an error (don't index a broken page), OR
+  //   - DB query finished and there are zero active hotels for this area+category
+  const shouldNoindex = isError || (!isLoading && !hasActiveHotels);
   useSeo({
     title:
       areaMeta && category
@@ -37,23 +40,20 @@ const HotelTypePage = () => {
         ? `Handplockade ${categoryLabelSv.toLowerCase()}hotell i ${areaMeta.swedishName}, Cypern. Topp 3 plus fler rekommendationer.`
         : "Hotell på Cypern, handplockade för skandinaver.",
     canonicalPath: areaMeta && category ? `/hotell/${areaMeta.slug}/${category}` : undefined,
-    // If there are no active hotels in the DB for this category, do not let search engines index it.
-    noindex: !isLoading && !hasActiveHotels,
+    noindex: shouldNoindex,
   });
 
   if (!areaMeta || !category) return <Navigate to="/" replace />;
 
-  // DB hotels first (already filtered to is_active in hotelsApi); fall back to static seed when DB empty.
-  const fallback = areaStatic
-    ? areaStatic.categories[category].map((h) => ({ ...h, area: areaKey, slug: undefined as any }))
-    : [];
-  const hotels = dbHotels && dbHotels.length > 0 ? dbHotels : fallback;
+  // Public SEO pages must use Supabase active hotels as the source of truth.
+  // No static fallback for the public listing.
+  const hotels = dbHotels ?? [];
   const topPicks = hotels.slice(0, 3);
   const rest = hotels.slice(3);
   const visibleRest = showAll ? rest : rest.slice(0, PAGE_SIZE);
   const hiddenCount = rest.length - visibleRest.length;
 
-  const isEmpty = !isLoading && hotels.length === 0;
+  const isEmpty = !isLoading && !isError && hotels.length === 0;
 
   return (
     <Layout>
@@ -76,10 +76,30 @@ const HotelTypePage = () => {
             <span className="text-gold">{categoryLabelSv}</span>
           </nav>
         </div>
-        {!isEmpty && <ScrollDownArrow targetId="top-picks" />}
+        {!isEmpty && !isError && <ScrollDownArrow targetId="top-picks" />}
       </section>
 
-      {isEmpty ? (
+      {isError ? (
+        <section className="py-24 md:py-32">
+          <div className="container-luxe text-center max-w-xl">
+            <div className="mx-auto h-px w-16 bg-gold/50 mb-8" />
+            <h2 className="font-serif text-3xl md:text-4xl">
+              <span className="text-gradient-gold italic">Något gick fel</span>
+            </h2>
+            <p className="mt-6 text-muted-foreground leading-relaxed">
+              Vi kunde inte hämta hotellen för {areaMeta.swedishName} just nu. Försök igen om en stund.
+            </p>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+              <Link to={`/hotell/${areaMeta.slug}`}>
+                <GoldButton variant="outline">Andra hotelltyper i {areaMeta.swedishName}</GoldButton>
+              </Link>
+              <Link to="/">
+                <GoldButton variant="outline">Andra destinationer</GoldButton>
+              </Link>
+            </div>
+          </div>
+        </section>
+      ) : isEmpty ? (
         // PREMIUM EMPTY STATE — no fake hotels
         <section className="py-24 md:py-32">
           <div className="container-luxe text-center max-w-xl">

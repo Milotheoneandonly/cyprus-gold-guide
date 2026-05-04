@@ -15,9 +15,9 @@ const Footer = () => {
         <div>
           <h4 className="text-xs uppercase tracking-[0.25em] text-gold mb-4">{t.footer.explore}</h4>
           <ul className="space-y-2 text-sm text-foreground/85">
-            <li><Link to="/hotels/ayia-napa" className="hover:text-gold transition-colors">Ayia Napa</Link></li>
-            <li><Link to="/hotels/limassol" className="hover:text-gold transition-colors">Limassol</Link></li>
-            <li><Link to="/hotels/paphos" className="hover:text-gold transition-colors">Paphos</Link></li>
+            <li><Link to="/hotell/ayia-napa" className="hover:text-gold transition-colors">Ayia Napa</Link></li>
+            <li><Link to="/hotell/limassol" className="hover:text-gold transition-colors">Limassol</Link></li>
+            <li><Link to="/hotell/paphos" className="hover:text-gold transition-colors">Paphos</Link></li>
           </ul>
         </div>
         <div>

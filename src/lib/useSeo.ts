@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { SITE_URL, PUBLIC_INDEXING } from "@/config/site";
 
 type SeoOptions = {
   title: string;
@@ -7,8 +8,6 @@ type SeoOptions = {
   noindex?: boolean;
   image?: string;
 };
-
-const SITE_URL = "https://cypernhotell.se"; // canonical site origin (best guess; override later)
 
 function upsertMeta(attr: "name" | "property", key: string, content: string) {
   let el = document.head.querySelector<HTMLMetaElement>(`meta[${attr}="${key}"]`);
@@ -45,7 +44,11 @@ export function useSeo({ title, description, canonicalPath, noindex, image }: Se
     if (canonicalPath) {
       upsertLink("canonical", `${SITE_URL}${canonicalPath}`);
     }
-    upsertMeta("name", "robots", noindex ? "noindex,nofollow" : "index,follow");
+    // Global indexing kill-switch: if VITE_PUBLIC_INDEXING is false, ALL pages
+    // emit noindex,nofollow regardless of per-page intent. Per-page noindex
+    // (e.g. admin, empty category) always wins.
+    const shouldNoindex = noindex || !PUBLIC_INDEXING;
+    upsertMeta("name", "robots", shouldNoindex ? "noindex,nofollow" : "index,follow");
   }, [title, description, canonicalPath, noindex, image]);
 }
 
