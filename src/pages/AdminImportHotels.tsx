@@ -171,14 +171,16 @@ function parseInput(text: string): Parsed {
     else rows.push(norm);
   });
 
-  // duplicate slug within same area+category
+  // duplicate slug within same area (uniqueness key in DB is area + hotel_slug,
+  // independent of category — a hotel that moves from "family" to "luxury"
+  // should still resolve to the same row).
   const seen = new Map<string, number>();
   rows.forEach((r, i) => {
-    const key = `${r.area}|${r.category}|${r.hotel_slug}`;
+    const key = `${r.area}|${r.hotel_slug}`;
     if (seen.has(key)) {
       errors.push({
         index: i,
-        reason: `Duplicate slug "${r.hotel_slug}" in ${r.area}/${r.category} (also at row ${seen.get(key)})`,
+        reason: `Duplicate slug "${r.hotel_slug}" in ${r.area} (also at row ${seen.get(key)})`,
       });
     } else seen.set(key, i);
   });
@@ -192,7 +194,7 @@ const AdminImportHotels = () => {
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
   const [text, setText] = useState("");
   const [importing, setImporting] = useState(false);
-  const [result, setResult] = useState<{ inserted: number; updated: number } | null>(null);
+  const [result, setResult] = useState<{ inserted: number; updated: number; skipped: number; errors: number } | null>(null);
 
   useSeo({ title: "Admin · Bulk import hotels", description: "Admin", noindex: true });
 
@@ -228,17 +230,23 @@ const AdminImportHotels = () => {
     setImporting(true);
     let inserted = 0;
     let updated = 0;
+    let skipped = 0;
+    let errored = 0;
     try {
       for (const row of parsed.rows) {
-        // upsert by (area, category, hotel_slug)
+        // Upsert key: (area, hotel_slug). Category is not part of the
+        // identity — if a hotel moves category, we update the existing row.
         const { data: existing, error: selErr } = await (supabase as any)
           .from("hotels")
-          .select("id")
+          .select("id,category")
           .eq("area", row.area)
-          .eq("category", row.category)
           .eq("hotel_slug", row.hotel_slug)
           .maybeSingle();
-        if (selErr) throw selErr;
+        if (selErr) {
+          errored++;
+          console.error("[import] select failed", row.name, selErr);
+          continue;
+        }
 
         const payload: any = {
           ...row,
@@ -256,20 +264,37 @@ const AdminImportHotels = () => {
         };
 
         if (existing?.id) {
+          // Always update — including category if it changed.
           const { error } = await (supabase as any)
             .from("hotels")
             .update(payload)
             .eq("id", existing.id);
-          if (error) throw error;
+          if (error) {
+            errored++;
+            console.error("[import] update failed", row.name, error);
+            continue;
+          }
           updated++;
         } else {
           const { error } = await (supabase as any).from("hotels").insert(payload);
-          if (error) throw error;
+          if (error) {
+            // Most likely a uniqueness collision we somehow missed → count as skipped.
+            if (String(error.message || "").toLowerCase().includes("duplicate")) {
+              skipped++;
+            } else {
+              errored++;
+            }
+            console.error("[import] insert failed", row.name, error);
+            continue;
+          }
           inserted++;
         }
       }
-      setResult({ inserted, updated });
-      toast({ title: `Imported: ${inserted} new, ${updated} updated` });
+      setResult({ inserted, updated, skipped, errors: errored });
+      toast({
+        title: `Import complete`,
+        description: `${inserted} inserted · ${updated} updated · ${skipped} skipped · ${errored} errors`,
+      });
     } catch (e: any) {
       toast({ title: "Import failed", description: e.message, variant: "destructive" });
     } finally {
@@ -307,7 +332,7 @@ const AdminImportHotels = () => {
           <p className="text-sm text-muted-foreground mb-4">
             Required per row: <code>area</code>, <code>category</code>, <code>name</code>. Slug auto-generated
             from name if missing. Rows with no booking_url default to <code>is_active=false</code>. Upsert
-            matches on <code>(area, category, hotel_slug)</code>.
+            matches on <code>(area, hotel_slug)</code> — category will be updated in place if it changes.
           </p>
           <textarea
             value={text}
@@ -378,7 +403,7 @@ const AdminImportHotels = () => {
           </GoldButton>
           {result && (
             <span className="text-sm text-muted-foreground">
-              Last run: {result.inserted} inserted · {result.updated} updated
+              Last run: {result.inserted} inserted · {result.updated} updated · {result.skipped} skipped · {result.errors} errors
             </span>
           )}
         </div>
