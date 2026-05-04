@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import GoldButton from "@/components/GoldButton";
@@ -9,17 +9,13 @@ import { toast } from "@/hooks/use-toast";
 import type { AreaKey, HotelCategory } from "@/data/hotels";
 import type { Session } from "@supabase/supabase-js";
 import { useSeo } from "@/lib/useSeo";
+import { AREA_LIST, CATEGORIES as CATS } from "@/lib/areas";
 
-const AREAS: { key: AreaKey; label: string }[] = [
-  { key: "ayia-napa", label: "Ayia Napa" },
-  { key: "limassol", label: "Limassol" },
-  { key: "paphos", label: "Paphos" },
-];
-const CATEGORIES: { key: HotelCategory; label: string }[] = [
-  { key: "luxury", label: "Luxury" },
-  { key: "family", label: "Family" },
-  { key: "budget", label: "Budget" },
-];
+const AREAS: { key: AreaKey; label: string }[] = AREA_LIST.map((a) => ({ key: a.key, label: a.name }));
+const CATEGORIES: { key: HotelCategory; label: string }[] = CATS.map((c) => ({
+  key: c,
+  label: c.charAt(0).toUpperCase() + c.slice(1),
+}));
 
 type DbHotel = {
   id: string;
