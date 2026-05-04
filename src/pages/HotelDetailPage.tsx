@@ -8,6 +8,7 @@ import { useHotelBySlug, useHotels } from "@/lib/hotelsApi";
 import { useSeo } from "@/lib/useSeo";
 import { isAreaKey, isCategory, getArea, CATEGORY_SV } from "@/lib/areas";
 import { useLang } from "@/i18n/LanguageContext";
+import { getBookingCtaLabel } from "@/lib/booking";
 
 const HotelDetailPage = () => {
   const { area: areaParam, type, hotelSlug } = useParams();
@@ -171,7 +172,7 @@ const HotelDetailPage = () => {
                 >
                   <GoldButton variant="solid" className="w-full rounded-full">
                     <span className="inline-flex items-center gap-2">
-                      {t.card.cta}
+                      {getBookingCtaLabel(h.bookingUrl)}
                       <ExternalLink className="h-4 w-4" />
                     </span>
                   </GoldButton>

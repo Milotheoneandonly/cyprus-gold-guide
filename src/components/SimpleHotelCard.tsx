@@ -4,6 +4,7 @@ import GoldButton from "./GoldButton";
 import { useLang } from "@/i18n/LanguageContext";
 import type { HotelWithMeta } from "@/lib/hotelsApi";
 import { slugify } from "@/lib/slugify";
+import { getBookingCtaLabel } from "@/lib/booking";
 
 type Props = {
   hotel: HotelWithMeta | (import("@/data/hotels").Hotel & { area?: string; slug?: string });
@@ -75,7 +76,7 @@ const SimpleHotelCard = ({ hotel }: Props) => {
               className="block w-full text-center text-[11px] uppercase tracking-[0.22em] text-gold border border-gold/40 hover:border-gold rounded-full py-2 transition-colors"
             >
               <span className="inline-flex items-center gap-1.5">
-                {t.card.cta}
+                {getBookingCtaLabel(hotel.bookingUrl)}
                 <ExternalLink className="h-3 w-3" />
               </span>
             </a>
