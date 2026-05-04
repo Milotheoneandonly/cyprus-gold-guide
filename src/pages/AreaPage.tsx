@@ -3,7 +3,7 @@ import Layout from "@/components/Layout";
 import ScrollDownArrow from "@/components/ScrollDownArrow";
 import { areas, AreaKey } from "@/data/hotels";
 import { useLang } from "@/i18n/LanguageContext";
-import { isAreaKey, getArea, CATEGORY_SV } from "@/lib/areas";
+import { isAreaKey, getArea } from "@/lib/areas";
 import { useSeo } from "@/lib/useSeo";
 
 const typeKeys = ["luxury", "family", "budget"] as const;
@@ -14,34 +14,38 @@ const AreaPage = () => {
 
   const areaKey = isAreaKey(slug) ? (slug as AreaKey) : undefined;
   const areaMeta = getArea(slug);
-  const area = areaKey ? areas[areaKey] : undefined;
+  const areaStatic = areaKey ? areas[areaKey] : undefined;
 
   useSeo({
-    title: areaMeta ? `Hotell i ${areaMeta.swedishName} – Cypern | Lyx, Familj & Budget` : "Hotell på Cypern",
-    description: areaMeta
-      ? `Upptäck handplockade hotell i ${areaMeta.swedishName}, Cypern. Välj mellan lyxhotell, familjehotell eller budgetalternativ.`
-      : "Hotell på Cypern.",
+    title: areaMeta?.seoTitle || (areaMeta ? `Hotell i ${areaMeta.swedishName} – Cypern` : "Hotell på Cypern"),
+    description: areaMeta?.seoDescription || "Hotell på Cypern.",
     canonicalPath: areaMeta ? `/hotell/${areaMeta.slug}` : undefined,
   });
 
-  if (!area || !areaMeta) return <Navigate to="/" replace />;
+  if (!areaMeta) return <Navigate to="/" replace />;
+
+  const heroImage = areaStatic?.image || areaMeta.image;
+  const heroName = areaMeta.swedishName;
+  const helperText = areaStatic
+    ? t.area.helper(areaStatic.name)
+    : `Välj nu vilken typ av hotell du vill ha i ${heroName}.`;
 
   return (
     <Layout>
       {/* HERO */}
       <section className="relative h-[50vh] min-h-[380px] overflow-hidden">
-        <img src={area.image} alt={area.name} className="absolute inset-0 h-full w-full object-cover" />
+        <img src={heroImage} alt={heroName} className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-background/70" />
         <div className="relative container-luxe h-full flex flex-col justify-center items-center text-center">
           <span className="text-[11px] uppercase tracking-[0.35em] text-gold">{t.step(2, 3)}</span>
           <h1 className="mt-5 font-serif text-5xl md:text-6xl font-light">
-            {t.area.title1} <span className="text-gradient-gold italic">{area.name}</span>
+            {t.area.title1} <span className="text-gradient-gold italic">{heroName}</span>
           </h1>
-          <p className="mt-5 max-w-xl text-foreground/85">{t.area.helper(area.name)}</p>
+          <p className="mt-5 max-w-xl text-foreground/85">{helperText}</p>
           <nav aria-label="Brödsmulor" className="mt-6 text-xs text-muted-foreground">
             <Link to="/" className="hover:text-gold">Hem</Link>
             <span className="mx-2">/</span>
-            <span className="text-gold">{areaMeta.swedishName}</span>
+            <span className="text-gold">{heroName}</span>
           </nav>
         </div>
         <ScrollDownArrow targetId="type-selection" />

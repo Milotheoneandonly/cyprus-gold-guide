@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate, useParams } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -14,8 +14,23 @@ import HotelDetailPage from "./pages/HotelDetailPage.tsx";
 import About from "./pages/About.tsx";
 import AdminLogin from "./pages/AdminLogin.tsx";
 import Admin from "./pages/Admin.tsx";
+import AdminImportHotels from "./pages/AdminImportHotels.tsx";
 
 const queryClient = new QueryClient();
+
+// Legacy /hotels/* → /hotell/* canonical redirect (client-side).
+const LegacyAreaRedirect = () => {
+  const { slug } = useParams();
+  return <Navigate to={`/hotell/${slug}`} replace />;
+};
+const LegacyTypeRedirect = () => {
+  const { slug, type } = useParams();
+  return <Navigate to={`/hotell/${slug}/${type}`} replace />;
+};
+const LegacyDetailRedirect = () => {
+  const { area, type, hotelSlug } = useParams();
+  return <Navigate to={`/hotell/${area}/${type}/${hotelSlug}`} replace />;
+};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -34,14 +49,15 @@ const App = () => (
             <Route path="/hotell/:slug/:type" element={<HotelTypePage />} />
             <Route path="/hotell/:area/:type/:hotelSlug" element={<HotelDetailPage />} />
 
-            {/* Legacy English routes — kept working */}
-            <Route path="/hotels/:slug" element={<AreaPage />} />
-            <Route path="/hotels/:slug/:type" element={<HotelTypePage />} />
-            <Route path="/hotels/:area/:type/:hotelSlug" element={<HotelDetailPage />} />
+            {/* Legacy English routes — canonicalize to /hotell */}
+            <Route path="/hotels/:slug" element={<LegacyAreaRedirect />} />
+            <Route path="/hotels/:slug/:type" element={<LegacyTypeRedirect />} />
+            <Route path="/hotels/:area/:type/:hotelSlug" element={<LegacyDetailRedirect />} />
 
             <Route path="/about" element={<About />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/admin/import-hotels" element={<AdminImportHotels />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -26,14 +26,20 @@ export type Database = {
           hotel_slug: string
           id: string
           image_url: string
+          is_active: boolean
+          last_verified_at: string | null
           location: string | null
           name: string
           note: string | null
+          official_website_url: string | null
           seo_description: string | null
           seo_title: string | null
           sort_order: number
+          source_url: string | null
           stars: number | null
+          sub_area: string | null
           tag: string
+          traveller_tags: string[]
           updated_at: string
         }
         Insert: {
@@ -47,14 +53,20 @@ export type Database = {
           hotel_slug: string
           id?: string
           image_url?: string
+          is_active?: boolean
+          last_verified_at?: string | null
           location?: string | null
           name: string
           note?: string | null
+          official_website_url?: string | null
           seo_description?: string | null
           seo_title?: string | null
           sort_order?: number
+          source_url?: string | null
           stars?: number | null
+          sub_area?: string | null
           tag?: string
+          traveller_tags?: string[]
           updated_at?: string
         }
         Update: {
@@ -68,14 +80,20 @@ export type Database = {
           hotel_slug?: string
           id?: string
           image_url?: string
+          is_active?: boolean
+          last_verified_at?: string | null
           location?: string | null
           name?: string
           note?: string | null
+          official_website_url?: string | null
           seo_description?: string | null
           seo_title?: string | null
           sort_order?: number
+          source_url?: string | null
           stars?: number | null
+          sub_area?: string | null
           tag?: string
+          traveller_tags?: string[]
           updated_at?: string
         }
         Relationships: []
@@ -117,7 +135,14 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "user"
-      hotel_area: "ayia-napa" | "limassol" | "paphos"
+      hotel_area:
+        | "ayia-napa"
+        | "limassol"
+        | "paphos"
+        | "protaras"
+        | "larnaca"
+        | "coral-bay"
+        | "polis-latchi"
       hotel_category: "luxury" | "family" | "budget"
     }
     CompositeTypes: {
@@ -247,7 +272,15 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "user"],
-      hotel_area: ["ayia-napa", "limassol", "paphos"],
+      hotel_area: [
+        "ayia-napa",
+        "limassol",
+        "paphos",
+        "protaras",
+        "larnaca",
+        "coral-bay",
+        "polis-latchi",
+      ],
       hotel_category: ["luxury", "family", "budget"],
     },
   },

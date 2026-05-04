@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import GoldButton from "@/components/GoldButton";
@@ -9,17 +9,13 @@ import { toast } from "@/hooks/use-toast";
 import type { AreaKey, HotelCategory } from "@/data/hotels";
 import type { Session } from "@supabase/supabase-js";
 import { useSeo } from "@/lib/useSeo";
+import { AREA_LIST, CATEGORIES as CATS } from "@/lib/areas";
 
-const AREAS: { key: AreaKey; label: string }[] = [
-  { key: "ayia-napa", label: "Ayia Napa" },
-  { key: "limassol", label: "Limassol" },
-  { key: "paphos", label: "Paphos" },
-];
-const CATEGORIES: { key: HotelCategory; label: string }[] = [
-  { key: "luxury", label: "Luxury" },
-  { key: "family", label: "Family" },
-  { key: "budget", label: "Budget" },
-];
+const AREAS: { key: AreaKey; label: string }[] = AREA_LIST.map((a) => ({ key: a.key, label: a.name }));
+const CATEGORIES: { key: HotelCategory; label: string }[] = CATS.map((c) => ({
+  key: c,
+  label: c.charAt(0).toUpperCase() + c.slice(1),
+}));
 
 type DbHotel = {
   id: string;
@@ -39,6 +35,12 @@ type DbHotel = {
   hotel_slug?: string | null;
   seo_title?: string | null;
   seo_description?: string | null;
+  sub_area?: string | null;
+  official_website_url?: string | null;
+  source_url?: string | null;
+  last_verified_at?: string | null;
+  is_active?: boolean;
+  traveller_tags?: string[] | null;
 };
 
 const Admin = () => {
@@ -110,6 +112,12 @@ const Admin = () => {
         hotel_slug: values.hotel_slug,
         seo_title: values.seo_title || null,
         seo_description: values.seo_description || null,
+        sub_area: values.sub_area || null,
+        official_website_url: values.official_website_url || null,
+        source_url: values.source_url || null,
+        last_verified_at: values.last_verified_at || null,
+        is_active: values.is_active,
+        traveller_tags: values.traveller_tags || [],
       };
       if (values.id) {
         const { error } = await (supabase as any).from("hotels").update(payload).eq("id", values.id);
@@ -192,6 +200,9 @@ const Admin = () => {
         <h1 className="font-serif text-2xl text-gradient-gold italic">Admin</h1>
         <div className="flex items-center gap-4 text-sm">
           <span className="text-muted-foreground hidden sm:inline">{session.user.email}</span>
+          <Link to="/admin/import-hotels" className="text-gold hover:underline">
+            Bulk import
+          </Link>
           <button onClick={() => navigate("/")} className="text-muted-foreground hover:text-gold">
             View site
           </button>
@@ -327,6 +338,12 @@ const Admin = () => {
                   hotel_slug: editing.hotel_slug ?? "",
                   seo_title: editing.seo_title ?? "",
                   seo_description: editing.seo_description ?? "",
+                  sub_area: editing.sub_area ?? "",
+                  official_website_url: editing.official_website_url ?? "",
+                  source_url: editing.source_url ?? "",
+                  last_verified_at: editing.last_verified_at ?? "",
+                  is_active: editing.is_active ?? true,
+                  traveller_tags: editing.traveller_tags ?? [],
                 }
               : { ...emptyHotel(area, category, hotels.length) }
           }

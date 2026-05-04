@@ -97,7 +97,14 @@ export type Hotel = {
   stars?: number;
 };
 
-export type AreaKey = "ayia-napa" | "limassol" | "paphos";
+export type AreaKey =
+  | "ayia-napa"
+  | "limassol"
+  | "paphos"
+  | "protaras"
+  | "larnaca"
+  | "coral-bay"
+  | "polis-latchi";
 
 export type AreaData = {
   slug: AreaKey;
@@ -152,7 +159,7 @@ const h = (
 //  - Family  = 4 stars and below, family-suitable
 //  - Budget  = 3 stars only
 // Each category contains exactly 8 hotels.
-export const areas: Record<AreaKey, AreaData> = {
+export const areas: Partial<Record<AreaKey, AreaData>> = {
   "ayia-napa": {
     slug: "ayia-napa",
     name: "Ayia Napa",

@@ -2,11 +2,15 @@ User-agent: Googlebot
 Allow: /
 Disallow: /admin
 Disallow: /admin/
+Disallow: /admin/login
+Disallow: /admin/import-hotels
 
 User-agent: Bingbot
 Allow: /
 Disallow: /admin
 Disallow: /admin/
+Disallow: /admin/login
+Disallow: /admin/import-hotels
 
 User-agent: Twitterbot
 Allow: /
@@ -18,5 +22,7 @@ User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /admin/
+Disallow: /admin/login
+Disallow: /admin/import-hotels
 
 Sitemap: https://cypernhotell.se/sitemap.xml

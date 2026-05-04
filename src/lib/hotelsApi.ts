@@ -22,6 +22,12 @@ export type HotelRow = {
   hotel_slug?: string | null;
   seo_title?: string | null;
   seo_description?: string | null;
+  sub_area?: string | null;
+  official_website_url?: string | null;
+  source_url?: string | null;
+  last_verified_at?: string | null;
+  is_active?: boolean;
+  traveller_tags?: string[] | null;
 };
 
 export type HotelWithMeta = Hotel & {
@@ -30,6 +36,9 @@ export type HotelWithMeta = Hotel & {
   area: AreaKey;
   seoTitle?: string;
   seoDescription?: string;
+  subArea?: string;
+  officialWebsiteUrl?: string;
+  travellerTags?: string[];
 };
 
 export function rowToHotel(r: HotelRow): HotelWithMeta {
@@ -50,15 +59,20 @@ export function rowToHotel(r: HotelRow): HotelWithMeta {
     slug: r.hotel_slug || slugify(r.name),
     seoTitle: r.seo_title ?? undefined,
     seoDescription: r.seo_description ?? undefined,
+    subArea: r.sub_area ?? undefined,
+    officialWebsiteUrl: r.official_website_url ?? undefined,
+    travellerTags: r.traveller_tags ?? undefined,
   };
 }
 
+// Public listings: only active hotels
 export async function fetchHotels(area: AreaKey, category: HotelCategory) {
   const { data, error } = await (supabase as any)
     .from("hotels")
     .select("*")
     .eq("area", area)
     .eq("category", category)
+    .eq("is_active", true)
     .order("sort_order", { ascending: true });
   if (error) throw error;
   return (data as HotelRow[]).map(rowToHotel);
@@ -79,6 +93,7 @@ export async function fetchHotelBySlug(area: AreaKey, slug: string) {
     .select("*")
     .eq("area", area)
     .eq("hotel_slug", slug)
+    .eq("is_active", true)
     .maybeSingle();
   if (error) throw error;
   return data ? rowToHotel(data as HotelRow) : null;
@@ -93,6 +108,7 @@ export function useHotelBySlug(area: AreaKey | undefined, slug: string | undefin
   });
 }
 
+// Admin: fetch all hotels regardless of is_active
 export async function fetchAllHotels() {
   const { data, error } = await (supabase as any)
     .from("hotels")
