@@ -11,7 +11,7 @@
 
 const env = (import.meta as any).env ?? {};
 
-export const SITE_URL: string = (env.VITE_SITE_URL || "https://cypern-hotell.se").replace(/\/$/, "");
+export const SITE_URL: string = (env.VITE_SITE_URL || "https://cyprus-gold-guide.lovable.app").replace(/\/$/, "");
 export const SITE_NAME: string = env.VITE_SITE_NAME || "Cypern Hotell";
 
 /**

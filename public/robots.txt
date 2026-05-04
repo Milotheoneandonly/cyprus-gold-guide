@@ -25,4 +25,4 @@ Disallow: /admin/
 Disallow: /admin/login
 Disallow: /admin/import-hotels
 
-Sitemap: https://cypern-hotell.se/sitemap.xml
+Sitemap: https://cyprus-gold-guide.lovable.app/sitemap.xml
