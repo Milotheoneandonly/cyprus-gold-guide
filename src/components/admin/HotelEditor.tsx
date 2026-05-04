@@ -214,6 +214,61 @@ const HotelEditor = ({ initial, onClose, onSave, saving }: Props) => {
           </Field>
 
           <div className="grid grid-cols-2 gap-4">
+            <Field label="Image alt (Swedish)" hint="Required if image_url is set.">
+              <input
+                value={v.image_alt}
+                onChange={(e) => update("image_alt", e.target.value)}
+                className={inputCls}
+                placeholder="Capo Bay Hotel i Protaras, Cypern"
+              />
+            </Field>
+            <Field label="Image source" hint="Where this image came from (e.g. hotel PR, own photo, partner API).">
+              <input
+                value={v.image_source}
+                onChange={(e) => update("image_source", e.target.value)}
+                className={inputCls}
+              />
+            </Field>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <Field label="Image license status" hint="Photo-ready requires licensed / partner / hotel_permission / own_photo.">
+              <select
+                value={v.image_license_status}
+                onChange={(e) =>
+                  update("image_license_status", e.target.value as typeof v.image_license_status)
+                }
+                className={inputCls}
+              >
+                {IMAGE_LICENSE_VALUES.map((s) => (
+                  <option key={s} value={s}>
+                    {s}
+                  </option>
+                ))}
+              </select>
+            </Field>
+            <Field label="Image verified at" hint="Date you confirmed legal use.">
+              <input
+                type="date"
+                value={v.image_verified_at ? v.image_verified_at.slice(0, 10) : ""}
+                onChange={(e) => update("image_verified_at", e.target.value)}
+                className={inputCls}
+              />
+            </Field>
+          </div>
+
+          <Field label="Needs review">
+            <select
+              value={v.image_needs_review ? "true" : "false"}
+              onChange={(e) => update("image_needs_review", e.target.value === "true")}
+              className={inputCls}
+            >
+              <option value="true">Yes — flag in Data Health</option>
+              <option value="false">No — reviewed</option>
+            </select>
+          </Field>
+
+          <div className="grid grid-cols-2 gap-4">
             <Field label="Area">
               <select
                 value={v.area}
