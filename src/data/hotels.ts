@@ -97,7 +97,14 @@ export type Hotel = {
   stars?: number;
 };
 
-export type AreaKey = "ayia-napa" | "limassol" | "paphos";
+export type AreaKey =
+  | "ayia-napa"
+  | "limassol"
+  | "paphos"
+  | "protaras"
+  | "larnaca"
+  | "coral-bay"
+  | "polis-latchi";
 
 export type AreaData = {
   slug: AreaKey;
