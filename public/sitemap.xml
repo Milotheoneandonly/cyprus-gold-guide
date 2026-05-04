@@ -31,7 +31,7 @@
   <url><loc>https://cypernhotell.se/hotell/polis-latchi/luxury</loc><lastmod>2026-05-04</lastmod><priority>0.8</priority></url>
   <url><loc>https://cypernhotell.se/hotell/polis-latchi/family</loc><lastmod>2026-05-04</lastmod><priority>0.8</priority></url>
   <url><loc>https://cypernhotell.se/hotell/polis-latchi/budget</loc><lastmod>2026-05-04</lastmod><priority>0.8</priority></url>
-  <url><loc>https://cypernhotell.se/hotell/ayia-napa/budget/loutsiana-hotel-apartments</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/ayia-napa/luxury/nissiblu-beach-resort</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://cypernhotell.se/hotell/ayia-napa/luxury/alion-beach-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://cypernhotell.se/hotell/ayia-napa/luxury/atlantica-aeneas-resort</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://cypernhotell.se/hotell/ayia-napa/luxury/grecian-bay-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
@@ -48,14 +48,13 @@
   <url><loc>https://cypernhotell.se/hotell/ayia-napa/family/margadina-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://cypernhotell.se/hotell/ayia-napa/family/christofinia-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://cypernhotell.se/hotell/ayia-napa/budget/corfu-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
-  <url><loc>https://cypernhotell.se/hotell/ayia-napa/budget/nissi-park-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://cypernhotell.se/hotell/ayia-napa/budget/euronapa-hotel-apartments</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
-  <url><loc>https://cypernhotell.se/hotell/ayia-napa/luxury/nissiblu-beach-resort</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://cypernhotell.se/hotell/ayia-napa/budget/christabelle-hotel-apartments</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://cypernhotell.se/hotell/ayia-napa/budget/cosmelenia-hotel-apartments</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://cypernhotell.se/hotell/ayia-napa/budget/piere-anne-beach-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://cypernhotell.se/hotell/ayia-napa/budget/anthea-hotel-apartments</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
-  <url><loc>https://cypernhotell.se/hotell/limassol/budget/jedi-hub</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/ayia-napa/budget/loutsiana-hotel-apartments</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/ayia-napa/budget/nissi-park-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://cypernhotell.se/hotell/limassol/luxury/amara-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://cypernhotell.se/hotell/limassol/luxury/grandresort-limassol</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://cypernhotell.se/hotell/limassol/luxury/amathus-residences</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
@@ -75,6 +74,7 @@
   <url><loc>https://cypernhotell.se/hotell/limassol/budget/chrielka-apartments</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://cypernhotell.se/hotell/limassol/budget/yamas-urban-living</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://cypernhotell.se/hotell/limassol/budget/marianna-apartments</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/limassol/budget/jedi-hub</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://cypernhotell.se/hotell/limassol/budget/tsanotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://cypernhotell.se/hotell/limassol/budget/olympia-studio-old-town-marvel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://cypernhotell.se/hotell/paphos/luxury/elysium-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
@@ -93,6 +93,7 @@
   <url><loc>https://cypernhotell.se/hotell/paphos/family/avanti-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://cypernhotell.se/hotell/paphos/family/mayfair-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://cypernhotell.se/hotell/paphos/family/kefalos-beach-tourist-village</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/paphos/budget/basilica-holiday-resort</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://cypernhotell.se/hotell/paphos/budget/kefalos-damon-hotel-apartments</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://cypernhotell.se/hotell/paphos/budget/dionysos-central-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://cypernhotell.se/hotell/paphos/budget/pagona-holiday-apartments</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
@@ -100,5 +101,56 @@
   <url><loc>https://cypernhotell.se/hotell/paphos/budget/paphos-gardens-holiday-resort</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://cypernhotell.se/hotell/paphos/budget/tasmaria-aparthotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://cypernhotell.se/hotell/paphos/budget/helios-bay-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
-  <url><loc>https://cypernhotell.se/hotell/paphos/budget/basilica-holiday-resort</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/protaras/luxury/sunrise-pearl-hotel-and-spa</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/protaras/luxury/capo-bay-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/protaras/luxury/king-jason-protaras</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/protaras/luxury/leonardo-crystal-cove-hotel-and-spa-by-the-sea</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/protaras/family/cavo-maris-beach-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/protaras/family/golden-coast-beach-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/protaras/family/pernera-beach-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/protaras/family/sunrise-beach-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/protaras/family/vrissiana-beach-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/protaras/budget/protaras-plaza-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/protaras/budget/kokkinos-boutique-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/protaras/budget/kapetanios-bay-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/protaras/budget/anais-bay-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/protaras/budget/silver-sands-beach-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/protaras/budget/iliada-beach-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/larnaca/luxury/radisson-blu-hotel-larnaca</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/larnaca/luxury/the-ciao-stelio-deluxe-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/larnaca/luxury/golden-bay-beach-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/larnaca/luxury/radisson-beach-resort-larnaca</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/larnaca/family/lordos-beach-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/larnaca/family/sandy-beach-hotel-larnaca</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/larnaca/family/robinson-cyprus</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/larnaca/family/best-western-plus-larco-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/larnaca/family/sun-hall-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/larnaca/budget/hotel-indigo-larnaca</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/larnaca/budget/les-palmiers-beach-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/larnaca/budget/livadhiotis-city-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/larnaca/budget/art-and-wine-studios-and-apartments</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/larnaca/budget/hai-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/larnaca/budget/frangiorgio-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/coral-bay/luxury/thalassa-boutique-hotel-and-spa</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/coral-bay/luxury/coral-beach-hotel-and-resort</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/coral-bay/luxury/cap-st-georges-hotel-and-resort</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/coral-bay/family/queens-bay-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/coral-bay/family/theo-sunset-bay-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/coral-bay/family/corallia-beach-hotel-apartments</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/coral-bay/family/atlantica-mare-village-paphos</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/coral-bay/budget/panareti-coral-bay-resort</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/coral-bay/budget/petsas-apartments</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/coral-bay/budget/bella-rosa-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/polis-latchi/luxury/anassa</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/polis-latchi/luxury/secret-forest</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/polis-latchi/luxury/polis-1907</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/polis-latchi/family/aphrodite-beach-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/polis-latchi/family/natura-beach-hotel-and-villas</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/polis-latchi/family/akamanthea-holiday-village</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/polis-latchi/family/tavros-hotel-apartments</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/polis-latchi/budget/latchi-hotel-apartments</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/polis-latchi/budget/bougainvillea-hotel-apartments</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/polis-latchi/budget/stephanos-hotel-apartments</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/polis-latchi/budget/alkionest-hotel-apartments</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://cypernhotell.se/hotell/polis-latchi/budget/souli-beach-hotel</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
 </urlset>
