@@ -6,6 +6,12 @@ import { toast } from "@/hooks/use-toast";
 import { slugify } from "@/lib/slugify";
 import type { AreaKey, HotelCategory } from "@/data/hotels";
 import { AREA_KEYS, CATEGORIES } from "@/lib/areas";
+import {
+  IMAGE_LICENSE_VALUES,
+  type ImageLicenseStatus,
+  imageUrlIsDisallowed,
+  looksLikeBookingHotlink,
+} from "@/lib/hotelImagePolicy";
 
 export type HotelFormValues = {
   id?: string;
@@ -31,6 +37,11 @@ export type HotelFormValues = {
   last_verified_at: string;
   is_active: boolean;
   traveller_tags: string[];
+  image_alt: string;
+  image_source: string;
+  image_license_status: ImageLicenseStatus;
+  image_verified_at: string;
+  image_needs_review: boolean;
 };
 
 export const emptyHotel = (area: AreaKey, category: HotelCategory, sort_order: number): HotelFormValues => ({
@@ -56,6 +67,11 @@ export const emptyHotel = (area: AreaKey, category: HotelCategory, sort_order: n
   last_verified_at: "",
   is_active: true,
   traveller_tags: [],
+  image_alt: "",
+  image_source: "",
+  image_license_status: "unknown",
+  image_verified_at: "",
+  image_needs_review: true,
 });
 
 interface Props {
