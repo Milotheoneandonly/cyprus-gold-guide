@@ -75,6 +75,14 @@ const HotelDetailPage = () => {
 
   return (
     <Layout>
+      <BreadcrumbSchema
+        items={[
+          { name: "Hem", path: "/" },
+          { name: areaMeta.swedishName, path: `/hotell/${areaMeta.slug}` },
+          { name: CATEGORY_SV[category], path: `/hotell/${areaMeta.slug}/${category}` },
+          { name: h.name, path: `/hotell/${areaMeta.slug}/${category}/${hotelSlug}` },
+        ]}
+      />
       <article className="pb-20">
         {/* HERO IMAGE */}
         <section className="relative h-[55vh] min-h-[420px] overflow-hidden">
