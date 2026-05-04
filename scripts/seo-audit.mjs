@@ -268,7 +268,11 @@ const schemaScanFiles = [
 ];
 for (const f of schemaScanFiles) {
   if (!existsSync(f)) continue;
-  const src = readFileSync(f, "utf8");
+  const raw = readFileSync(f, "utf8");
+  // Strip JS/TS comments so forbidding-text in code comments doesn't trip the check.
+  const src = raw
+    .replace(/\/\*[\s\S]*?\*\//g, "")
+    .replace(/(^|[^:])\/\/[^\n]*/g, "$1");
   if (/aggregateRating|AggregateRating/.test(src))
     fail(`${f} contains aggregateRating schema — forbidden (no verified reviews)`);
   if (/"@type"\s*:\s*"Review"/.test(src))
