@@ -1,3 +1,4 @@
+import type * as React from "react";
 import { Link } from "react-router-dom";
 import { ShieldCheck, Crown, Flame, Gem, ExternalLink } from "lucide-react";
 import GoldButton from "./GoldButton";
