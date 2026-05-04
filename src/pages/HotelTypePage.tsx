@@ -151,6 +151,10 @@ const HotelTypePage = () => {
                 </p>
               </div>
 
+              <div className="max-w-2xl mx-auto mb-8">
+                <AffiliateDisclosure variant="block" />
+              </div>
+
               <div className="grid gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-3">
                 {topPicks.map((h, i) => (
                   <TopPickHotelCard
