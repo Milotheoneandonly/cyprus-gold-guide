@@ -4,6 +4,7 @@ Disallow: /admin
 Disallow: /admin/
 Disallow: /admin/login
 Disallow: /admin/import-hotels
+Disallow: /admin/qa
 
 User-agent: Bingbot
 Allow: /
@@ -11,6 +12,7 @@ Disallow: /admin
 Disallow: /admin/
 Disallow: /admin/login
 Disallow: /admin/import-hotels
+Disallow: /admin/qa
 
 User-agent: Twitterbot
 Allow: /
@@ -24,5 +26,6 @@ Disallow: /admin
 Disallow: /admin/
 Disallow: /admin/login
 Disallow: /admin/import-hotels
+Disallow: /admin/qa
 
 Sitemap: https://cyprus-gold-guide.lovable.app/sitemap.xml
