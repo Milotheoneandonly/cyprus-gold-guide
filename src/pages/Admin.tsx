@@ -42,6 +42,11 @@ type DbHotel = {
   last_verified_at?: string | null;
   is_active?: boolean;
   traveller_tags?: string[] | null;
+  image_alt?: string | null;
+  image_source?: string | null;
+  image_license_status?: string | null;
+  image_verified_at?: string | null;
+  image_needs_review?: boolean | null;
 };
 
 const Admin = () => {
