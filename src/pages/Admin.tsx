@@ -82,7 +82,7 @@ const Admin = () => {
   const { data: hotels = [], isLoading } = useQuery({
     queryKey: ["admin-hotels", area, category],
     queryFn: async () => {
-      const { data, error } = await (supabase as any)
+      const { data, error } = await supabase
         .from("hotels")
         .select("*")
         .eq("area", area)

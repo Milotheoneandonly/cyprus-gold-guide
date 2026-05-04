@@ -80,7 +80,7 @@ const AdminQA = () => {
 
   useEffect(() => {
     if (!isAdmin) return;
-    (supabase as any)
+    supabase
       .from("hotels")
       .select("id", { count: "exact", head: true })
       .eq("is_active", true)
