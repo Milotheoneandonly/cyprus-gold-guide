@@ -143,6 +143,30 @@ const HotelEditor = ({ initial, onClose, onSave, saving }: Props) => {
       toast({ title: "Slug is required", variant: "destructive" });
       return;
     }
+    if (v.image_url && !v.image_alt.trim()) {
+      toast({ title: "image_alt is required when image_url is set", variant: "destructive" });
+      return;
+    }
+    if (v.image_url && !v.image_license_status) {
+      toast({ title: "image_license_status is required", variant: "destructive" });
+      return;
+    }
+    if (v.image_url && imageUrlIsDisallowed(v.image_url)) {
+      toast({
+        title: "Disallowed image source",
+        description: "Instagram / Tripadvisor / Google Images are not permitted.",
+        variant: "destructive",
+      });
+      return;
+    }
+    if (v.image_url && looksLikeBookingHotlink(v.image_url, v.image_license_status)) {
+      toast({
+        title: "Booking.com hotlink not allowed",
+        description: "Set image_license_status to booking_partner_api if this came from the official API.",
+        variant: "destructive",
+      });
+      return;
+    }
     onSave({ ...v, hotel_slug: finalSlug });
   };
 
