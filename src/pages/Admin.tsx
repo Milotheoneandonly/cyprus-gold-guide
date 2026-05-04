@@ -112,6 +112,12 @@ const Admin = () => {
         hotel_slug: values.hotel_slug,
         seo_title: values.seo_title || null,
         seo_description: values.seo_description || null,
+        sub_area: values.sub_area || null,
+        official_website_url: values.official_website_url || null,
+        source_url: values.source_url || null,
+        last_verified_at: values.last_verified_at || null,
+        is_active: values.is_active,
+        traveller_tags: values.traveller_tags || [],
       };
       if (values.id) {
         const { error } = await (supabase as any).from("hotels").update(payload).eq("id", values.id);
