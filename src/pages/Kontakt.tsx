@@ -24,6 +24,13 @@ const Kontakt = () => {
             </a>
             .
           </p>
+          <p>
+            For partnerships and inquiries, contact us at:{" "}
+            <a href="mailto:partnerships.cyprushotel@gmail.com" className="text-gold hover:underline">
+              partnerships.cyprushotel@gmail.com
+            </a>
+            .
+          </p>
           <div className="grid sm:grid-cols-2 gap-6 pt-6 border-t border-border/40">
             <div>
               <h2 className="text-[11px] uppercase tracking-[0.22em] text-gold mb-2">For hotel owners</h2>
