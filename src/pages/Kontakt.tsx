@@ -15,16 +15,9 @@ const Kontakt = () => {
     <Layout>
       <section className="container-luxe py-16 md:py-24">
         <SectionHeader eyebrow="Contact" title="Get in touch" />
-        <div className="max-w-2xl mx-auto mt-10 space-y-6 text-base md:text-lg text-foreground/85 leading-relaxed">
+        <div className="max-w-2xl mx-auto mt-10 text-base md:text-lg text-foreground/85 leading-relaxed text-center">
           <p>
-            Have questions about hotels in Cyprus or spotted incorrect info? Drop us a diss at{" "}
-            <a href="mailto:partnerships.cyprushotel@gmail.com" className="text-gold hover:underline">
-              partnerships.cyprushotel@gmail.com
-            </a>
-            .
-          </p>
-          <p>
-            For partnerships and inquiries, contact us at:{" "}
+            We answer questions about hotels in Cyprus and about incorrect hotel information. Write to us at{" "}
             <a href="mailto:partnerships.cyprushotel@gmail.com" className="text-gold hover:underline">
               partnerships.cyprushotel@gmail.com
             </a>
