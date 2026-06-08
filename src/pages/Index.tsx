@@ -78,9 +78,8 @@ const Index = () => {
         <div className="container-luxe">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {visibleAreas.map((d) => {
-              const r = readyByKey.get(d.key);
-              const showReviewBadge = !PUBLIC_INDEXING && r && !r.photoReadyOk;
-              return (
+            const r = readyByKey.get(d.key);
+            return (
                 <Link
                   key={d.slug}
                   to={`/hotell/${d.slug}`}
@@ -96,11 +95,6 @@ const Index = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-card" />
                   <div className="absolute inset-0 opacity-60 mix-blend-overlay bg-gradient-to-br from-sky-500/20 via-transparent to-orange-400/20" />
-                  {showReviewBadge && (
-                    <span className="absolute top-4 left-4 z-10 bg-background/80 backdrop-blur text-[10px] uppercase tracking-[0.2em] text-foreground/80 border border-border/60 rounded-full px-3 py-1">
-                      Images under review
-                    </span>
-                  )}
                   <div className="relative p-10">
                     <span className="text-[11px] uppercase tracking-[0.3em] text-gold drop-shadow">{t.home.chips}</span>
                     <h3 className="mt-4 font-serif text-4xl text-foreground drop-shadow-lg">{d.name}</h3>
