@@ -21,8 +21,9 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
+const defaultCtx: Ctx = { lang: "en", setLang: () => {}, t: translations.en };
+
 export const useLang = () => {
   const ctx = useContext(LanguageContext);
-  if (!ctx) throw new Error("useLang must be used within LanguageProvider");
-  return ctx;
+  return ctx ?? defaultCtx;
 };
