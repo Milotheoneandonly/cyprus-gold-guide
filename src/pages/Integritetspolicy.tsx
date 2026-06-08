@@ -3,49 +3,45 @@ import SectionHeader from "@/components/SectionHeader";
 import { useSeo } from "@/lib/useSeo";
 
 // TODO: Replace contact email once final domain is purchased.
-const CONTACT_EMAIL = "kontakt@FINAL-DOMAIN.se";
+const CONTACT_EMAIL = "contact@FINAL-DOMAIN.com";
 
 const Integritetspolicy = () => {
   useSeo({
-    title: "Integritetspolicy – Cypern Hotell",
-    description: "Så hanterar Cypern Hotell personuppgifter och dina rättigheter enligt GDPR.",
+    title: "Privacy Policy – Cyprus Hotels",
+    description: "How Cyprus Hotels handles personal data and your rights under GDPR.",
     canonicalPath: "/integritetspolicy",
   });
   return (
     <Layout>
       <section className="container-luxe py-16 md:py-24">
-        <SectionHeader eyebrow="Juridik" title="Integritetspolicy" />
+        <SectionHeader eyebrow="Legal" title="Privacy Policy" />
         <div className="max-w-2xl mx-auto mt-10 space-y-5 text-base md:text-lg text-foreground/85 leading-relaxed">
-          <h2 className="font-serif text-2xl text-gold">Vilka uppgifter vi kan samla in</h2>
+          <h2 className="font-serif text-2xl text-gold">Information we may collect</h2>
           <ul className="list-disc pl-5 space-y-2 marker:text-gold">
-            <li>Information som du själv skickar till oss via e-post.</li>
-            <li>Inloggningsuppgifter för administratörer (endast för intern administration av sajten).</li>
+            <li>Information you send us directly via email.</li>
+            <li>Login credentials for administrators (used only for internal site administration).</li>
             <li>
-              Anonym statistik om sidvisningar om analysverktyg läggs till i framtiden — då kommer det att
-              ske med samtycke.
-            </li>
-            <li>
-              Klick på annonslänkar kan registreras av vår partner (t.ex. Booking.com) enligt deras
-              integritetspolicy.
+              Anonymous page-view statistics if analytics tools are added in the future — this will
+              only happen with your consent.
             </li>
           </ul>
 
-          <h2 className="font-serif text-2xl text-gold pt-4">Tredjepartstjänster</h2>
+          <h2 className="font-serif text-2xl text-gold pt-4">Third-party services</h2>
           <p>
-            Vi använder tjänster från Lovable (hosting och plattform), Supabase (databas och inloggning)
-            samt Booking.com och liknande bokningspartners. Dessa har egna integritetspolicys som gäller
-            när du använder dem.
+            We use services from Lovable (hosting and platform), Supabase (database and authentication)
+            and Booking.com and similar booking partners. These have their own privacy policies that
+            apply when you use them.
           </p>
 
-          <h2 className="font-serif text-2xl text-gold pt-4">Dina rättigheter (GDPR)</h2>
+          <h2 className="font-serif text-2xl text-gold pt-4">Your rights (GDPR)</h2>
           <p>
-            Du har rätt att begära information om vilka uppgifter vi har om dig, få dem rättade eller
-            raderade, samt invända mot behandling. Kontakta oss för att utöva dessa rättigheter.
+            You have the right to request information about what data we hold about you, to have it
+            corrected or deleted, and to object to processing. Contact us to exercise these rights.
           </p>
 
-          <h2 className="font-serif text-2xl text-gold pt-4">Kontakt</h2>
+          <h2 className="font-serif text-2xl text-gold pt-4">Contact</h2>
           <p>
-            Frågor om integritet:{" "}
+            Questions about privacy:{" "}
             <a href={`mailto:${CONTACT_EMAIL}`} className="text-gold hover:underline">
               {CONTACT_EMAIL}
             </a>

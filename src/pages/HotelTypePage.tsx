@@ -5,9 +5,8 @@ import GoldButton from "@/components/GoldButton";
 import SimpleHotelCard from "@/components/SimpleHotelCard";
 import TopPickHotelCard from "@/components/TopPickHotelCard";
 import ScrollDownArrow from "@/components/ScrollDownArrow";
-import AffiliateDisclosure from "@/components/AffiliateDisclosure";
 import { BreadcrumbSchema } from "@/components/SchemaJsonLd";
-import { areas, AreaKey, HotelCategory } from "@/data/hotels";
+import { AreaKey, HotelCategory } from "@/data/hotels";
 import { useLang } from "@/i18n/LanguageContext";
 import { useHotels } from "@/lib/hotelsApi";
 import { isAreaKey, isCategory, getArea, CATEGORY_SV } from "@/lib/areas";
@@ -26,29 +25,24 @@ const HotelTypePage = () => {
   const { data: dbHotels, isLoading, isError } = useHotels(areaKey, category);
   const areaMeta = getArea(slug);
 
-  const categoryLabelSv = category ? CATEGORY_SV[category] : "";
+  const categoryLabel = category ? CATEGORY_SV[category] : "";
   const hasActiveHotels = !!dbHotels && dbHotels.length > 0;
-  // noindex when:
-  //   - DB returned an error (don't index a broken page), OR
-  //   - DB query finished and there are zero active hotels for this area+category
   const shouldNoindex = isError || (!isLoading && !hasActiveHotels);
   useSeo({
     title:
       areaMeta && category
-        ? `Bästa ${categoryLabelSv.toLowerCase()}hotellen i ${areaMeta.swedishName} | Cypern`
-        : "Hotell på Cypern",
+        ? `Best ${categoryLabel.toLowerCase()} hotels in ${areaMeta.name} | Cyprus`
+        : "Hotels in Cyprus",
     description:
       areaMeta && category
-        ? `Handplockade ${categoryLabelSv.toLowerCase()}hotell i ${areaMeta.swedishName}, Cypern. Topp 3 plus fler rekommendationer.`
-        : "Hotell på Cypern, handplockade för skandinaver.",
+        ? `Handpicked ${categoryLabel.toLowerCase()} hotels in ${areaMeta.name}, Cyprus. Top 3 plus more recommendations.`
+        : "Hotels in Cyprus, handpicked for you.",
     canonicalPath: areaMeta && category ? `/hotell/${areaMeta.slug}/${category}` : undefined,
     noindex: shouldNoindex,
   });
 
   if (!areaMeta || !category) return <Navigate to="/" replace />;
 
-  // Public SEO pages must use Supabase active hotels as the source of truth.
-  // No static fallback for the public listing.
   const hotels = dbHotels ?? [];
   const topPicks = hotels.slice(0, 3);
   const rest = hotels.slice(3);
@@ -61,9 +55,9 @@ const HotelTypePage = () => {
     <Layout>
       <BreadcrumbSchema
         items={[
-          { name: "Hem", path: "/" },
-          { name: areaMeta.swedishName, path: `/hotell/${areaMeta.slug}` },
-          { name: categoryLabelSv, path: `/hotell/${areaMeta.slug}/${category}` },
+          { name: "Home", path: "/" },
+          { name: areaMeta.name, path: `/hotell/${areaMeta.slug}` },
+          { name: categoryLabel, path: `/hotell/${areaMeta.slug}/${category}` },
         ]}
       />
       {/* HERO */}
@@ -72,17 +66,17 @@ const HotelTypePage = () => {
           <span className="text-[11px] uppercase tracking-[0.35em] text-gold">{t.step(3, 3)}</span>
           <h1 className="mt-6 font-serif text-5xl md:text-7xl font-light leading-[1.05] tracking-wide">
             <span className="text-gradient-gold italic">
-              {t.hotelList.title(t.hotelList.types[category], areaMeta.swedishName)}
+              {t.hotelList.title(t.hotelList.types[category], areaMeta.name)}
             </span>
           </h1>
           <div className="mx-auto mt-6 h-px w-24 bg-gold/50" />
           <p className="mt-6 text-muted-foreground max-w-xl mx-auto">{t.hotelList.subtitle}</p>
-          <nav aria-label="Brödsmulor" className="mt-6 text-xs text-muted-foreground">
-            <Link to="/" className="hover:text-gold">Hem</Link>
+          <nav aria-label="Breadcrumb" className="mt-6 text-xs text-muted-foreground">
+            <Link to="/" className="hover:text-gold">Home</Link>
             <span className="mx-2">/</span>
-            <Link to={`/hotell/${areaMeta.slug}`} className="hover:text-gold">{areaMeta.swedishName}</Link>
+            <Link to={`/hotell/${areaMeta.slug}`} className="hover:text-gold">{areaMeta.name}</Link>
             <span className="mx-2">/</span>
-            <span className="text-gold">{categoryLabelSv}</span>
+            <span className="text-gold">{categoryLabel}</span>
           </nav>
         </div>
         {!isEmpty && !isError && <ScrollDownArrow targetId="top-picks" />}
@@ -93,39 +87,38 @@ const HotelTypePage = () => {
           <div className="container-luxe text-center max-w-xl">
             <div className="mx-auto h-px w-16 bg-gold/50 mb-8" />
             <h2 className="font-serif text-3xl md:text-4xl">
-              <span className="text-gradient-gold italic">Något gick fel</span>
+              <span className="text-gradient-gold italic">Something went wrong</span>
             </h2>
             <p className="mt-6 text-muted-foreground leading-relaxed">
-              Vi kunde inte hämta hotellen för {areaMeta.swedishName} just nu. Försök igen om en stund.
+              We couldn't load the hotels for {areaMeta.name} right now. Please try again shortly.
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
               <Link to={`/hotell/${areaMeta.slug}`}>
-                <GoldButton variant="outline">Andra hotelltyper i {areaMeta.swedishName}</GoldButton>
+                <GoldButton variant="outline">Other hotel types in {areaMeta.name}</GoldButton>
               </Link>
               <Link to="/">
-                <GoldButton variant="outline">Andra destinationer</GoldButton>
+                <GoldButton variant="outline">Other destinations</GoldButton>
               </Link>
             </div>
           </div>
         </section>
       ) : isEmpty ? (
-        // PREMIUM EMPTY STATE — no fake hotels
         <section className="py-24 md:py-32">
           <div className="container-luxe text-center max-w-xl">
             <div className="mx-auto h-px w-16 bg-gold/50 mb-8" />
             <h2 className="font-serif text-3xl md:text-4xl">
-              <span className="text-gradient-gold italic">Snart här</span>
+              <span className="text-gradient-gold italic">Coming soon</span>
             </h2>
             <p className="mt-6 text-muted-foreground leading-relaxed">
-              Vi lägger till handplockade hotell här inom kort. Under tiden — utforska närliggande
-              destinationer eller välj en annan hotelltyp i {areaMeta.swedishName}.
+              We're adding handpicked hotels here shortly. In the meantime — explore nearby
+              destinations or pick another hotel type in {areaMeta.name}.
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
               <Link to={`/hotell/${areaMeta.slug}`}>
-                <GoldButton variant="outline">Andra hotelltyper i {areaMeta.swedishName}</GoldButton>
+                <GoldButton variant="outline">Other hotel types in {areaMeta.name}</GoldButton>
               </Link>
               <Link to="/">
-                <GoldButton variant="outline">Andra destinationer</GoldButton>
+                <GoldButton variant="outline">Other destinations</GoldButton>
               </Link>
             </div>
           </div>
@@ -149,10 +142,6 @@ const HotelTypePage = () => {
                 <p className="mt-5 text-sm md:text-base text-muted-foreground max-w-xl mx-auto">
                   {t.hotelList.topPicksSubtitle}
                 </p>
-              </div>
-
-              <div className="max-w-2xl mx-auto mb-8">
-                <AffiliateDisclosure variant="block" />
               </div>
 
               <div className="grid gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -189,7 +178,7 @@ const HotelTypePage = () => {
                 {hiddenCount > 0 && (
                   <div className="mt-10 text-center">
                     <GoldButton variant="outline" onClick={() => setShowAll(true)}>
-                      Visa fler hotell ({hiddenCount})
+                      Show more hotels ({hiddenCount})
                     </GoldButton>
                   </div>
                 )}

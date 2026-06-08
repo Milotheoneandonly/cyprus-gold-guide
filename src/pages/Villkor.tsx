@@ -4,34 +4,35 @@ import { useSeo } from "@/lib/useSeo";
 
 const Villkor = () => {
   useSeo({
-    title: "Villkor – Cypern Hotell",
-    description: "Användarvillkor för Cypern Hotell. Information, ansvar och bokning via externa partners.",
+    title: "Terms – Cyprus Hotels",
+    description: "Terms of use for Cyprus Hotels. Information, responsibility and booking via external partners.",
     canonicalPath: "/villkor",
   });
   return (
     <Layout>
       <section className="container-luxe py-16 md:py-24">
-        <SectionHeader eyebrow="Juridik" title="Villkor" />
+        <SectionHeader eyebrow="Legal" title="Terms" />
         <div className="max-w-2xl mx-auto mt-10 space-y-5 text-base md:text-lg text-foreground/85 leading-relaxed">
           <p>
-            Cypern Hotell är en informationsguide. Sajten visar urval och beskrivningar av hotell på
-            Cypern, men själva bokningen hanteras av externa partners (t.ex. Booking.com).
+            Cyprus Hotels is an information guide. The site shows a selection of hotels in Cyprus with
+            descriptions, but the booking itself is handled by external partners (for example
+            Booking.com).
           </p>
           <p>
-            Priser, tillgänglighet och villkor kan ändras när som helst hos partnern. Det som visas hos
-            bokningspartnern vid bokningstillfället är det som gäller.
+            Prices, availability and terms can change at any time at the partner. What is shown at the
+            booking partner at the time of booking is what applies.
           </p>
           <p>
-            Hotellbeskrivningar kan innehålla fel eller vara inaktuella och bör verifieras hos partnern
-            eller hotellet innan du bokar.
+            Hotel descriptions may contain errors or be out of date and should be verified with the
+            partner or the hotel before you book.
           </p>
           <p>
-            Vi lämnar inga garantier kring tillgänglighet, pris, hotellets standard eller upplevelsen av
-            din resa. Du är själv ansvarig för att läsa och godkänna bokningspartnerns villkor.
+            We give no guarantees regarding availability, price, hotel standard or the experience of
+            your trip. You are responsible for reading and accepting the booking partner's terms.
           </p>
           <p>
-            Genom att använda sajten godkänner du att informationen kan ändras utan förvarning och att
-            den är avsedd som vägledning, inte som ett bindande erbjudande.
+            By using the site you accept that the information may change without notice and that it is
+            intended as guidance, not as a binding offer.
           </p>
         </div>
       </section>

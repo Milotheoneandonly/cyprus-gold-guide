@@ -18,31 +18,22 @@ const Footer = () => {
             <li><Link to="/hotell/ayia-napa" className="hover:text-gold transition-colors">Ayia Napa</Link></li>
             <li><Link to="/hotell/limassol" className="hover:text-gold transition-colors">Limassol</Link></li>
             <li><Link to="/hotell/paphos" className="hover:text-gold transition-colors">Paphos</Link></li>
-            <li><Link to="/hotell/protaras" className="hover:text-gold transition-colors">Protaras</Link></li>
-            <li><Link to="/hotell/larnaca" className="hover:text-gold transition-colors">Larnaca</Link></li>
           </ul>
         </div>
         <div>
           <h4 className="text-xs uppercase tracking-[0.25em] text-gold mb-4">Information</h4>
           <ul className="space-y-2 text-sm text-foreground/85">
-            <li><Link to="/om-oss" className="hover:text-gold transition-colors">Om oss</Link></li>
-            <li><Link to="/kontakt" className="hover:text-gold transition-colors">Kontakt</Link></li>
-            <li><Link to="/annonslankar" className="hover:text-gold transition-colors">Annonslänkar</Link></li>
+            <li><Link to="/om-oss" className="hover:text-gold transition-colors">About us</Link></li>
+            <li><Link to="/kontakt" className="hover:text-gold transition-colors">Contact</Link></li>
           </ul>
         </div>
         <div>
-          <h4 className="text-xs uppercase tracking-[0.25em] text-gold mb-4">Juridik</h4>
+          <h4 className="text-xs uppercase tracking-[0.25em] text-gold mb-4">Legal</h4>
           <ul className="space-y-2 text-sm text-foreground/85">
-            <li><Link to="/integritetspolicy" className="hover:text-gold transition-colors">Integritetspolicy</Link></li>
+            <li><Link to="/integritetspolicy" className="hover:text-gold transition-colors">Privacy Policy</Link></li>
             <li><Link to="/cookies" className="hover:text-gold transition-colors">Cookies</Link></li>
-            <li><Link to="/villkor" className="hover:text-gold transition-colors">Villkor</Link></li>
+            <li><Link to="/villkor" className="hover:text-gold transition-colors">Terms</Link></li>
           </ul>
-        </div>
-      </div>
-      <div className="border-t border-border/40">
-        <div className="container-luxe py-5 text-xs text-muted-foreground/90">
-          Cypern Hotell innehåller annonslänkar. Vi kan få provision om du bokar via våra länkar, utan
-          extra kostnad för dig.
         </div>
       </div>
       <div className="border-t border-border/40">

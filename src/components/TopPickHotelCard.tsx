@@ -91,7 +91,7 @@ const TopPickHotelCard = ({ hotel, rank }: Props) => {
 
           <div className="mt-6 space-y-2">
             <GoldButton variant="solid" className="w-full rounded-full">
-              Visa hotellet
+              View hotel
             </GoldButton>
             <a
               href={hotel.bookingUrl}

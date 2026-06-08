@@ -214,12 +214,12 @@ const HotelEditor = ({ initial, onClose, onSave, saving }: Props) => {
           </Field>
 
           <div className="grid grid-cols-2 gap-4">
-            <Field label="Image alt (Swedish)" hint="Required if image_url is set.">
+            <Field label="Image alt" hint="Required if image_url is set.">
               <input
                 value={v.image_alt}
                 onChange={(e) => update("image_alt", e.target.value)}
                 className={inputCls}
-                placeholder="Capo Bay Hotel i Protaras, Cypern"
+                placeholder="Hotel exterior in Paphos, Cyprus"
               />
             </Field>
             <Field label="Image source" hint="Where this image came from (e.g. hotel PR, own photo, partner API).">

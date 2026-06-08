@@ -24,7 +24,7 @@ const SimpleHotelCard = ({ hotel }: Props) => {
   return (
     <Wrapper
       {...wrapperProps}
-      aria-label={`${hotel.name} – mer information`}
+      aria-label={`${hotel.name} – more information`}
       className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-lg"
     >
       <article className="group bg-card border border-border/60 hover:border-gold/50 overflow-hidden hover-lift shadow-elegant flex flex-col rounded-xl relative h-full">
@@ -38,7 +38,7 @@ const SimpleHotelCard = ({ hotel }: Props) => {
             src={hotel.image}
             alt={
               ("imageAlt" in (h as object) && (h as { imageAlt?: string }).imageAlt) ||
-              `${hotel.name} i ${(h.area || "Cypern")}, Cypern`
+              `${hotel.name} in ${(h.area || "Cyprus")}, Cyprus`
             }
             loading="lazy"
             width={1280}
@@ -73,7 +73,7 @@ const SimpleHotelCard = ({ hotel }: Props) => {
 
           <div className="mt-6 space-y-2">
             <GoldButton variant="solid" className="w-full rounded-full">
-              Visa hotellet
+              View hotel
             </GoldButton>
             <a
               href={hotel.bookingUrl}

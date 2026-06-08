@@ -41,7 +41,7 @@ export const WebSiteSchema = () => {
     "@type": "WebSite",
     name: SITE_NAME,
     url: SITE_URL,
-    inLanguage: "sv-SE",
+    inLanguage: "en",
   });
   return null;
 };
