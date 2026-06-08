@@ -13,9 +13,9 @@ import heroImg from "@/assets/hero.jpg";
 const Index = () => {
   const { t } = useLang();
   useSeo({
-    title: "Hotell på Cypern – Handplockade lyxhotell för skandinaver",
+    title: "Hotels in Cyprus – Handpicked stays",
     description:
-      "Handplockade hotell på Cypern: Ayia Napa, Protaras, Paphos, Larnaca, Limassol, Coral Bay och Polis & Latchi. Lyx, familj och budget – kuraterat för skandinaver.",
+      "Handpicked hotels in Cyprus: Ayia Napa, Paphos and Limassol. Luxury, family and budget — curated for travelers.",
     canonicalPath: "/",
   });
 
@@ -34,8 +34,6 @@ const Index = () => {
   const readiness = computeAreaReadiness(rows);
   const readyByKey = new Map(readiness.map((r) => [r.area.key, r]));
 
-  // In production indexing mode, hide areas that are not launch-ready.
-  // In staging, show all areas with a subtle "bilder granskas" badge.
   const visibleAreas = AREA_LIST.filter((a) => {
     const r = readyByKey.get(a.key);
     if (!r) return true;
@@ -83,7 +81,7 @@ const Index = () => {
                 >
                   <img
                     src={d.image}
-                    alt={`Hotellområde i ${d.swedishName}, Cypern`}
+                    alt={`Hotel area in ${d.name}, Cyprus`}
                     loading="lazy"
                     width={1280}
                     height={896}
@@ -93,7 +91,7 @@ const Index = () => {
                   <div className="absolute inset-0 opacity-60 mix-blend-overlay bg-gradient-to-br from-sky-500/20 via-transparent to-orange-400/20" />
                   {showReviewBadge && (
                     <span className="absolute top-4 left-4 z-10 bg-background/80 backdrop-blur text-[10px] uppercase tracking-[0.2em] text-foreground/80 border border-border/60 rounded-full px-3 py-1">
-                      Bilder granskas
+                      Images under review
                     </span>
                   )}
                   <div className="relative p-10">

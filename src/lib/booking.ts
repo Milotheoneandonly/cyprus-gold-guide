@@ -1,8 +1,7 @@
-// Booking.com affiliate helpers.
-// Existing affiliate ID detected from current active rows in the `hotels` table.
+// Booking.com link helpers.
 export const BOOKING_AFFILIATE_ID = "2311236";
 
-/** Build a Booking.com search URL with our affiliate ID for a hotel name + destination. */
+/** Build a Booking.com search URL for a hotel name + destination. */
 export function buildBookingSearchUrl(hotelName: string, destination: string): string {
   const ss = encodeURIComponent(`${hotelName} ${destination}`);
   return `https://www.booking.com/searchresults.en-gb.html?ss=${ss}&aid=${BOOKING_AFFILIATE_ID}`;
@@ -21,11 +20,11 @@ export function isBookingDeepLink(url: string | undefined | null): boolean {
 }
 
 /**
- * Swedish CTA label that adapts to the booking_url type.
- *  - search results URL → "Sök pris på Booking" (we don't know the exact hotel page)
- *  - exact hotel/deep link → "Se pris på Booking"
+ * English CTA label that adapts to the booking_url type.
+ *  - search results URL → "Search on Booking"
+ *  - exact hotel/deep link → "See price on Booking"
  */
 export function getBookingCtaLabel(url: string | undefined | null): string {
-  if (isBookingSearchUrl(url)) return "Sök pris på Booking";
-  return "Se pris på Booking";
+  if (isBookingSearchUrl(url)) return "Search on Booking";
+  return "See price on Booking";
 }

@@ -37,15 +37,7 @@ if (!ANON) {
 
 const today = new Date().toISOString().slice(0, 10);
 
-const AREAS = [
-  "ayia-napa",
-  "protaras",
-  "paphos",
-  "larnaca",
-  "limassol",
-  "coral-bay",
-  "polis-latchi",
-];
+const AREAS = ["ayia-napa", "paphos", "limassol"];
 const CATS = ["luxury", "family", "budget"];
 const APPROVED_LICENSES = new Set([
   "licensed",
@@ -117,7 +109,6 @@ add("/", "1.0");
 add("/where-to-stay", "0.8");
 add("/om-oss", "0.5");
 add("/kontakt", "0.5");
-add("/annonslankar", "0.4");
 add("/integritetspolicy", "0.3");
 add("/cookies", "0.3");
 add("/villkor", "0.3");

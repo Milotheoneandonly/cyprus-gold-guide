@@ -365,7 +365,7 @@ const AdminImportHotels = () => {
             value={text}
             onChange={(e) => setText(e.target.value)}
             rows={14}
-            placeholder={`[\n  {\n    "area": "protaras",\n    "category": "family",\n    "name": "Capo Bay Hotel",\n    "booking_url": "https://www.booking.com/hotel/cy/capo-bay.html?aid=2311236",\n    "stars": 5,\n    "best_for": "Beachfront elegance",\n    "location": "Fig Tree Bay"\n  }\n]`}
+            placeholder={`[\n  {\n    "area": "paphos",\n    "category": "luxury",\n    "name": "Annabelle Hotel",\n    "booking_url": "https://www.booking.com/hotel/cy/annabelle.html?aid=2311236",\n    "stars": 5,\n    "best_for": "Romantic premium stays",\n    "location": "Paphos harbour"\n  }\n]`}
             className="w-full font-mono text-xs rounded-md border border-border bg-background p-3 text-foreground"
           />
         </section>

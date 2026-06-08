@@ -11,17 +11,12 @@ const PUBLIC_ROUTES = [
   "/where-to-stay",
   "/om-oss",
   "/kontakt",
-  "/annonslankar",
   "/integritetspolicy",
   "/cookies",
   "/villkor",
   "/hotell/ayia-napa",
-  "/hotell/protaras",
-  "/hotell/larnaca",
   "/hotell/paphos",
   "/hotell/limassol",
-  "/hotell/coral-bay",
-  "/hotell/polis-latchi",
 ];
 const SEO_FILES = ["/robots.txt", "/sitemap.xml"];
 const ADMIN_ROUTES = ["/admin", "/admin/import-hotels", "/admin/qa"];

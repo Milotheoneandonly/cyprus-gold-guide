@@ -18,7 +18,6 @@ import AdminImportHotels from "./pages/AdminImportHotels.tsx";
 import AdminQA from "./pages/AdminQA.tsx";
 import OmOss from "./pages/OmOss.tsx";
 import Kontakt from "./pages/Kontakt.tsx";
-import Annonslankar from "./pages/Annonslankar.tsx";
 import Integritetspolicy from "./pages/Integritetspolicy.tsx";
 import CookiesPage from "./pages/Cookies.tsx";
 import Villkor from "./pages/Villkor.tsx";
@@ -51,7 +50,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/where-to-stay" element={<WhereToStay />} />
 
-            {/* Canonical Swedish routes */}
+            {/* Canonical routes */}
             <Route path="/hotell/:slug" element={<AreaPage />} />
             <Route path="/hotell/:slug/:type" element={<HotelTypePage />} />
             <Route path="/hotell/:area/:type/:hotelSlug" element={<HotelDetailPage />} />
@@ -64,7 +63,6 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/om-oss" element={<OmOss />} />
             <Route path="/kontakt" element={<Kontakt />} />
-            <Route path="/annonslankar" element={<Annonslankar />} />
             <Route path="/integritetspolicy" element={<Integritetspolicy />} />
             <Route path="/cookies" element={<CookiesPage />} />
             <Route path="/villkor" element={<Villkor />} />

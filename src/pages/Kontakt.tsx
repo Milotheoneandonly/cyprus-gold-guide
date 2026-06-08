@@ -3,44 +3,38 @@ import SectionHeader from "@/components/SectionHeader";
 import { useSeo } from "@/lib/useSeo";
 
 // TODO: Replace contact email once final domain is purchased.
-const CONTACT_EMAIL = "kontakt@FINAL-DOMAIN.se";
+const CONTACT_EMAIL = "contact@FINAL-DOMAIN.com";
 
 const Kontakt = () => {
   useSeo({
-    title: "Kontakt – Cypern Hotell",
-    description: "Kontakta Cypern Hotell för frågor om hotell, annonslänkar eller felaktig information.",
+    title: "Contact – Cyprus Hotels",
+    description: "Contact Cyprus Hotels for questions about hotels or incorrect information.",
     canonicalPath: "/kontakt",
   });
   return (
     <Layout>
       <section className="container-luxe py-16 md:py-24">
-        <SectionHeader eyebrow="Kontakt" title="Hör av dig" />
+        <SectionHeader eyebrow="Contact" title="Get in touch" />
         <div className="max-w-2xl mx-auto mt-10 space-y-6 text-base md:text-lg text-foreground/85 leading-relaxed">
           <p>
-            Vi svarar på frågor om hotell på Cypern, annonslänkar och felaktigheter i hotellinformation.
-            Skriv till oss på{" "}
+            We answer questions about hotels in Cyprus and about incorrect hotel information. Write to
+            us at{" "}
             <a href={`mailto:${CONTACT_EMAIL}`} className="text-gold hover:underline">
               {CONTACT_EMAIL}
             </a>
             .
           </p>
-          <div className="grid sm:grid-cols-3 gap-6 pt-6 border-t border-border/40">
+          <div className="grid sm:grid-cols-2 gap-6 pt-6 border-t border-border/40">
             <div>
-              <h2 className="text-[11px] uppercase tracking-[0.22em] text-gold mb-2">För hotellägare</h2>
+              <h2 className="text-[11px] uppercase tracking-[0.22em] text-gold mb-2">For hotel owners</h2>
               <p className="text-sm text-muted-foreground">
-                Vill du föreslå ditt hotell eller korrigera uppgifter? Mejla oss.
+                Want to suggest your hotel or correct existing information? Email us.
               </p>
             </div>
             <div>
-              <h2 className="text-[11px] uppercase tracking-[0.22em] text-gold mb-2">För frågor om annonslänkar</h2>
+              <h2 className="text-[11px] uppercase tracking-[0.22em] text-gold mb-2">Incorrect hotel information</h2>
               <p className="text-sm text-muted-foreground">
-                Vi använder annonslänkar. Läs mer på sidan Annonslänkar.
-              </p>
-            </div>
-            <div>
-              <h2 className="text-[11px] uppercase tracking-[0.22em] text-gold mb-2">Felaktig hotellinformation</h2>
-              <p className="text-sm text-muted-foreground">
-                Hittade du fel om ett hotell? Hör av dig så rättar vi.
+                Found something wrong about a hotel? Let us know and we'll fix it.
               </p>
             </div>
           </div>

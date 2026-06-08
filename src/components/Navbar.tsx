@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import LanguageSwitcher from "./LanguageSwitcher";
 import { useLang } from "@/i18n/LanguageContext";
 
 const Navbar = () => {
@@ -23,7 +22,6 @@ const Navbar = () => {
           >
             {t.navAbout}
           </Link>
-          <LanguageSwitcher />
         </div>
       </div>
     </header>

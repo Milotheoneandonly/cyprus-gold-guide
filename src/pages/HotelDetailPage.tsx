@@ -3,7 +3,6 @@ import { ShieldCheck, ExternalLink, Star } from "lucide-react";
 import Layout from "@/components/Layout";
 import GoldButton from "@/components/GoldButton";
 import SimpleHotelCard from "@/components/SimpleHotelCard";
-import AffiliateDisclosure from "@/components/AffiliateDisclosure";
 import { BreadcrumbSchema } from "@/components/SchemaJsonLd";
 import { areas, AreaKey, HotelCategory } from "@/data/hotels";
 import { useHotelBySlug, useHotels } from "@/lib/hotelsApi";
@@ -23,12 +22,12 @@ const HotelDetailPage = () => {
   const { data: hotel, isLoading } = useHotelBySlug(areaKey, hotelSlug);
   const { data: related } = useHotels(areaKey, category);
 
-  const seoTitle = hotel?.seoTitle || (hotel ? `${hotel.name} – ${areaMeta?.swedishName}, Cypern` : "Hotell på Cypern");
+  const seoTitle = hotel?.seoTitle || (hotel ? `${hotel.name} – ${areaMeta?.name}, Cyprus` : "Hotels in Cyprus");
   const seoDesc =
     hotel?.seoDescription ||
     (hotel
-      ? `${hotel.name} i ${areaMeta?.swedishName}. ${hotel.bestFor || hotel.description}`.slice(0, 155)
-      : "Hotell på Cypern.");
+      ? `${hotel.name} in ${areaMeta?.name}. ${hotel.bestFor || hotel.description}`.slice(0, 155)
+      : "Hotels in Cyprus.");
 
   useSeo({
     title: seoTitle,
@@ -43,7 +42,7 @@ const HotelDetailPage = () => {
   if (isLoading) {
     return (
       <Layout>
-        <div className="container-luxe py-32 text-center text-muted-foreground">Laddar…</div>
+        <div className="container-luxe py-32 text-center text-muted-foreground">Loading…</div>
       </Layout>
     );
   }
@@ -58,9 +57,9 @@ const HotelDetailPage = () => {
       return (
         <Layout>
           <div className="container-luxe py-32 text-center">
-            <h1 className="font-serif text-3xl text-gradient-gold italic">Hotellet hittades inte</h1>
+            <h1 className="font-serif text-3xl text-gradient-gold italic">Hotel not found</h1>
             <Link to={`/hotell/${areaMeta.slug}/${category}`} className="mt-6 inline-block text-gold underline">
-              Tillbaka till {CATEGORY_SV[category].toLowerCase()}hotell i {areaMeta.swedishName}
+              Back to {CATEGORY_SV[category].toLowerCase()} hotels in {areaMeta.name}
             </Link>
           </div>
         </Layout>
@@ -77,8 +76,8 @@ const HotelDetailPage = () => {
     <Layout>
       <BreadcrumbSchema
         items={[
-          { name: "Hem", path: "/" },
-          { name: areaMeta.swedishName, path: `/hotell/${areaMeta.slug}` },
+          { name: "Home", path: "/" },
+          { name: areaMeta.name, path: `/hotell/${areaMeta.slug}` },
           { name: CATEGORY_SV[category], path: `/hotell/${areaMeta.slug}/${category}` },
           { name: h.name, path: `/hotell/${areaMeta.slug}/${category}/${hotelSlug}` },
         ]}
@@ -89,10 +88,10 @@ const HotelDetailPage = () => {
           <img src={h.image} alt={h.name} className="absolute inset-0 h-full w-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-background/30" />
           <div className="relative container-luxe h-full flex flex-col justify-end pb-10">
-            <nav aria-label="Brödsmulor" className="text-xs text-muted-foreground mb-4">
-              <Link to="/" className="hover:text-gold">Hem</Link>
+            <nav aria-label="Breadcrumb" className="text-xs text-muted-foreground mb-4">
+              <Link to="/" className="hover:text-gold">Home</Link>
               <span className="mx-2">/</span>
-              <Link to={`/hotell/${areaMeta.slug}`} className="hover:text-gold">{areaMeta.swedishName}</Link>
+              <Link to={`/hotell/${areaMeta.slug}`} className="hover:text-gold">{areaMeta.name}</Link>
               <span className="mx-2">/</span>
               <Link to={`/hotell/${areaMeta.slug}/${category}`} className="hover:text-gold">
                 {CATEGORY_SV[category]}
@@ -112,7 +111,7 @@ const HotelDetailPage = () => {
             </div>
             <h1 className="font-serif text-4xl md:text-6xl font-light text-foreground">{h.name}</h1>
             <div className="mt-3 flex items-center gap-4 text-sm text-foreground/80">
-              <span>{areaMeta.swedishName}, Cypern</span>
+              <span>{areaMeta.name}, Cyprus</span>
               {h.stars && (
                 <span className="flex items-center gap-0.5 text-gold">
                   {Array.from({ length: h.stars }).map((_, i) => (
@@ -129,40 +128,40 @@ const HotelDetailPage = () => {
           <div className="container-luxe grid gap-12 lg:grid-cols-3">
             <div className="lg:col-span-2 space-y-8">
               <div>
-                <h2 className="font-serif text-2xl text-gradient-gold italic mb-3">Om hotellet</h2>
+                <h2 className="font-serif text-2xl text-gradient-gold italic mb-3">About the hotel</h2>
                 <p className="text-foreground/85 leading-relaxed">{h.description}</p>
               </div>
 
               <dl className="grid sm:grid-cols-2 gap-6 border-t border-border/40 pt-8">
                 <div>
                   <dt className="text-[10px] uppercase tracking-[0.22em] text-gold mb-1">Destination</dt>
-                  <dd className="text-foreground/90">{areaMeta.swedishName}</dd>
+                  <dd className="text-foreground/90">{areaMeta.name}</dd>
                 </div>
                 <div>
-                  <dt className="text-[10px] uppercase tracking-[0.22em] text-gold mb-1">Kategori</dt>
+                  <dt className="text-[10px] uppercase tracking-[0.22em] text-gold mb-1">Category</dt>
                   <dd className="text-foreground/90">{CATEGORY_SV[category]}</dd>
                 </div>
                 {h.bestFor && (
                   <div>
-                    <dt className="text-[10px] uppercase tracking-[0.22em] text-gold mb-1">Bäst för</dt>
+                    <dt className="text-[10px] uppercase tracking-[0.22em] text-gold mb-1">Best for</dt>
                     <dd className="text-foreground/90">{h.bestFor}</dd>
                   </div>
                 )}
                 {h.location && (
                   <div>
-                    <dt className="text-[10px] uppercase tracking-[0.22em] text-gold mb-1">Plats</dt>
+                    <dt className="text-[10px] uppercase tracking-[0.22em] text-gold mb-1">Location</dt>
                     <dd className="text-foreground/90">{h.location}</dd>
                   </div>
                 )}
                 {h.stars && (
                   <div>
-                    <dt className="text-[10px] uppercase tracking-[0.22em] text-gold mb-1">Stjärnor</dt>
+                    <dt className="text-[10px] uppercase tracking-[0.22em] text-gold mb-1">Stars</dt>
                     <dd className="text-foreground/90">{h.stars}★</dd>
                   </div>
                 )}
                 {h.note && (
                   <div className="sm:col-span-2">
-                    <dt className="text-[10px] uppercase tracking-[0.22em] text-gold mb-1">Notis</dt>
+                    <dt className="text-[10px] uppercase tracking-[0.22em] text-gold mb-1">Note</dt>
                     <dd className="text-muted-foreground italic">{h.note}</dd>
                   </div>
                 )}
@@ -172,9 +171,8 @@ const HotelDetailPage = () => {
             {/* CTA SIDEBAR */}
             <aside className="lg:col-span-1">
               <div className="sticky top-24 bg-card border border-gold/40 rounded-xl p-6 shadow-elegant">
-                <p className="text-[11px] uppercase tracking-[0.22em] text-gold mb-2">Boka via Booking.com</p>
-                <h3 className="font-serif text-xl text-foreground mb-4">Se aktuella priser</h3>
-                <AffiliateDisclosure variant="block" className="mb-4" />
+                <p className="text-[11px] uppercase tracking-[0.22em] text-gold mb-2">Book via Booking.com</p>
+                <h3 className="font-serif text-xl text-foreground mb-4">See current prices</h3>
                 <a
                   href={h.bookingUrl}
                   target="_blank"
@@ -203,7 +201,7 @@ const HotelDetailPage = () => {
           <section className="py-12 border-t border-border/40">
             <div className="container-luxe">
               <h2 className="font-serif text-2xl md:text-3xl text-center mb-10">
-                <span className="text-gradient-gold italic">Liknande hotell i {areaMeta.swedishName}</span>
+                <span className="text-gradient-gold italic">Similar hotels in {areaMeta.name}</span>
               </h2>
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {relatedHotels.map((r) => (
@@ -213,7 +211,7 @@ const HotelDetailPage = () => {
               <div className="mt-10 text-center">
                 <Link to={`/hotell/${areaMeta.slug}/${category}`}>
                   <GoldButton variant="outline">
-                    Alla {CATEGORY_SV[category].toLowerCase()}hotell i {areaMeta.swedishName}
+                    All {CATEGORY_SV[category].toLowerCase()} hotels in {areaMeta.name}
                   </GoldButton>
                 </Link>
               </div>

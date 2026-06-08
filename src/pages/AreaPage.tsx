@@ -17,18 +17,16 @@ const AreaPage = () => {
   const areaStatic = areaKey ? areas[areaKey] : undefined;
 
   useSeo({
-    title: areaMeta?.seoTitle || (areaMeta ? `Hotell i ${areaMeta.swedishName} – Cypern` : "Hotell på Cypern"),
-    description: areaMeta?.seoDescription || "Hotell på Cypern.",
+    title: areaMeta?.seoTitle || (areaMeta ? `Hotels in ${areaMeta.name} – Cyprus` : "Hotels in Cyprus"),
+    description: areaMeta?.seoDescription || "Hotels in Cyprus.",
     canonicalPath: areaMeta ? `/hotell/${areaMeta.slug}` : undefined,
   });
 
   if (!areaMeta) return <Navigate to="/" replace />;
 
   const heroImage = areaStatic?.image || areaMeta.image;
-  const heroName = areaMeta.swedishName;
-  const helperText = areaStatic
-    ? t.area.helper(areaStatic.name)
-    : `Välj nu vilken typ av hotell du vill ha i ${heroName}.`;
+  const heroName = areaMeta.name;
+  const helperText = t.area.helper(heroName);
 
   return (
     <Layout>
@@ -42,8 +40,8 @@ const AreaPage = () => {
             {t.area.title1} <span className="text-gradient-gold italic">{heroName}</span>
           </h1>
           <p className="mt-5 max-w-xl text-foreground/85">{helperText}</p>
-          <nav aria-label="Brödsmulor" className="mt-6 text-xs text-muted-foreground">
-            <Link to="/" className="hover:text-gold">Hem</Link>
+          <nav aria-label="Breadcrumb" className="mt-6 text-xs text-muted-foreground">
+            <Link to="/" className="hover:text-gold">Home</Link>
             <span className="mx-2">/</span>
             <span className="text-gold">{heroName}</span>
           </nav>

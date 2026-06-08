@@ -100,11 +100,7 @@ export type Hotel = {
 export type AreaKey =
   | "ayia-napa"
   | "limassol"
-  | "paphos"
-  | "protaras"
-  | "larnaca"
-  | "coral-bay"
-  | "polis-latchi";
+  | "paphos";
 
 export type AreaData = {
   slug: AreaKey;
@@ -246,18 +242,6 @@ export const areas: Partial<Record<AreaKey, AreaData>> = {
           bestFor: "Beachfront luxury",
           location: "Nissi Beach, Ayia Napa",
           note: "Elegant rooms, spa and direct beach access.",
-          category: "luxury",
-          stars: 5,
-        },
-        {
-          name: "Capo Bay Hotel",
-          description: "Polished beachfront 5★ on Fig Tree Bay, Protaras.",
-          tag: "Luxury",
-          image: capoBayImg,
-          bookingUrl: "https://www.booking.com/hotel/cy/capo-bay.en-gb.html?aid=2311236",
-          bestFor: "Beachfront elegance",
-          location: "Fig Tree Bay, Protaras",
-          note: "Award-winning service and a stunning beach setting.",
           category: "luxury",
           stars: 5,
         },
