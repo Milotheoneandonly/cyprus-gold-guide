@@ -78,9 +78,8 @@ const Index = () => {
         <div className="container-luxe">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {visibleAreas.map((d) => {
-              const r = readyByKey.get(d.key);
-              const showReviewBadge = !PUBLIC_INDEXING && r && !r.photoReadyOk;
-              return (
+            const r = readyByKey.get(d.key);
+            return (
                 <Link
                   key={d.slug}
                   to={`/hotell/${d.slug}`}
