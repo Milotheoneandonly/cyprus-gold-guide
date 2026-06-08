@@ -34,7 +34,7 @@ const WhereToStay = () => {
               <div className="overflow-hidden shadow-elegant rounded-lg">
                 <img
                   src={a.image}
-                  alt={`Hotell i ${a.swedishName}, Cypern`}
+                  alt={`Hotels in ${a.name}, Cyprus`}
                   loading="lazy"
                   className="w-full h-[480px] object-cover"
                 />
