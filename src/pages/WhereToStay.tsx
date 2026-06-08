@@ -10,9 +10,9 @@ const WhereToStay = () => {
   const { t } = useLang();
   const w = t.whereToStay;
   useSeo({
-    title: "Var ska du bo på Cypern? | Svensk hotellguide",
+    title: "Where to stay in Cyprus – Guide for Scandinavians",
     description:
-      "Svensk guide till var du ska bo på Cypern. Jämför Ayia Napa, Protaras, Paphos, Larnaca, Limassol, Coral Bay och Polis & Latchi.",
+      "A clear guide to where Scandinavian travelers should stay in Cyprus. Compare Ayia Napa, Paphos and Limassol — handpicked hotels for every type of trip.",
     canonicalPath: "/where-to-stay",
   });
   return (
