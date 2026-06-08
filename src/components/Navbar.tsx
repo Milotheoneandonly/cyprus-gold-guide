@@ -6,11 +6,11 @@ const Navbar = () => {
   return (
     <header className="fixed top-0 z-50 w-full bg-background/80 backdrop-blur-md border-b border-border/40">
       <div className="container-luxe flex h-20 items-center justify-between">
-        <Link to="/" className="flex flex-col leading-none">
-          <span className="font-serif text-xl md:text-2xl tracking-wide text-foreground">
+        <Link to="/" className="flex flex-col items-center leading-[1.2]">
+          <span className="font-serif text-xl md:text-2xl tracking-wide text-foreground whitespace-nowrap pb-0.5">
             {t.brand}
           </span>
-          <span className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground mt-0.5">
+          <span className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground mt-0">
             {t.brandTagline}
           </span>
         </Link>
