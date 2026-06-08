@@ -58,8 +58,9 @@ const Index = () => {
           <span className="text-[11px] uppercase tracking-[0.35em] text-gold">
             The #1 booking site for Scandinavians
           </span>
-          <h1 className="mt-5 font-serif text-5xl md:text-7xl font-light leading-[1.05] max-w-4xl">
-            Cyprus Hotels <span className="text-gradient-gold italic">for Scandinavians</span>
+          <h1 className="mt-5 font-serif font-light leading-[1.15] max-w-4xl px-2 pb-2 [text-wrap:balance]" style={{ fontSize: "clamp(2.25rem, 6vw, 4.5rem)" }}>
+            Cyprus Hotels{" "}
+            <span className="text-gradient-gold italic inline-block pr-[0.15em]">for Scandinavians</span>
           </h1>
           <p className="mt-5 max-w-2xl text-base md:text-lg text-foreground/85">
             Carefully selected hotels and stays in Cyprus — curated for Scandinavian travelers
