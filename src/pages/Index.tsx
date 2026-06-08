@@ -13,9 +13,9 @@ import heroImg from "@/assets/hero.jpg";
 const Index = () => {
   const { t } = useLang();
   useSeo({
-    title: "Hotels in Cyprus – Handpicked stays",
+    title: "Cyprus Hotels for Scandinavians – Handpicked Stays",
     description:
-      "Handpicked hotels in Cyprus: Ayia Napa, Paphos and Limassol. Luxury, family and budget — curated for travelers.",
+      "The #1 booking site for Scandinavians looking for hotels and stays in Cyprus. Carefully selected stays in Ayia Napa, Paphos and Limassol.",
     canonicalPath: "/",
   });
 
@@ -55,12 +55,18 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-hero" />
         <div className="absolute inset-0 bg-background/25" />
         <div className="relative container-luxe h-full flex flex-col justify-center items-center text-center animate-fade-up">
-          <span className="text-[11px] uppercase tracking-[0.35em] text-gold">{t.step(1, 3)}</span>
+          <span className="text-[11px] uppercase tracking-[0.35em] text-gold">
+            The #1 booking site for Scandinavians
+          </span>
           <h1 className="mt-5 font-serif text-5xl md:text-7xl font-light leading-[1.05] max-w-4xl">
-            {t.home.title1} <span className="text-gradient-gold italic">{t.home.titleAccent}</span>
+            Cyprus Hotels <span className="text-gradient-gold italic">for Scandinavians</span>
           </h1>
-          <p className="mt-5 max-w-xl text-base md:text-lg text-foreground/85">
-            {t.home.helper}
+          <p className="mt-5 max-w-2xl text-base md:text-lg text-foreground/85">
+            Carefully selected hotels and stays in Cyprus — curated for Scandinavian travelers
+            who value quality, clarity and a calm booking experience.
+          </p>
+          <p className="mt-3 max-w-xl text-sm text-muted-foreground">
+            Start by choosing your destination below.
           </p>
         </div>
         <ScrollDownArrow targetId="destinations" />
