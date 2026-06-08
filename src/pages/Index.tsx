@@ -13,9 +13,9 @@ import heroImg from "@/assets/hero.jpg";
 const Index = () => {
   const { t } = useLang();
   useSeo({
-    title: "Hotels in Cyprus – Handpicked stays",
+    title: "Cyprus Hotels for Scandinavians – Handpicked Stays",
     description:
-      "Handpicked hotels in Cyprus: Ayia Napa, Paphos and Limassol. Luxury, family and budget — curated for travelers.",
+      "The #1 booking site for Scandinavians looking for hotels and stays in Cyprus. Carefully selected stays in Ayia Napa, Paphos and Limassol.",
     canonicalPath: "/",
   });
 
