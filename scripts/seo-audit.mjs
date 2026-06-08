@@ -93,7 +93,7 @@ if (!existsSync(sitemapPath)) {
   if (dupes.length) fail(`sitemap has duplicates: ${[...new Set(dupes)].join(", ")}`);
   else ok("no duplicate URLs in sitemap");
 
-  for (const required of ["/", "/where-to-stay", "/om-oss", "/kontakt", "/annonslankar", "/integritetspolicy", "/cookies", "/villkor"]) {
+  for (const required of ["/", "/where-to-stay", "/om-oss", "/kontakt", "/integritetspolicy", "/cookies", "/villkor"]) {
     const want = `${SITE}${required === "/" ? "/" : required}`;
     if (!locs.some((u) => u === want || u === want.replace(/\/$/, "")))
       fail(`sitemap missing required URL ${required}`);
@@ -246,7 +246,6 @@ const appPath = "src/App.tsx";
 const requiredRoutes = [
   "/om-oss",
   "/kontakt",
-  "/annonslankar",
   "/integritetspolicy",
   "/cookies",
   "/villkor",
@@ -262,7 +261,6 @@ if (existsSync(appPath)) {
   for (const f of [
     "src/pages/OmOss.tsx",
     "src/pages/Kontakt.tsx",
-    "src/pages/Annonslankar.tsx",
     "src/pages/Integritetspolicy.tsx",
     "src/pages/Cookies.tsx",
     "src/pages/Villkor.tsx",
@@ -277,26 +275,9 @@ if (existsSync(appPath)) {
 const footerPath = "src/components/Footer.tsx";
 if (existsSync(footerPath)) {
   const src = readFileSync(footerPath, "utf8");
-  for (const r of ["/om-oss", "/kontakt", "/annonslankar", "/integritetspolicy", "/cookies", "/villkor"]) {
+  for (const r of ["/om-oss", "/kontakt", "/integritetspolicy", "/cookies", "/villkor"]) {
     if (!src.includes(`to="${r}"`)) fail(`Footer.tsx missing link to ${r}`);
     else ok(`Footer links to ${r}`);
-  }
-}
-
-// ---------- Affiliate disclosure must exist in code ----------
-const discPath = "src/components/AffiliateDisclosure.tsx";
-if (!existsSync(discPath)) fail("missing src/components/AffiliateDisclosure.tsx");
-else {
-  const src = readFileSync(discPath, "utf8");
-  if (!/Annonsl[äa]nk:/.test(src)) fail("AffiliateDisclosure.tsx missing Swedish disclosure text");
-  else ok("AffiliateDisclosure component contains Swedish disclosure text");
-}
-for (const f of ["src/pages/HotelDetailPage.tsx", "src/pages/HotelTypePage.tsx"]) {
-  if (existsSync(f)) {
-    const src = readFileSync(f, "utf8");
-    if (!/AffiliateDisclosure/.test(src))
-      fail(`${f} does not render <AffiliateDisclosure />`);
-    else ok(`${f} renders AffiliateDisclosure`);
   }
 }
 
@@ -369,29 +350,7 @@ if (existsSync(sitemapPath)) {
 }
 
 
-// ---------- LanguageSwitcher must use SE/NO/DK/EN labels ----------
-const lsPath = "src/components/LanguageSwitcher.tsx";
-if (existsSync(lsPath)) {
-  const src = readFileSync(lsPath, "utf8");
-  for (const code of ["SE", "NO", "DK", "EN"]) {
-    if (!new RegExp(`["']${code}["']`).test(src))
-      fail(`LanguageSwitcher.tsx is missing label "${code}"`);
-    else ok(`LanguageSwitcher exposes label ${code}`);
-  }
-}
-
-// ---------- Translations: SV title is Swedish, EN title is English ----------
-const trPath = "src/i18n/translations.ts";
-if (existsSync(trPath)) {
-  const src = readFileSync(trPath, "utf8");
-  // crude but effective: pull the first title1 within sv:{...} and en:{...}
-  const svBlock = src.match(/sv:\s*\{[\s\S]*?\},?\s*no:/);
-  const enBlock = src.match(/en:\s*\{[\s\S]*?\},?\s*\}\s*;/);
-  if (svBlock && /Välj din destination/.test(svBlock[0])) ok("translations.sv has Swedish home.title1");
-  else fail("translations.sv home.title1 is not Swedish");
-  if (enBlock && /Choose your destination/.test(enBlock[0])) ok("translations.en has English home.title1");
-  else fail("translations.en home.title1 is not English");
-}
+// (LanguageSwitcher / multi-language audits removed — site is English-only.)
 
 // ---------- Image policy: no disallowed hosts in active hotels ----------
 if (SUPABASE_URL && ANON) {
