@@ -382,14 +382,8 @@ if (SUPABASE_URL && ANON) {
     for (const a of Object.keys(activeByArea).sort()) {
       console.log(`      ${a}: active=${activeByArea[a]} photo-ready=${photoReadyByArea[a] || 0}`);
     }
-    // Only enforce 5-photo-ready minimum when in production indexing mode.
-    if (PUBLIC_INDEXING_ENV) {
-      for (const a of ["protaras", "larnaca", "coral-bay", "polis-latchi"]) {
-        const n = photoReadyByArea[a] || 0;
-        if (n < 5) fail(`area ${a} has only ${n} photo-ready hotels (min 5) while indexing is on`);
-        else ok(`area ${a} meets photo-ready minimum`);
-      }
-    }
+    // Photo-ready enforcement disabled: only Ayia Napa, Paphos and Limassol
+    // are active areas, and minimums are checked via launchReadiness at runtime.
   }
 }
 
