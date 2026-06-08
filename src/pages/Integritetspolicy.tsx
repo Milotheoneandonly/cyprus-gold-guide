@@ -26,13 +26,6 @@ const Integritetspolicy = () => {
             </li>
           </ul>
 
-          <h2 className="font-serif text-2xl text-gold pt-4">Third-party services</h2>
-          <p>
-            We use services from Lovable (hosting and platform), Supabase (database and authentication)
-            and Booking.com and similar booking partners. These have their own privacy policies that
-            apply when you use them.
-          </p>
-
           <h2 className="font-serif text-2xl text-gold pt-4">Your rights (GDPR)</h2>
           <p>
             You have the right to request information about what data we hold about you, to have it
