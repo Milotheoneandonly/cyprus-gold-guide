@@ -2,9 +2,6 @@ import Layout from "@/components/Layout";
 import SectionHeader from "@/components/SectionHeader";
 import { useSeo } from "@/lib/useSeo";
 
-// TODO: Replace contact email once final domain is purchased.
-const CONTACT_EMAIL = "contact@FINAL-DOMAIN.com";
-
 const Integritetspolicy = () => {
   useSeo({
     title: "Privacy Policy – Cyprus Hotels",
@@ -29,16 +26,7 @@ const Integritetspolicy = () => {
           <h2 className="font-serif text-2xl text-gold pt-4">Your rights (GDPR)</h2>
           <p>
             You have the right to request information about what data we hold about you, to have it
-            corrected or deleted, and to object to processing. Contact us to exercise these rights.
-          </p>
-
-          <h2 className="font-serif text-2xl text-gold pt-4">Contact</h2>
-          <p>
-            Questions about privacy:{" "}
-            <a href={`mailto:${CONTACT_EMAIL}`} className="text-gold hover:underline">
-              {CONTACT_EMAIL}
-            </a>
-            .
+            corrected or deleted, and to object to processing.
           </p>
         </div>
       </section>
